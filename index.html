@@ -1,0 +1,1744 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Клуб сімейного здоровʼя HALE</title>
+<meta name="description" content="Клуб сімейного здоровʼя HALE: щомісяця нова тема, практичні дії, прямий ефір і підтримка в чаті. Дитячий та дорослий напрямки.">
+<meta name="theme-color" content="#f7f6f1">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:title" content="Клуб сімейного здоровʼя HALE">
+<meta property="og:description" content="Клуб сімейного здоровʼя HALE: щомісяця нова тема, практичні дії, прямий ефір і підтримка в чаті. Дитячий та дорослий напрямки.">
+<meta property="og:image" content="https://halecare.club/assets/img/hero.jpg">
+<meta property="og:url" content="https://halecare.club/">
+<link rel="canonical" href="https://halecare.club/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23042c29'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='34' text-anchor='middle' fill='%23f7f6f1'%3EH%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/calvino.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/eastman.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/hero.jpg" as="image" fetchpriority="high">
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<style>
+@font-face { font-family: 'Calvino'; src: url(assets/fonts/calvino.woff2) format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Eastman'; src: url(assets/fonts/eastman.woff2) format('woff2'); font-weight: 400; font-display: swap; }
+
+/* Layout: light, airy 1180px column; split hero with photo, bento cards, soft sage surfaces instead of dark bands. Single light theme by design. */
+:root {
+  color-scheme: light;
+  --paper: #f7f6f1;
+  --paper-2: #eef2e7;
+  --card: #ffffff;
+  --ink: #042c29;
+  --ink-soft: #3a4034;
+  --muted: #5c6353;
+  --sage: #8a9a86;
+  --leaf: #dbe6bf;
+  --mint: #e4ede0;
+  --clay: #c0764e;
+  --clay-soft: #f5e4d8;
+  --line: rgba(4, 44, 41, .09);
+  --band: #e9efe1;
+  --band-fg: #042c29;
+  --band-muted: #5c6353;
+  --on-ink: #ffffff;
+  --shadow: 0 1px 2px rgba(4, 44, 41, .04), 0 18px 40px -24px rgba(4, 44, 41, .18);
+  --r: 28px;
+  --serif: 'Calvino', 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Eastman', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --wrap: 1180px;
+  --gut: clamp(16px, 5vw, 56px);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; text-wrap: balance; letter-spacing: -.005em; }
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+:focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-inline: var(--gut); }
+.eyebrow { font-size: 11.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.h2 { font-size: clamp(34px, 5.2vw, 56px); line-height: 1.04; }
+.lead { font-size: clamp(16px, 2vw, 18px); line-height: 1.72; color: var(--ink-soft); max-width: 62ch; }
+section { padding-block: clamp(64px, 9vw, 112px); }
+.sec-head { display: grid; gap: 18px; margin-bottom: clamp(32px, 5vw, 52px); }
+
+.btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--sans); font-size: 13.5px; letter-spacing: .06em; text-transform: uppercase; padding: 15px 26px; border-radius: 999px; border: 1.5px solid var(--ink); cursor: pointer; transition: transform .25s, box-shadow .25s, background .25s, color .25s; }
+.btn-solid { background: var(--ink); color: var(--on-ink); }
+.btn-solid:hover { transform: translateY(-2px); box-shadow: 0 14px 28px -16px rgba(4, 44, 41, .45); }
+.btn-ghost { background: transparent; color: var(--ink); }
+.btn-ghost:hover { background: var(--ink); color: var(--on-ink); }
+.arrow { display: inline-block; transition: transform .28s cubic-bezier(.22,.61,.36,1); }
+.btn:hover .arrow { transform: translateX(4px); }
+
+/* Top bar + header */
+.trust { background: var(--paper-2); border-bottom: 1px solid var(--line); }
+.trust .wrap { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px 22px; padding-block: 9px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); text-align: center; }
+.dot { width: 4px; height: 4px; border-radius: 99px; background: var(--sage); }
+header.site { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: color-mix(in srgb, var(--paper) 84%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 16px; }
+.logo { display: flex; flex-direction: column; gap: 3px; line-height: 1; }
+.logo b { font-family: var(--serif); font-weight: 400; font-size: 23px; letter-spacing: .2em; }
+.logo small { font-size: 8.5px; letter-spacing: .26em; text-transform: uppercase; color: var(--sage); }
+nav.main { display: flex; align-items: center; gap: 26px; font-size: 13.5px; color: var(--ink-soft); }
+nav.main a:not(.btn):hover { color: var(--sage); }
+nav.main .btn { padding: 11px 22px; font-size: 12.5px; }
+@media (max-width: 860px) { nav.main a:not(.btn) { display: none; } }
+
+/* Hero */
+.hero { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 30px; padding-block: clamp(64px, 9vw, 116px) clamp(48px, 7vw, 84px); }
+.pill { font-size: clamp(12px, 1.6vw, 14px); letter-spacing: .08em; text-transform: uppercase; border: 1.5px solid var(--ink); border-radius: 999px; padding: 9px 20px; }
+.hero h1 { font-size: clamp(46px, 8.4vw, 92px); line-height: .98; max-width: 14ch; }
+.hero h1 em { font-style: normal; color: var(--clay); }
+.hero .lead { text-align: center; max-width: 58ch; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.facts { display: grid; grid-template-columns: repeat(4, 1fr); width: 100%; max-width: 920px; border-top: 1px solid var(--line); margin-top: 18px; }
+.fact { padding: 22px 12px 4px; display: grid; gap: 6px; justify-items: center; }
+.fact + .fact { border-left: 1px solid var(--line); }
+.fact b { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 4vw, 44px); line-height: 1; }
+.fact span { font-size: 13px; color: var(--muted); line-height: 1.4; max-width: 18ch; }
+@media (max-width: 680px) { .facts { grid-template-columns: 1fr 1fr; } .fact:nth-child(3) { border-left: 0; } .fact { padding-bottom: 18px; } }
+
+/* Formula band */
+.band { background: var(--band); color: var(--band-fg); }
+.formula { display: grid; grid-template-columns: repeat(4, 1fr) auto; align-items: stretch; }
+.term { padding: 26px 20px; display: grid; gap: 10px; align-content: start; border-left: 1px solid var(--line); }
+.term:first-child { border-left: 0; padding-left: 0; }
+.term .op { font-family: var(--serif); font-size: 26px; color: var(--leaf); line-height: 1; }
+.term h3 { font-size: clamp(22px, 2.6vw, 28px); line-height: 1.1; }
+.term p { font-size: 14px; line-height: 1.55; color: var(--band-muted); }
+.result { padding: 26px 0 26px 24px; display: grid; align-content: center; gap: 6px; border-left: 1px solid var(--line); }
+.result .op { font-family: var(--serif); font-size: 26px; color: var(--clay); line-height: 1; }
+.result b { font-family: var(--serif); font-weight: 400; font-size: clamp(22px, 2.6vw, 28px); line-height: 1.1; }
+.band .eyebrow { color: var(--band-muted); }
+.band-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 34px; }
+.band-head h2 { font-size: clamp(30px, 4.4vw, 46px); line-height: 1.05; max-width: 20ch; }
+@media (max-width: 900px) {
+  .formula { grid-template-columns: 1fr 1fr; }
+  .term, .result { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-right: 16px; }
+  .result { grid-column: 1 / -1; }
+}
+@media (max-width: 480px) { .formula { grid-template-columns: 1fr; } }
+
+/* Two directions */
+.dirs { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.dir { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: clamp(24px, 3.4vw, 40px); display: grid; gap: 18px; align-content: start; min-width: 0; }
+.dir .tag { justify-self: start; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; background: var(--paper-2); color: var(--ink-soft); }
+.dir h3 { font-size: clamp(28px, 3.4vw, 38px); line-height: 1.05; }
+.dir p { color: var(--ink-soft); line-height: 1.7; }
+.chat { display: flex; gap: 14px; align-items: center; padding-top: 18px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-soft); }
+.chat svg { flex: none; }
+.both { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; justify-content: space-between; padding: 22px clamp(20px, 3vw, 32px); border-radius: 22px; background: var(--leaf); color: #042c29; }
+.both p { font-family: var(--serif); font-size: clamp(20px, 2.4vw, 26px); line-height: 1.25; max-width: 36ch; }
+.both span { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
+@media (max-width: 760px) { .dirs { grid-template-columns: 1fr; } }
+
+/* What you get */
+.get { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 48px; border-top: 1px solid var(--line); }
+.get li { display: flex; gap: 16px; align-items: baseline; padding-block: 18px; border-bottom: 1px solid var(--line); font-size: 17px; line-height: 1.5; min-width: 0; }
+.get li::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 99px; background: var(--clay); transform: translateY(-2px); }
+.quote { margin-top: 40px; font-family: var(--serif); font-size: clamp(24px, 3.2vw, 36px); line-height: 1.2; max-width: 30ch; }
+.quote em { font-style: normal; color: var(--clay); }
+@media (max-width: 700px) { .get { grid-template-columns: 1fr; } }
+
+/* Program */
+.program { background: var(--paper-2); }
+.prog-controls { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 20px; }
+.seg { display: inline-flex; padding: 4px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); }
+.seg button { font: inherit; font-size: 13px; letter-spacing: .04em; border: 0; background: transparent; color: var(--ink-soft); padding: 9px 16px; border-radius: 999px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
+.months-scroll { overflow-x: auto; margin-inline: calc(var(--gut) * -1); padding-inline: var(--gut); scrollbar-width: none; }
+.months-scroll::-webkit-scrollbar { display: none; }
+.months { display: grid; grid-template-columns: repeat(12, minmax(78px, 1fr)); gap: 6px; min-width: 980px; }
+.month { font: inherit; text-align: left; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 14px; padding: 12px 12px 14px; cursor: pointer; display: grid; gap: 4px; transition: background .2s, border-color .2s; position: relative; }
+.month:hover { border-color: var(--sage); }
+.month small { font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-variant-numeric: tabular-nums; }
+.month b { font-family: var(--serif); font-weight: 400; font-size: 19px; line-height: 1.1; }
+.month[aria-selected="true"] { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+.month[aria-selected="true"] small { color: inherit; opacity: .7; }
+.month .now { position: absolute; top: 10px; right: 10px; width: 7px; height: 7px; border-radius: 99px; background: var(--clay); }
+.panel { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.panel.single { grid-template-columns: 1fr; }
+.track { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: clamp(22px, 3vw, 34px); display: grid; gap: 16px; align-content: start; min-width: 0; animation: tabIn .45s ease both; }
+.track .eyebrow { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.track h3 { font-size: clamp(26px, 3vw, 34px); line-height: 1.08; }
+.daily { background: var(--paper-2); border-radius: 14px; padding: 14px 16px; display: grid; gap: 6px; font-size: 14.5px; }
+.daily b { font-weight: 400; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.track ul { display: grid; gap: 10px; }
+.track li { display: flex; gap: 12px; align-items: baseline; line-height: 1.55; color: var(--ink-soft); }
+.track li::before { content: ""; flex: none; width: 14px; height: 1.5px; background: var(--sage); transform: translateY(-4px); }
+.track li.theory::before { background: var(--clay); }
+.track li i { font-style: normal; color: var(--ink); }
+.track .live { margin-top: 4px; padding-top: 14px; border-top: 1px dashed var(--line); font-size: 13.5px; color: var(--muted); display: flex; gap: 10px; align-items: center; }
+.track .live::before { content: ""; width: 8px; height: 8px; border-radius: 99px; background: var(--clay); box-shadow: 0 0 0 4px color-mix(in srgb, var(--clay) 22%, transparent); }
+.prog-note { margin-top: 18px; font-size: 13.5px; color: var(--muted); }
+@keyframes tabIn { from { opacity: .35; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (max-width: 760px) { .panel { grid-template-columns: 1fr; } }
+
+/* For whom */
+.whom { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.whom li { border-top: 1.5px solid var(--ink); padding-top: 18px; font-size: 16.5px; line-height: 1.55; color: var(--ink-soft); min-width: 0; }
+.whom li b { display: block; font-family: var(--serif); font-weight: 400; font-size: 22px; line-height: 1.15; color: var(--ink); margin-bottom: 8px; }
+@media (max-width: 900px) { .whom { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .whom { grid-template-columns: 1fr; } }
+
+/* Results */
+.results { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
+.results li { padding: 22px 0; border-bottom: 1px solid var(--line); display: grid; gap: 6px; min-width: 0; }
+.results li b { font-family: var(--serif); font-weight: 400; font-size: 21px; line-height: 1.2; }
+.results li span { color: var(--ink-soft); line-height: 1.65; font-size: 15.5px; }
+@media (max-width: 760px) { .results { grid-template-columns: 1fr; } }
+
+/* Tariffs */
+.tariffs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: stretch; }
+.plan { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: clamp(24px, 3vw, 34px); display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.plan.feature { background: var(--band); color: var(--band-fg); border-color: var(--band); }
+.plan-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 26px; }
+.plan .badge { font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; padding: 5px 11px; border-radius: 999px; background: var(--clay); color: #fff; }
+.plan h3 { font-size: clamp(50px, 6vw, 68px); line-height: .9; display: flex; align-items: baseline; gap: 12px; }
+.plan h3 small { font-family: var(--sans); font-size: 15px; letter-spacing: .02em; }
+.plan .span { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.plan.feature .span, .plan.feature .eyebrow { color: var(--band-muted); }
+.price { padding-block: 16px; border-block: 1px solid var(--line); display: grid; gap: 2px; }
+.plan.feature .price { border-color: var(--line); }
+.price b { font-family: var(--serif); font-weight: 400; font-size: 28px; }
+.price span { font-size: 13px; color: var(--muted); }
+.plan.feature .price span { color: var(--band-muted); }
+.plan ul { display: grid; gap: 9px; font-size: 14.5px; flex: 1; }
+.plan li { display: flex; gap: 10px; align-items: baseline; }
+.plan li::before { content: "✓"; color: var(--clay); flex: none; }
+.plan .btn { justify-content: center; }
+.plan.feature .btn { background: var(--ink); color: #fff; border-color: var(--ink); }
+.plan-msg { font-size: 13px; color: var(--muted); text-align: center; min-height: 1.4em; }
+.plan.feature .plan-msg { color: var(--band-muted); }
+.tariff-foot { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px 26px; font-size: 14px; color: var(--muted); }
+.tariff-foot span { display: inline-flex; gap: 8px; align-items: center; }
+@media (max-width: 900px) { .tariffs { grid-template-columns: 1fr; max-width: 520px; } }
+
+/* Host + terms */
+.host { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+.host-card { background: var(--paper-2); border-radius: 24px; padding: clamp(24px, 3.4vw, 40px); display: grid; gap: 14px; min-width: 0; }
+.host-card h3 { font-size: clamp(30px, 3.6vw, 40px); line-height: 1.05; }
+.host-card p { color: var(--ink-soft); line-height: 1.7; }
+.host-card a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--sage); }
+.terms { display: grid; gap: 16px; min-width: 0; }
+.terms p { color: var(--ink-soft); line-height: 1.7; }
+.disclaimer { font-size: 13.5px; color: var(--muted); border-left: 2px solid var(--clay); padding-left: 14px; }
+@media (max-width: 820px) { .host { grid-template-columns: 1fr; } }
+
+/* FAQ */
+.faq { border-top: 1px solid var(--line); max-width: 860px; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 18px; align-items: center; padding: 22px 0; font-family: var(--serif); font-size: clamp(19px, 2.2vw, 23px); line-height: 1.25; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .plus { flex: none; width: 32px; height: 32px; border: 1px solid var(--line); border-radius: 99px; display: grid; place-items: center; font-family: var(--sans); font-size: 18px; transition: transform .3s; }
+.faq details[open] .plus { transform: rotate(45deg); }
+.faq details p { padding: 0 48px 24px 0; color: var(--ink-soft); line-height: 1.7; max-width: 66ch; }
+
+/* Final CTA + footer */
+.final { text-align: center; display: grid; justify-items: center; gap: 24px; }
+.final h2 { font-size: clamp(36px, 6vw, 68px); line-height: 1.02; max-width: 16ch; }
+footer { border-top: 1px solid var(--line); padding-block: 36px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; align-items: center; font-size: 13px; color: var(--muted); }
+footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
+footer a:hover { color: var(--ink); }
+
+/* Inside the club: chat mock + live tracker */
+.inside { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 18px; align-items: start; }
+.phone { background: var(--paper-2); border: 1px solid var(--line); border-radius: 28px; padding: 18px; display: grid; gap: 12px; min-width: 0; }
+.phone-top { display: grid; gap: 2px; padding: 4px 6px 12px; border-bottom: 1px solid var(--line); }
+.phone-top b { font-weight: 400; font-size: 15px; }
+.phone-top span { font-size: 12px; color: var(--muted); }
+.pinned { background: var(--card); border-radius: 14px; padding: 10px 14px; font-size: 13.5px; line-height: 1.5; display: grid; gap: 2px; color: var(--ink-soft); border-left: 2px solid var(--clay); }
+.msg { max-width: 86%; padding: 10px 14px; border-radius: 16px; font-size: 14px; line-height: 1.5; display: grid; gap: 3px; }
+.msg small { font-size: 11px; color: var(--muted); letter-spacing: .04em; }
+.msg.in { background: var(--card); border-bottom-left-radius: 4px; }
+.msg.out { background: var(--ink); color: var(--on-ink); justify-self: end; border-bottom-right-radius: 4px; }
+.msg.out small { color: inherit; opacity: .7; }
+.msg.sys { justify-self: center; max-width: 100%; text-align: center; font-size: 12px; color: var(--muted); padding: 4px 10px; }
+.mock-note { font-size: 11.5px; color: var(--muted); text-align: center; }
+.tracker { background: var(--card); border: 1px solid var(--line); border-radius: 28px; padding: clamp(20px, 3vw, 32px); display: grid; gap: 18px; min-width: 0; }
+.tracker-head { display: flex; justify-content: space-between; align-items: end; gap: 12px; }
+.tracker-head h3 { font-size: clamp(26px, 3vw, 32px); line-height: 1.1; margin-top: 6px; }
+.score { display: flex; align-items: baseline; gap: 6px; color: var(--muted); font-size: 13px; }
+.score b { font-family: var(--serif); font-weight: 400; font-size: 44px; color: var(--ink); line-height: 1; font-variant-numeric: tabular-nums; }
+.t-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(7, minmax(30px, 1fr)); gap: 6px; align-items: center; }
+.t-grid .day { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); text-align: center; }
+.t-grid .habit { font-size: 14px; line-height: 1.35; padding-right: 8px; }
+.t-grid .habit small { display: block; font-size: 12px; color: var(--muted); }
+.cell { aspect-ratio: 1; max-width: 100%; border-radius: 10px; border: 1.5px solid var(--line); background: var(--paper); cursor: pointer; display: grid; place-items: center; color: transparent; font-size: 14px; transition: background .2s, border-color .2s, transform .15s; }
+.cell:hover { border-color: var(--sage); }
+.cell:active { transform: scale(.94); }
+.cell[aria-pressed="true"] { background: var(--leaf); border-color: var(--leaf); color: #042c29; }
+.t-bar { height: 6px; border-radius: 99px; background: var(--paper-2); overflow: hidden; }
+.t-bar span { display: block; height: 100%; width: 0; background: var(--clay); border-radius: 99px; transition: width .4s ease; }
+.t-msg { font-size: 14px; color: var(--ink-soft); }
+.t-reset { justify-self: start; font: inherit; font-size: 12.5px; color: var(--muted); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 820px) { .inside { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .t-grid { grid-template-columns: repeat(7, minmax(0, 1fr)); } .t-grid .habit { grid-column: 1 / -1; padding-top: 6px; } .t-grid .corner { display: none; } }
+
+/* Herbs */
+.herbs-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 28px; padding-top: clamp(40px, 6vw, 72px); border-top: 1px solid var(--line); }
+.herbs-note { font-size: 13.5px; color: var(--muted); max-width: 30ch; }
+.herbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.herb { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 12px 12px 16px; display: grid; gap: 6px; align-content: start; transition: transform .25s, box-shadow .25s; }
+.herb:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -28px rgba(4, 44, 41, .45); }
+.herb img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; background: #fff; margin-bottom: 6px; }
+.herb .eyebrow { font-size: 10.5px; }
+.herb b { font-family: var(--serif); font-weight: 400; font-size: 20px; line-height: 1.15; }
+.herb .hp { font-size: 13.5px; color: var(--muted); }
+.herb:hover .arrow { transform: translateX(4px); }
+@media (max-width: 860px) { .herbs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Founder */
+.founder { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(28px, 6vw, 80px); align-items: center; }
+.founder-photo { margin: 0; border-radius: 200px 200px 24px 24px; overflow: hidden; aspect-ratio: 4 / 5; max-width: 100%; background: var(--paper-2); }
+.founder-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+.founder-text { display: grid; gap: 22px; min-width: 0; }
+.letter { display: grid; gap: 14px; font-size: 17px; line-height: 1.75; color: var(--ink-soft); max-width: 58ch; }
+.sign { display: grid; gap: 2px; }
+.sign b { font-family: var(--serif); font-weight: 400; font-size: 26px; }
+.sign span { font-size: 13.5px; color: var(--muted); }
+.socials { display: flex; flex-wrap: wrap; gap: 8px; }
+.socials a { font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; transition: border-color .2s, background .2s; }
+.socials a:hover { border-color: var(--ink); }
+@media (max-width: 760px) { .founder { grid-template-columns: 1fr; } .founder-photo { max-width: 420px; } }
+
+/* Reviews */
+.reviews-sec { background: var(--paper-2); }
+.shots { columns: 3 260px; column-gap: 16px; }
+.shot { break-inside: avoid; margin: 0 0 16px; background: #fff; border-radius: 18px; padding: 10px; border: 1px solid var(--line); display: grid; gap: 8px; }
+.shot img { width: 100%; display: block; border-radius: 10px; }
+.shot figcaption { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #5c6353; padding: 0 4px 2px; }
+
+/* Steps: a real sequence, so numbered */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; counter-reset: st; border-top: 1px solid var(--line); }
+.steps li { counter-increment: st; padding: 22px 18px 0 0; display: grid; gap: 8px; align-content: start; }
+.steps li::before { content: counter(st, decimal-leading-zero); font-size: 12px; letter-spacing: .14em; color: var(--clay); font-variant-numeric: tabular-nums; }
+.steps b { font-family: var(--serif); font-weight: 400; font-size: 22px; line-height: 1.15; }
+.steps span { font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); }
+@media (max-width: 900px) { .steps { grid-template-columns: 1fr 1fr; row-gap: 12px; } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } .steps li { padding-right: 0; } }
+
+/* Terms */
+.terms-wrap { max-width: 860px; }
+
+/* Final band */
+.final-band { padding-block: 0; overflow: hidden; }
+.final { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 64px); align-items: center; text-align: left; justify-items: stretch; }
+.final-photo { margin: 0; align-self: stretch; min-height: 380px; max-width: 100%; }
+.final-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; display: block; }
+.final-text { display: grid; gap: 20px; padding-block: clamp(48px, 7vw, 88px); min-width: 0; }
+.final-text h2 { font-size: clamp(34px, 5vw, 60px); line-height: 1.02; max-width: 16ch; }
+.final-text > p { color: var(--band-muted); font-size: 17px; line-height: 1.7; }
+.final-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn-light { background: var(--ink); color: #fff; border-color: var(--ink); }
+.btn-light:hover { transform: translateY(-2px); }
+.btn-line { background: rgba(255,255,255,.6); color: var(--ink); border-color: var(--line); }
+.btn-line:hover { border-color: var(--ink); }
+.final-small { font-size: 13.5px; color: var(--band-muted); }
+.final-small a { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 760px) { .final { grid-template-columns: 1fr; } .final-photo { min-height: 0; aspect-ratio: 4 / 3; margin-inline: calc(var(--gut) * -1); max-width: none; } .final-text { padding-top: 0; } }
+
+/* Mobile sticky CTA */
+.mbar { display: none; }
+@media (max-width: 860px) {
+  .mbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)); background: color-mix(in srgb, var(--paper) 92%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--line); transform: translateY(110%); transition: transform .35s ease; }
+  .mbar.show { transform: none; }
+  .mbar span { display: grid; font-size: 12px; color: var(--muted); line-height: 1.3; }
+  .mbar b { font-weight: 400; color: var(--ink); font-size: 14px; }
+  .mbar .btn { padding: 11px 20px; font-size: 12.5px; }
+  footer { padding-bottom: 96px; }
+}
+
+
+/* ===== Modern light layer ===== */
+section { padding-block: clamp(72px, 10vw, 128px); }
+.h2 { font-size: clamp(36px, 5.4vw, 60px); line-height: 1.02; letter-spacing: -.015em; }
+.sec-head .eyebrow { display: inline-flex; align-items: center; gap: 10px; }
+.sec-head .eyebrow::before { content: ""; width: 22px; height: 1.5px; background: var(--clay); }
+.trust { background: var(--ink); border: 0; }
+.trust .wrap { color: #dbe6bf; }
+.trust .dot { background: var(--clay); }
+header.site { background: color-mix(in srgb, var(--paper) 72%, transparent); border-bottom: 1px solid transparent; }
+header.site .wrap { padding-block: 14px; }
+nav.main { background: rgba(255,255,255,.75); border: 1px solid var(--line); border-radius: 999px; padding: 5px 5px 5px 22px; box-shadow: var(--shadow); }
+@media (max-width: 860px) { nav.main { padding: 0; background: none; border: 0; box-shadow: none; } }
+
+/* Hero: split, photo in an arch with floating chips */
+.hero2 { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(32px, 5vw, 72px); align-items: center; padding-block: clamp(40px, 6vw, 80px) clamp(48px, 6vw, 88px); }
+.hero2-text { display: grid; gap: 26px; justify-items: start; min-width: 0; }
+.chip { display: inline-flex; align-items: center; gap: 10px; font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 6px 16px 6px 6px; box-shadow: var(--shadow); }
+.chip i { font-style: normal; background: var(--clay-soft); color: var(--clay); border-radius: 999px; padding: 5px 11px; }
+.hero2 h1 { font-size: clamp(48px, 7.4vw, 96px); line-height: .95; letter-spacing: -.025em; }
+.hero2 h1 em { font-style: normal; color: var(--clay); }
+.hero2 .lead { max-width: 50ch; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-start; }
+.hero-media { position: relative; min-width: 0; }
+.arch { margin: 0; aspect-ratio: 4 / 5; max-width: 100%; border-radius: 999px 999px 32px 32px; overflow: hidden; background: var(--mint); box-shadow: var(--shadow); }
+.arch img { width: 100%; height: 100%; object-fit: cover; object-position: center 35%; display: block; }
+.float { position: absolute; background: rgba(255,255,255,.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: 20px; padding: 12px 16px; box-shadow: var(--shadow); display: grid; gap: 2px; font-size: 13px; color: var(--muted); animation: bob 6s ease-in-out infinite; }
+.float b { font-family: var(--serif); font-weight: 400; font-size: 22px; color: var(--ink); line-height: 1.1; }
+.float.f1 { left: -22px; bottom: 16%; }
+.float.f2 { right: -14px; top: 14%; animation-delay: -3s; }
+.live-dot { display: inline-block; width: 8px; height: 8px; border-radius: 99px; background: var(--clay); margin-right: 8px; box-shadow: 0 0 0 4px var(--clay-soft); }
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; width: 100%; margin-top: 6px; }
+.stat { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 14px 14px 12px; display: grid; gap: 4px; align-content: start; }
+.stat b { font-family: var(--serif); font-weight: 400; font-size: 30px; line-height: 1; }
+.stat span { font-size: 12.5px; color: var(--muted); line-height: 1.35; }
+@media (max-width: 900px) { .hero2 { grid-template-columns: 1fr; } .hero-media { max-width: 440px; width: 100%; justify-self: center; } .float.f1 { left: -4px; } .float.f2 { right: -4px; } }
+@media (max-width: 560px) { .stats { grid-template-columns: 1fr 1fr; } }
+
+/* Topic ticker */
+.ticker { border-block: 1px solid var(--line); background: var(--card); overflow: hidden; }
+.ticker-track { display: flex; width: max-content; padding-block: 16px; animation: tick 70s linear infinite; }
+.ticker span { font-family: var(--serif); font-size: 22px; white-space: nowrap; color: var(--ink); display: inline-flex; align-items: center; gap: 36px; padding-right: 36px; }
+.ticker span::after { content: "✦"; font-family: var(--sans); font-size: 12px; color: var(--clay); }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+@keyframes tick { to { transform: translateX(-50%); } }
+
+/* Formula as light cards */
+.band { background: var(--band); color: var(--ink); }
+.band-head h2 { letter-spacing: -.015em; }
+.formula { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.term, .term:first-child, .result { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 24px 22px; box-shadow: var(--shadow); }
+.term .op { font-family: var(--sans); font-size: 12px; letter-spacing: .1em; width: 40px; height: 40px; border-radius: 99px; display: grid; place-items: center; background: var(--mint); color: var(--ink); }
+.term p { color: var(--muted); }
+.result { grid-column: 1 / -1; display: flex; align-items: center; gap: 18px; background: var(--ink); color: #fff; border-color: var(--ink); padding: 22px 26px; }
+.result .op { color: #dbe6bf; }
+@media (max-width: 900px) { .formula { grid-template-columns: 1fr 1fr; } .term, .result { padding-left: 22px; } }
+@media (max-width: 480px) { .formula { grid-template-columns: 1fr; } }
+
+/* Soft modern finish on cards */
+.dir, .track, .plan, .tracker, .herb, .phone { border-radius: var(--r); box-shadow: var(--shadow); }
+.dir:nth-child(1) { background: linear-gradient(160deg, #fff 45%, var(--clay-soft)); }
+.dir:nth-child(2) { background: linear-gradient(160deg, #fff 45%, var(--mint)); }
+.both { border-radius: var(--r); background: var(--leaf); }
+.phone { background: var(--mint); }
+
+/* Bento: what you get */
+.bento { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.bento li { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 22px; display: grid; gap: 18px; align-content: space-between; min-height: 172px; box-shadow: var(--shadow); font-size: 16.5px; line-height: 1.45; min-width: 0; }
+.bento li svg { width: 40px; height: 40px; padding: 9px; border-radius: 14px; background: var(--mint); color: var(--ink); }
+.bento li.wide { grid-column: span 2; background: var(--ink); color: #fff; border-color: var(--ink); }
+.bento li.wide svg { background: rgba(255,255,255,.12); color: #dbe6bf; }
+.bento li.wide b { font-family: var(--serif); font-weight: 400; font-size: clamp(22px, 2.4vw, 28px); line-height: 1.15; }
+.bento li.warm { background: var(--clay-soft); }
+.bento li.warm svg { background: #fff; color: var(--clay); }
+@media (max-width: 900px) { .bento { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .bento { grid-template-columns: 1fr; } .bento li.wide { grid-column: auto; } .bento li { min-height: 0; } }
+
+/* Program, lists, tariffs, reviews, FAQ */
+.month { border-radius: 18px; background: var(--card); }
+.seg { box-shadow: var(--shadow); }
+.whom li { border-top: 0; background: var(--card); border-radius: 24px; padding: 22px; box-shadow: var(--shadow); }
+.plan { background: var(--card); }
+.plan.feature { background: linear-gradient(170deg, #fff 30%, var(--leaf)); border-color: var(--leaf); color: var(--ink); }
+.plan.feature .span, .plan.feature .eyebrow, .plan.feature .price span, .plan.feature .plan-msg { color: var(--muted); }
+.shot { border-radius: 22px; box-shadow: var(--shadow); }
+.faq { border-top: 0; }
+.faq details { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding-inline: 22px; margin-bottom: 10px; }
+.founder-photo { box-shadow: var(--shadow); }
+
+/* Final band, light */
+.final-band { background: var(--band); }
+.final-photo { margin-block: clamp(24px, 4vw, 48px); border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow); min-height: 420px; }
+.final-text > p, .final-small { color: var(--muted); }
+@media (max-width: 760px) { .final-photo { margin-inline: 0; border-radius: var(--r); min-height: 0; } }
+
+
+/* ===== Mobile-first sales layer ===== */
+/* Burger + mobile menu */
+.burger { display: none; width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); box-shadow: var(--shadow); cursor: pointer; place-items: center; padding: 0; }
+.burger span { display: block; width: 18px; height: 1.5px; background: var(--ink); position: relative; transition: transform .25s; }
+.burger span::before, .burger span::after { content: ""; position: absolute; left: 0; width: 18px; height: 1.5px; background: var(--ink); transition: transform .25s, top .25s; }
+.burger span::before { top: -6px; } .burger span::after { top: 6px; }
+.burger[aria-expanded="true"] span { background: transparent; }
+.burger[aria-expanded="true"] span::before { top: 0; transform: rotate(45deg); }
+.burger[aria-expanded="true"] span::after { top: 0; transform: rotate(-45deg); }
+.mmenu { border-top: 1px solid var(--line); background: var(--paper); }
+.mmenu .wrap { display: grid; padding-block: 8px 18px; }
+.mmenu a:not(.btn) { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 17px; }
+.mmenu .btn { margin-top: 14px; justify-content: center; }
+.head-right { display: flex; align-items: center; gap: 10px; }
+@media (max-width: 860px) {
+  .burger { display: grid; }
+  nav.main .btn { padding: 11px 18px; }
+  .trust .t-hide { display: none; }
+}
+@media (min-width: 861px) { .mmenu { display: none !important; } }
+
+/* Tariff actions */
+.plan-actions { display: grid; gap: 8px; }
+.link-btn { font: inherit; font-size: 13.5px; color: var(--muted); background: none; border: 0; padding: 8px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.link-btn:hover { color: var(--ink); }
+.deposit-note { margin-top: 18px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 24px; background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 20px 24px; box-shadow: var(--shadow); }
+.deposit-note p { max-width: 52ch; color: var(--ink-soft); line-height: 1.6; }
+.deposit-note p b { font-family: var(--serif); font-weight: 400; font-size: 22px; color: var(--ink); display: block; margin-bottom: 2px; }
+.deposit-note .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+@media (max-width: 900px) { .plan.feature { order: -1; } .tariffs { max-width: none; } }
+
+/* Show-more lists */
+.more { display: none; margin-top: 14px; font: inherit; font-size: 13.5px; letter-spacing: .06em; text-transform: uppercase; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 12px 20px; cursor: pointer; color: var(--ink); }
+@media (max-width: 640px) {
+  .more { display: inline-flex; }
+  .collapsible:not(.open) > li:nth-child(n+4) { display: none; }
+  .collapsible.open + .more { display: none; }
+}
+
+/* Swipe rails for reviews and herbs */
+.swipe-hint { display: none; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+@media (max-width: 640px) {
+  .swipe-hint { display: block; }
+  .shots, .herbs { display: flex; columns: auto; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: calc(var(--gut) * -1); padding: 4px var(--gut) 14px; scrollbar-width: none; }
+  .shots::-webkit-scrollbar, .herbs::-webkit-scrollbar { display: none; }
+  .shot { flex: 0 0 78%; margin: 0; scroll-snap-align: center; align-self: start; }
+  .herb { flex: 0 0 62%; scroll-snap-align: start; }
+}
+
+/* Month strip: fade shows there is more to the right */
+.months-scroll { -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+@media (min-width: 1100px) { .months-scroll { -webkit-mask-image: none; mask-image: none; } }
+.month-hint { display: none; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+@media (max-width: 1099px) { .month-hint { display: block; } }
+
+/* Inside: chat / tracker switch on phones */
+.inside-switch { display: none; margin-bottom: 14px; }
+@media (max-width: 820px) {
+  .inside-switch { display: inline-flex; }
+  .inside[data-pane="chat"] .tracker, .inside[data-pane="tracker"] .phone { display: none; }
+}
+
+/* Hero on phones: CTA first, photo compact */
+@media (max-width: 560px) {
+  .hero2 { gap: 28px; padding-top: 28px; }
+  .hero2 h1 { font-size: clamp(44px, 13vw, 60px); }
+  .hero-cta { width: 100%; }
+  .hero-cta .btn { flex: 1 1 100%; justify-content: center; }
+  .arch { aspect-ratio: 1 / 1; }
+  .float { padding: 9px 12px; font-size: 12px; }
+  .float b { font-size: 18px; }
+  .float.f1 { left: 8px; bottom: 10px; }
+  .float.f2 { right: 8px; top: 18px; }
+  .ticker span { font-size: 18px; }
+  section { padding-block: 64px; }
+  .deposit-note .btns, .deposit-note .btns .btn { width: 100%; justify-content: center; }
+  .final-cta .btn { flex: 1 1 100%; justify-content: center; }
+}
+
+/* Sticky bar v2 */
+.mbar .mbar-btns { display: flex; gap: 8px; align-items: center; }
+.mbar .tg { width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--line); display: grid; place-items: center; background: var(--card); color: var(--ink); }
+.mbar .tg svg { width: 20px; height: 20px; }
+
+/* Lead sheet */
+.sheet-back { position: fixed; inset: 0; z-index: 100; background: rgba(4, 44, 41, .38); display: grid; place-items: center; padding: 16px; animation: fadeIn .2s ease; }
+.sheet { position: relative; width: min(520px, 100%); max-height: calc(100dvh - 32px); overflow-y: auto; background: var(--card); border-radius: 28px; padding: 26px clamp(18px, 4vw, 30px) 24px; box-shadow: 0 30px 80px -30px rgba(4, 44, 41, .5); display: grid; gap: 18px; animation: sheetUp .3s cubic-bezier(.22,.61,.36,1); }
+.sheet-grip { display: none; width: 40px; height: 4px; border-radius: 99px; background: var(--line); justify-self: center; margin-top: -10px; }
+.sheet-x { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 99px; border: 1px solid var(--line); background: var(--paper); font-size: 22px; line-height: 1; cursor: pointer; color: var(--ink); }
+.sheet-seg { justify-self: start; }
+.sheet-seg button { padding: 9px 14px; }
+.sheet-head { display: grid; gap: 6px; padding-right: 30px; }
+.sheet-head h3 { font-size: 30px; line-height: 1.1; }
+.sheet-head p { color: var(--muted); font-size: 14.5px; line-height: 1.55; }
+#lead-form { display: grid; gap: 14px; }
+.pk { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
+.pk legend, .fld { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.pk legend { margin-bottom: 8px; }
+.pk-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.pk-opt { position: relative; cursor: pointer; }
+.pk-opt input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.pk-opt span { display: grid; place-items: center; text-align: center; gap: 0; min-height: 64px; padding: 10px 6px; border: 1.5px solid var(--line); border-radius: 16px; font-size: 13px; color: var(--ink-soft); transition: border-color .2s, background .2s; }
+.pk-opt span b { font-family: var(--serif); font-weight: 400; font-size: 26px; line-height: 1; color: var(--ink); }
+.pk-opt input:checked + span { border-color: var(--ink); background: var(--mint); }
+.pk-opt input:focus-visible + span { outline: 2px solid var(--clay); outline-offset: 2px; }
+.pk-undecided { grid-column: 1 / -1; display: none; }
+.pk-undecided span { min-height: 0; padding: 10px; }
+.sheet[data-mode="details"] .pk-undecided { display: block; }
+.fld { display: grid; gap: 6px; }
+.fld .opt { text-transform: none; letter-spacing: 0; font-size: 12px; color: var(--sage); }
+.fld input, .fld textarea { font: inherit; font-size: 16px; letter-spacing: 0; text-transform: none; color: var(--ink); background: var(--paper); border: 1.5px solid var(--line); border-radius: 14px; padding: 14px 16px; width: 100%; outline: none; transition: border-color .2s, background .2s; resize: vertical; }
+.fld input:focus, .fld textarea:focus { border-color: var(--ink); background: #fff; }
+.fld input[aria-invalid="true"] { border-color: var(--clay); }
+.fld-q { display: none; }
+.sheet[data-mode="details"] .fld-q { display: grid; }
+.f-err { color: var(--clay); font-size: 14px; min-height: 0; }
+.f-err:empty { display: none; }
+.f-submit { justify-content: center; width: 100%; padding-block: 17px; }
+.f-submit[disabled] { opacity: .6; cursor: progress; }
+.f-note { font-size: 12px; color: var(--muted); text-align: center; line-height: 1.5; }
+.sheet-done { display: grid; gap: 14px; justify-items: center; text-align: center; padding: 10px 0 4px; }
+.done-mark { width: 64px; height: 64px; border-radius: 99px; background: var(--leaf); display: grid; place-items: center; font-size: 28px; color: var(--ink); }
+.sheet-done h3 { font-size: 30px; }
+.sheet-done p { color: var(--ink-soft); line-height: 1.6; max-width: 40ch; }
+.sheet-done p a { text-decoration: underline; text-underline-offset: 3px; }
+.sheet-done .btn { width: 100%; justify-content: center; }
+@keyframes sheetUp { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@media (max-width: 560px) {
+  .sheet-back { place-items: end stretch; padding: 0; }
+  .sheet { width: 100%; border-radius: 26px 26px 0 0; max-height: 94dvh; padding-bottom: calc(22px + env(safe-area-inset-bottom, 0px)); }
+  .sheet-grip { display: block; }
+}
+body.locked { overflow: hidden; }
+
+/* Quiz */
+.q-progress { height: 4px; border-radius: 99px; background: var(--paper-2); overflow: hidden; margin-right: 44px; }
+.q-progress span { display: block; height: 100%; width: 20%; background: var(--clay); border-radius: 99px; transition: width .35s ease; }
+.sheet[data-mode="lead"] .q-progress { display: none; }
+.q-step { display: grid; gap: 12px; animation: sheetUp .25s ease; }
+.q-step[hidden] { display: none; }
+.q-title { font-family: var(--serif); font-size: 22px; line-height: 1.2; }
+.q-hint { font-size: 13px; color: var(--muted); margin-top: -6px; }
+.q-opts { display: grid; gap: 8px; }
+.q-opt { position: relative; display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.q-opt input, .q-chip input { position: absolute; opacity: 0; inset: 0; cursor: pointer; margin: 0; }
+.q-opt span { flex: 1; display: grid; gap: 2px; padding: 15px 18px; border: 1.5px solid var(--line); border-radius: 18px; background: var(--paper); transition: border-color .2s, background .2s; }
+.q-opt span b { font-weight: 400; font-size: 17px; color: var(--ink); }
+.q-opt span small { font-size: 13px; color: var(--muted); }
+.q-opt em { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-style: normal; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; background: var(--clay); color: #fff; border-radius: 999px; padding: 4px 9px; pointer-events: none; }
+.q-opt input:checked + span, .q-chip input:checked + span { border-color: var(--ink); background: var(--mint); }
+.q-opt input:focus-visible + span, .q-chip input:focus-visible + span { outline: 2px solid var(--clay); outline-offset: 2px; }
+.q-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.q-chip { position: relative; cursor: pointer; }
+.q-chip span { display: inline-block; padding: 11px 16px; border: 1.5px solid var(--line); border-radius: 999px; font-size: 15px; background: var(--paper); transition: border-color .2s, background .2s; }
+.q-chip input:checked + span::before { content: "✓ "; color: var(--ink); }
+.q-summary { display: flex; flex-wrap: wrap; gap: 6px; }
+.q-summary:empty { display: none; }
+.q-summary span { font-size: 12.5px; background: var(--paper-2); border-radius: 999px; padding: 6px 11px; color: var(--ink-soft); }
+.q-nav { display: flex; gap: 10px; }
+.q-nav .btn { justify-content: center; padding-block: 16px; }
+.q-nav .q-back { flex: 0 0 auto; padding-inline: 18px; }
+.q-nav .q-next, .q-nav .f-submit { flex: 1; }
+.q-nav [hidden] { display: none; }
+.q-switch { justify-self: center; }
+.fld-q { display: none; }
+.sheet[data-mode="lead"] .fld-q { display: grid; }
+
+/* ===== Friendlier reading ===== */
+.eyebrow { font-size: 12.5px; letter-spacing: .14em; }
+.logo small, .fld .opt { color: var(--muted); }
+.hero-sub { font-size: 14px; letter-spacing: .04em; color: var(--ink-soft); margin-top: -10px; }
+.who-pick { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); }
+.who-pick button { font: inherit; font-size: 15px; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; cursor: pointer; box-shadow: var(--shadow); transition: border-color .2s, background .2s; }
+.who-pick button:hover { border-color: var(--ink); background: var(--mint); }
+.proof { margin: 18px 0 0; padding: 20px 24px; border-radius: var(--r); background: var(--clay-soft); display: grid; gap: 8px; }
+.proof blockquote { margin: 0; font-family: var(--serif); font-size: clamp(20px, 2.4vw, 26px); line-height: 1.25; }
+.proof figcaption { font-size: 13.5px; color: var(--ink-soft); }
+.proof a { text-decoration: underline; text-underline-offset: 3px; }
+#get .sec-head { margin-bottom: 20px; }
+@media (max-width: 640px) {
+  body { font-size: 16.5px; }
+  .eyebrow, .swipe-hint, .month-hint { font-size: 13px; }
+  .month small, .herb .eyebrow, .shot figcaption, .dir .tag, .plan .badge { font-size: 12px; }
+  .stat span, .t-grid .habit small, .msg small { font-size: 13px; }
+  .lead { font-size: 17px; }
+  .hero-sub { margin-top: -14px; }
+}
+
+/* ===== Prices ===== */
+.offer { display: flex; align-items: center; gap: 16px; background: var(--ink); color: #fff; border-radius: var(--r); padding: 16px 22px; margin-bottom: 12px; }
+.offer-tag { flex: none; font-family: var(--serif); font-size: 30px; line-height: 1; background: var(--clay); border-radius: 16px; padding: 10px 14px; }
+.offer-text { display: grid; gap: 2px; }
+.offer-text b { font-weight: 400; font-family: var(--serif); font-size: 22px; line-height: 1.15; }
+.offer-text span { font-size: 14px; color: #dbe6bf; }
+.cmp { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 22px; margin-bottom: 18px; display: grid; gap: 10px; box-shadow: var(--shadow); }
+.cmp-row { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto 34px; align-items: center; gap: 12px; font-variant-numeric: tabular-nums; }
+.cmp-k { font-size: 14px; color: var(--muted); }
+.cmp-bar { height: 10px; border-radius: 99px; background: var(--paper-2); overflow: hidden; }
+.cmp-bar i { display: block; height: 100%; border-radius: 99px; background: var(--sage); }
+.cmp-row b { font-family: var(--serif); font-weight: 400; font-size: 22px; text-align: right; }
+.cmp-u { font-size: 13px; color: var(--muted); }
+.cmp-row.best .cmp-bar i { background: var(--clay); }
+.cmp-row.best .cmp-k, .cmp-row.best b { color: var(--ink); }
+.cmp-row.best b { color: var(--clay); }
+.cmp-note { font-size: 14.5px; color: var(--ink-soft); line-height: 1.55; padding-top: 4px; border-top: 1px solid var(--line); }
+.plan .price { gap: 6px; }
+.price-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; }
+.price-row b { font-family: var(--serif); font-weight: 400; font-size: 40px; line-height: 1; }
+.price-row s { font-size: 17px; color: var(--muted); }
+.price-row .off { font-size: 12px; letter-spacing: .08em; background: var(--clay-soft); color: var(--clay); border-radius: 999px; padding: 4px 9px; align-self: center; }
+.plan .pm { font-size: 14.5px; color: var(--ink-soft); }
+.plan .pm b { font-weight: 400; color: var(--ink); }
+.plan .pm s { color: var(--muted); margin-left: 4px; }
+.save { justify-self: start; font-size: 13px; background: var(--mint); color: var(--ink); border-radius: 999px; padding: 6px 12px; }
+.save-big { background: var(--clay); color: #fff; }
+.plan.feature .price-row b { font-size: 48px; }
+.family { margin-top: 18px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px 32px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 22px 26px; box-shadow: var(--shadow); }
+.family-text { display: grid; gap: 6px; min-width: 0; }
+.family-text h3 { font-size: 26px; line-height: 1.1; }
+.family-text p { color: var(--ink-soft); line-height: 1.6; max-width: 52ch; }
+.family-price { display: grid; gap: 6px; justify-items: start; }
+.family-price .price-row b { font-size: 34px; }
+.family-price .pm { font-size: 14px; color: var(--muted); margin-bottom: 6px; }
+.fam-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; min-width: 240px; }
+.fam-list li { display: grid; grid-template-columns: 1fr auto auto; align-items: baseline; gap: 12px; padding: 10px 14px; border-radius: 14px; background: var(--paper); font-variant-numeric: tabular-nums; }
+.fam-list span { font-size: 14.5px; color: var(--ink-soft); }
+.fam-list b { font-family: var(--serif); font-weight: 400; font-size: 24px; }
+.fam-list s { font-size: 14px; color: var(--muted); min-width: 44px; text-align: right; }
+.q-family { position: relative; cursor: pointer; display: block; }
+.q-family input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.q-family span { display: grid; gap: 2px; padding: 12px 16px 12px 48px; border: 1.5px dashed var(--line); border-radius: 16px; background: var(--paper); position: relative; }
+.q-family span::before { content: ""; position: absolute; left: 16px; top: 50%; width: 20px; height: 20px; margin-top: -10px; border-radius: 6px; border: 1.5px solid var(--sage); background: #fff; }
+.q-family input:checked + span { border-style: solid; border-color: var(--ink); background: var(--mint); }
+.q-family input:checked + span::before { content: "✓"; display: grid; place-items: center; background: var(--ink); border-color: var(--ink); color: #fff; font-size: 13px; }
+.q-family b { font-weight: 400; font-size: 15.5px; }
+.q-family small { font-size: 13px; color: var(--muted); }
+.q-family s { margin-left: 4px; }
+.sheet[data-mode="lead"] .q-family { display: none; }
+@media (max-width: 640px) {
+  .offer { padding: 14px 16px; gap: 12px; }
+  .offer-tag { font-size: 24px; padding: 8px 10px; }
+  .offer-text b { font-size: 19px; }
+  .cmp { padding: 16px; }
+  .cmp-row { grid-template-columns: 44px minmax(0, 1fr) auto 30px; gap: 8px; }
+  .family { grid-template-columns: 1fr; padding: 20px; }
+  .fam-list { min-width: 0; }
+  .family-price .btn { grid-column: 1 / -1; width: 100%; }
+}
+
+/* ===== Buttons sized to their text ===== */
+.btn { white-space: nowrap; line-height: 1.2; min-height: 52px; padding: 0 26px; justify-content: center; text-align: center; }
+.btn .arrow { flex: none; }
+nav.main .btn { min-height: 42px; padding: 0 20px; font-size: 12.5px; }
+.plan-actions .btn, .deposit-note .btn, .q-nav .btn, .sheet-done .btn { min-height: 52px; }
+.link-btn { min-height: 40px; }
+.mbar .btn { min-height: 44px; padding: 0 20px; }
+.q-nav .q-back { padding: 0 18px; min-width: 52px; }
+.more { min-height: 46px; align-items: center; }
+@media (max-width: 860px) {
+  nav.main { margin-left: auto; }
+  header.site .wrap { gap: 10px; }
+  .btn { letter-spacing: .04em; }
+  nav.main .btn { min-height: 40px; padding: 0 14px; font-size: 11.5px; letter-spacing: .03em; }
+}
+@media (max-width: 420px) {
+  .logo small { display: none; }
+  .q-back-t { display: none; }
+  .q-nav .q-back { padding: 0; width: 52px; flex: 0 0 52px; font-size: 18px; }
+  .q-nav .f-submit, .q-nav .q-next { padding: 0 14px; font-size: 13px; letter-spacing: .03em; }
+  .mbar span b { font-size: 15px; }
+}
+
+/* ===== Month tiles ===== */
+.months { grid-template-columns: repeat(6, minmax(0, 1fr)); min-width: 0; gap: 8px; }
+.months-scroll { overflow: visible; margin-inline: 0; padding-inline: 0; -webkit-mask-image: none; mask-image: none; }
+.month { padding: 12px 16px 14px; gap: 2px; min-height: 72px; align-content: center; }
+.month b { font-size: 21px; white-space: nowrap; }
+.month small { font-size: 11.5px; letter-spacing: .12em; }
+.month .now { top: 12px; right: 12px; }
+.month-hint { display: none !important; }
+@media (max-width: 1000px) { .months { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 640px) {
+  .months-scroll { overflow-x: auto; margin-inline: calc(var(--gut) * -1); padding: 2px var(--gut) 6px; scroll-snap-type: x proximity;
+    -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent); mask-image: linear-gradient(90deg, #000 82%, transparent); }
+  .months { display: flex; gap: 8px; width: max-content; }
+  .month { flex: 0 0 auto; min-width: 116px; scroll-snap-align: start; padding: 10px 14px 12px; min-height: 64px; }
+  .month b { font-size: 19px; }
+  .month-hint { display: block !important; }
+}
+/* Bento on phones: icon beside the text, card as tall as its text */
+@media (max-width: 480px) {
+  .bento { gap: 8px; }
+  .bento li { display: flex; align-items: center; gap: 14px; min-height: 0; padding: 14px 16px; border-radius: 20px; font-size: 16px; }
+  .bento li svg { flex: none; width: 38px; height: 38px; }
+  .bento li.wide b { font-size: 20px; }
+}
+
+/* ===== Simplified selling layout ===== */
+.hero-points { display: grid; gap: 12px; max-width: 52ch; }
+.hero-points li { position: relative; padding-left: 30px; font-size: 16.5px; line-height: 1.55; color: var(--ink-soft); }
+.hero-points li::before { content: "✓"; position: absolute; left: 0; top: 1px; width: 20px; height: 20px; border-radius: 99px; background: var(--leaf); color: var(--ink); font-size: 12px; display: grid; place-items: center; }
+.hero-points b { font-weight: 400; color: var(--ink); }
+.hero-cta { align-items: center; }
+.hero-price { order: 2; font-size: 15px; color: var(--muted); }
+.hero-price b { font-family: var(--serif); font-weight: 400; font-size: 26px; color: var(--clay); }
+.care { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+.care-text { display: grid; gap: 22px; justify-items: start; min-width: 0; }
+.care-list { display: grid; gap: 14px; }
+.care-list li { position: relative; padding-left: 30px; font-size: 16.5px; line-height: 1.55; color: var(--ink-soft); }
+.care-list li::before { content: ""; position: absolute; left: 4px; top: 8px; width: 10px; height: 10px; border-radius: 99px; background: var(--clay); box-shadow: 0 0 0 5px var(--clay-soft); }
+.care-list b { font-weight: 400; color: var(--ink); }
+.care .phone { max-width: 460px; width: 100%; justify-self: center; }
+.objections { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 18px; }
+.objections li { position: relative; padding-left: 24px; font-size: 14.5px; color: var(--ink-soft); }
+.objections li::before { content: "✓"; position: absolute; left: 0; color: var(--clay); }
+@media (max-width: 820px) { .care { grid-template-columns: 1fr; } }
+@media (max-width: 560px) {
+  .hero-cta { flex-direction: column; align-items: stretch; gap: 10px; }
+  .hero-cta .btn { flex: none; width: 100%; }
+  .hero-price { order: 0; text-align: center; }
+  .term, .term:first-child { display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: 14px; row-gap: 2px; padding: 16px 18px; }
+  .term .op { grid-row: span 2; }
+  .term h3 { font-size: 21px; }
+  .result { padding: 16px 18px; }
+  .result b { font-size: 21px; }
+  .objections { flex-direction: column; }
+}
+
+/* ===== Side drawer menu ===== */
+.mmenu { position: fixed; top: 0; right: 0; bottom: 0; z-index: 90; width: min(86vw, 340px); background: var(--card); box-shadow: -20px 0 60px -20px rgba(4, 44, 41, .35);
+  display: flex; flex-direction: column; padding: calc(16px + env(safe-area-inset-top, 0px)) 22px calc(22px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(105%); visibility: hidden; transition: transform .3s cubic-bezier(.22,.61,.36,1), visibility 0s .3s; border-top: 0; overflow-y: auto; }
+.mmenu.open { transform: none; visibility: visible; transition: transform .3s cubic-bezier(.22,.61,.36,1); }
+.mmenu-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.mmenu-head b { font-family: var(--serif); font-weight: 400; font-size: 22px; letter-spacing: .2em; }
+.mmenu-x { width: 42px; height: 42px; border-radius: 99px; border: 1px solid var(--line); background: var(--paper); font-size: 24px; line-height: 1; cursor: pointer; color: var(--ink); }
+.mmenu-links { display: grid; padding-top: 6px; }
+.mmenu-links a:not(.btn) { padding: 15px 2px; border-bottom: 1px solid var(--line); font-size: 18px; font-family: var(--serif); }
+.mmenu-links .btn { margin-top: 14px; width: 100%; }
+.mmenu-links .btn + .btn { margin-top: 10px; }
+.mmenu-back { position: fixed; inset: 0; z-index: 85; background: rgba(4, 44, 41, .35); animation: fadeIn .2s ease; }
+@media (min-width: 861px) { .mmenu, .mmenu-back { display: none !important; } }
+
+/* ===== No quiz: single booking screen ===== */
+.q-progress, #q-count, .q-switch { display: none !important; }
+.sheet[data-mode="join"] #contact-title { font-family: var(--sans); font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.q-summary span { font-size: 14px; padding: 8px 12px; background: var(--mint); color: var(--ink); }
+.howto { list-style: none; margin: 6px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; counter-reset: h; }
+.howto li { counter-increment: h; background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 14px 16px 14px 56px; position: relative; display: grid; gap: 2px; min-width: 0; }
+.howto li::before { content: counter(h); position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; border-radius: 99px; background: var(--ink); color: #fff; display: grid; place-items: center; font-size: 14px; }
+.howto b { font-weight: 400; font-size: 16px; color: var(--ink); }
+.howto span { font-size: 13.5px; color: var(--muted); line-height: 1.4; }
+@media (max-width: 760px) { .howto { grid-template-columns: 1fr; gap: 8px; } }
+
+/* ===== Mobile polish ===== */
+.howto { margin-top: 18px; }
+footer nav a { display: inline-flex; align-items: center; min-height: 40px; }
+.cmp { margin-top: 18px; }
+@media (max-width: 640px) { #month-count { display: none; } }
+
+/* ===== Manager ===== */
+.mgr { display: grid; grid-template-columns: 120px minmax(0, 1fr) auto; gap: 24px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 22px 26px; box-shadow: var(--shadow); }
+.mgr-photo { width: 120px; height: 120px; border-radius: 99px; object-fit: cover; object-position: 50% 30%; display: block; box-shadow: 0 0 0 5px var(--mint); }
+.mgr-text { display: grid; gap: 6px; min-width: 0; }
+.mgr-text h3 { font-size: clamp(24px, 2.6vw, 30px); line-height: 1.1; }
+.mgr-text p { color: var(--ink-soft); line-height: 1.6; max-width: 52ch; }
+.mgr-btn svg, .mgr-float .btn svg { width: 18px; height: 18px; flex: none; }
+.mgr-btn { gap: 10px; }
+@media (max-width: 760px) {
+  .mgr { grid-template-columns: 76px minmax(0, 1fr); gap: 14px 16px; padding: 18px; }
+  .mgr-photo { width: 76px; height: 76px; box-shadow: 0 0 0 4px var(--mint); }
+  .mgr-text h3 { font-size: 21px; }
+  .mgr-text p { font-size: 15px; }
+  .mgr-btn { grid-column: 1 / -1; width: 100%; }
+}
+.sheet-mgr { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; background: var(--paper-2); color: var(--ink); text-decoration: none; }
+.sheet-mgr img { width: 44px; height: 44px; border-radius: 99px; object-fit: cover; object-position: 50% 30%; flex: none; }
+.sheet-mgr span { display: grid; font-size: 13.5px; color: var(--muted); line-height: 1.35; }
+.sheet-mgr b { font-weight: 400; font-size: 15px; color: var(--ink); }
+.sheet-mgr:hover { background: var(--mint); }
+.mbar .mgr-ava { position: relative; padding: 0; overflow: visible; border: 0; background: none; }
+.mbar .mgr-ava img { width: 44px; height: 44px; border-radius: 99px; object-fit: cover; object-position: 50% 30%; display: block; box-shadow: 0 0 0 2px var(--card), 0 0 0 3.5px var(--sage); }
+.mbar .mgr-ava i { position: absolute; right: -3px; bottom: -3px; width: 20px; height: 20px; border-radius: 99px; background: #229ED9; color: #fff; display: grid; place-items: center; box-shadow: 0 0 0 2px var(--card); }
+.mbar .mgr-ava i svg { width: 11px; height: 11px; }
+.mgr-float { position: fixed; right: 20px; bottom: 20px; z-index: 70; width: 300px; display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 12px 14px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 16px; box-shadow: 0 24px 60px -24px rgba(4, 44, 41, .45); animation: sheetUp .3s ease; }
+.mgr-float img { width: 56px; height: 56px; border-radius: 99px; object-fit: cover; object-position: 50% 30%; }
+.mgr-float div { display: grid; gap: 2px; padding-right: 18px; }
+.mgr-float b { font-weight: 400; font-family: var(--serif); font-size: 18px; line-height: 1.15; }
+.mgr-float span { font-size: 13px; color: var(--muted); }
+.mgr-float .btn { grid-column: 1 / -1; min-height: 44px; width: 100%; }
+.mgr-float-x { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 99px; border: 0; background: var(--paper); color: var(--muted); font-size: 18px; line-height: 1; cursor: pointer; }
+@media (max-width: 860px) { .mgr-float { display: none !important; } }
+
+/* ===== Simple lead form ===== */
+.q-title:empty { display: none; }
+.fld-lead { display: none; }
+.sheet[data-mode="lead"] .fld-lead { display: grid; }
+label[for="f-name"], label[for="f-tg"], .sheet[data-mode="lead"] .fld-q { display: none; }
+.fld select { font: inherit; font-size: 16px; letter-spacing: 0; text-transform: none; color: var(--ink); background: var(--paper); border: 1.5px solid var(--line); border-radius: 14px; padding: 14px 16px; width: 100%; appearance: none; -webkit-appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%), linear-gradient(135deg, var(--ink) 50%, transparent 50%); background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%; background-size: 6px 6px; background-repeat: no-repeat; }
+.fld select:focus { border-color: var(--ink); outline: none; background-color: #fff; }
+
+/* Phones: offer + whole annual card fit one screen after "Доєднатися" */
+#join { scroll-margin-top: 0; }
+@media (max-width: 640px) {
+  .offer { padding: 12px 14px; margin-bottom: 10px; }
+  .offer-text span { font-size: 13px; line-height: 1.4; }
+  .plan.feature { padding: 18px 20px; gap: 12px; }
+  .plan.feature .price { padding-block: 10px; }
+  .plan.feature .price-row b { font-size: 42px; }
+  .plan.feature ul { gap: 6px; font-size: 14px; }
+  .plan.feature h3 { font-size: 48px; }
+}
+@media (max-width: 640px) and (max-height: 740px) {
+  .offer { padding: 10px 12px; gap: 10px; }
+  .offer-tag { font-size: 20px; padding: 6px 8px; }
+  .offer-text b { font-size: 17px; }
+  .offer-text span { font-size: 12.5px; }
+  .plan.feature { padding: 14px 18px; gap: 8px; }
+  .plan.feature h3 { font-size: 40px; }
+  .plan.feature .price { padding-block: 8px; gap: 2px; }
+  .plan.feature .price-row b { font-size: 36px; }
+  .plan.feature ul { gap: 3px; font-size: 13.5px; }
+  .plan.feature .btn { min-height: 48px; }
+}
+
+@media (prefers-reduced-motion: reduce) { .float, .ticker-track { animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { *, *::before { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+</style>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="#top"><b>HALE</b><small>Клуб сімейного здоровʼя</small></a>
+    <nav class="main">
+      <a href="#format">Як працює</a>
+      <a href="#program">Програма</a>
+      <a href="#yulia">Про Юлію</a>
+      <a href="#reviews">Відгуки</a>
+      <a href="#tariffs">Тарифи</a>
+      <a class="btn btn-solid" href="#tariffs" data-lead="0">Залишити заявку</a>
+    </nav>
+    <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mmenu"><span></span></button>
+  </div>
+</header>
+
+<div class="mmenu-back" id="mmenu-back" hidden></div>
+  <nav class="mmenu" id="mmenu" aria-label="Меню" aria-hidden="true">
+    <div class="mmenu-head"><b>HALE</b><button class="mmenu-x" type="button" id="mmenu-x" aria-label="Закрити меню">×</button></div>
+    <div class="mmenu-links">
+      <a href="#format">Як працює клуб</a>
+      <a href="#program">Програма на рік</a>
+      <a href="#yulia">Про Юлію</a>
+      <a href="#reviews">Відгуки</a>
+      <a href="#tariffs">Тарифи</a>
+      <a href="#faq">Питання</a>
+      <a class="btn btn-solid" href="#join">Доєднатися</a>
+      <a class="btn btn-ghost" href="#tariffs" data-lead="0">Залишити заявку</a>
+    </div>
+  </nav>
+
+<main id="top">
+  <div class="wrap hero2">
+    <div class="hero2-text">
+      <span class="chip"><i>Жовтень 2026</i>Старт першої теми</span>
+      <h1>Клуб сімейного <em>здоровʼя</em></h1>
+      <p class="hero-sub">Онлайн-клуб на рік · дитячий і дорослий напрямки</p>
+      <ul class="hero-points">
+        <li><b>Натуропат на звʼязку.</b> Відповіді в чаті пн⁠–⁠сб і прямий ефір щомісяця.</li>
+        <li><b>Здоровʼя всієї сімʼї за одну оплату.</b> Дитячий і дорослий напрямки, обидва чати.</li>
+        <li><b>Не інформація, а звички.</b> Одна тема на місяць і дії від 5 хвилин на день.</li>
+      </ul>
+      <div class="hero-cta">
+        <span class="hero-price">від <b>38 $</b> на місяць для перших 50 учасників</span>
+        <a class="btn btn-solid" href="#join">Доєднатися <span class="arrow">→</span></a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <figure class="arch"><img src="assets/img/hero.jpg" fetchpriority="high" decoding="async" width="666" height="1000" alt="Юлія Кравченко, лікар-натуропат"></figure>
+      <div class="float f1"><span>Веде клуб</span><b>Юлія Кравченко</b></div>
+    </div>
+  </div>
+
+  <section class="band" id="format">
+    <div class="wrap">
+      <div class="band-head">
+        <h2>Як працює клуб</h2>
+        <span class="eyebrow">Клуб працює протягом року</span>
+      </div>
+      <div class="formula">
+        <div class="term"><span class="op">01</span><h3>Нова тема</h3><p>Одна тема здоровʼя на місяць: розбираємо теорію без перевантаження.</p></div>
+        <div class="term"><span class="op">02</span><h3>Практичні дії</h3><p>Схеми, рекомендації, короткі програми й трекери звичок.</p></div>
+        <div class="term"><span class="op">03</span><h3>Прямий ефір</h3><p>Окремо для дорослих і окремо для дитячого напрямку.</p></div>
+        <div class="term"><span class="op">04</span><h3>Підтримка в чаті</h3><p>Натуропат пн⁠–⁠сб 10:00⁠–⁠16:00, куратори в інший час.</p></div>
+        <div class="result"><span class="op">=</span><b>Звичка, що лишається з вами</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="directions">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Для кого</span>
+        <h2 class="h2">Для дітей, для вас або для всієї сімʼї</h2>
+      </div>
+      <div class="dirs">
+        <article class="dir">
+          <span class="tag">Для дітей</span>
+          <h3>Дитячий напрямок</h3>
+          <p>Про здоровʼя, харчування, імунітет, профілактику та підтримку дітей. Від прикорму та температури до підготовки до школи й здоровʼя підлітків.</p>
+          <div class="chat">
+            <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16" fill="none" stroke="currentColor" stroke-opacity=".3"/><path d="M10 13h14v8h-7l-4 3v-3h-3z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <span>Чат для батьків: питання про стан дитини, температуру, ГРВІ, харчування</span>
+          </div>
+        </article>
+        <article class="dir">
+          <span class="tag">Для вас</span>
+          <h3>Дорослий напрямок</h3>
+          <p>Клуб здорових звичок: маленькі регулярні дії, антистрес-методи, трекери та гейміфікація. Харчування, травлення (ШКТ), біоритми, сон і системна турбота про організм.</p>
+          <div class="chat">
+            <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16" fill="none" stroke="currentColor" stroke-opacity=".3"/><path d="M10 13h14v8h-7l-4 3v-3h-3z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <span>Чат для дорослих: ваші звички, самопочуття, практики місяця</span>
+          </div>
+        </article>
+      </div>
+      <div class="both">
+        <p>Можна обрати один напрямок або обидва. Одна оплата, доступ до обох.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="care" style="padding-top: 0">
+    <div class="wrap care">
+      <div class="care-text">
+        <div class="sec-head" style="margin-bottom: 0">
+          <span class="eyebrow">Підтримка, коли вона потрібна</span>
+          <h2 class="h2">Дитина захворіла? Ви не самі</h2>
+        </div>
+        <p class="lead">Температура вночі, кашель, що не минає, перша застуда в садочку. У клубі є кого спитати.</p>
+        <ul class="care-list">
+          <li><b>Чат для батьків.</b> Натуропат відповідає пн⁠–⁠сб з 10:00 до 16:00, в інший час допомагають куратори.</li>
+          <li><b>Прямий ефір щомісяця.</b> Детальний розбір ваших ситуацій.</li>
+          <li><b>Термінове питання?</b> Через клуб можна оперативно звернутися до Юлії або спеціалістів її команди.</li>
+        </ul>
+        <a class="btn btn-solid" href="#join">Доєднатися <span class="arrow">→</span></a>
+      </div>
+        <div class="phone" aria-label="Приклад чату для батьків">
+          <div class="phone-top"><b>Чат для батьків</b><span>HALE · Клуб сімейного здоровʼя</span></div>
+          <div class="pinned"><span class="eyebrow">Закріплено</span>Тема жовтня: температура та застудні стани. Схема профілактики й памʼятка вже в матеріалах.</div>
+          <div class="msg in"><small>Учасниця</small>Доброго дня! У доньки третій день кашель, температури немає. З чого почати за схемою місяця?</div>
+          <div class="msg out"><small>Натуропат клубу</small>Дякую, що описали детально. Відповім до 16:00, а питання про кашель розберемо ще й на ефірі.</div>
+          <div class="msg sys">Прямий ефір дитячого напрямку · запис зʼявиться в матеріалах</div>
+          <p class="mock-note">Приклад. Імена й повідомлення ілюстративні.</p>
+        </div>
+    </div>
+  </section>
+
+  <section class="program" id="program">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Програма жовтень 2026 — вересень 2027</span>
+        <h2 class="h2">Рік тем для всієї сімʼї</h2>
+        <p class="lead">Оберіть місяць, щоб побачити, що розбираємо в кожному напрямку.</p>
+      </div>
+      <div class="prog-controls">
+        <div class="seg" role="group" aria-label="Напрямок">
+          <button type="button" id="f-both" data-filter="both" aria-pressed="true">Обидва</button>
+          <button type="button" id="f-kids" data-filter="kids" aria-pressed="false">Дитячий</button>
+          <button type="button" id="f-adults" data-filter="adults" aria-pressed="false">Дорослий</button>
+        </div>
+        <span class="eyebrow" id="month-count">Місяць 1 / 12</span>
+      </div>
+      <p class="month-hint">Гортайте місяці →</p>
+      <div class="months-scroll">
+        <div class="months" role="tablist" aria-label="Місяці програми" id="months"></div>
+      </div>
+      <div class="panel" id="panel" role="tabpanel" aria-live="polite"></div>
+      <p class="prog-note">У кожному місяці є прямий ефір зі зворотним звʼязком. Додаткові програми, позначені «за бажанням», пропонуються окремо.</p>
+    </div>
+  </section>
+
+  <section id="yulia">
+    <div class="wrap founder">
+      <figure class="founder-photo">
+        <img src="assets/img/yulia.jpg" alt="Юлія Кравченко, лікар-натуропат" loading="lazy">
+      </figure>
+      <div class="founder-text">
+        <span class="eyebrow">Веде клуб</span>
+        <h2 class="h2">Чому я створила цей клуб</h2>
+        <div class="letter">
+          <p>Після курсів і консультацій я часто чую одне й те саме: «Я все зрозуміла, але через місяць повернулася до старих звичок». Знань у людей вистачає. Бракує регулярності й людини поруч, яка підкаже, що робити далі.</p>
+          <p>Тому в клубі ми не змінюємо все життя за один день. Беремо одну тему на місяць і переводимо її в маленькі щоденні дії. І робимо це всією сімʼєю: окремо для дітей, окремо для вас.</p>
+          <p>Я буду на кожному ефірі й у чаті разом зі спеціалістами моєї команди. Приходьте.</p>
+        </div>
+        <div class="sign"><b>Юлія Кравченко</b><span>лікар-натуропат, засновниця HALE Academy та Hale Herbals</span></div>
+        <div class="socials">
+          <a href="https://www.instagram.com/dr.yulia_shy/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://t.me/shyshkovskay" target="_blank" rel="noopener">Telegram-канал</a>
+          <a href="https://www.youtube.com/@hale.holistic" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://hale.academy/" target="_blank" rel="noopener">hale.academy</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="reviews-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Відгуки</span>
+        <h2 class="h2">Що пишуть після роботи з Юлією</h2>
+        <p class="lead">Повідомлення учасниць курсів і консультацій HALE. Клуб тільки стартував, тож відгуки про нього зʼявляться згодом.</p>
+      </div>
+      <p class="swipe-hint">Гортайте відгуки →</p>
+      <div class="shots">
+        <figure class="shot"><img src="assets/img/rv02.jpg" alt="Відгук: три тижні без солодкого, зарядка і дихання стали звичкою, пройшло здуття" loading="lazy"><figcaption>Цукор і ранкові звички</figcaption></figure>
+        <figure class="shot"><img src="assets/img/rv09.jpg" alt="Відгук: налагодилось харчування, тричі на день, вдосталь енергії" loading="lazy"><figcaption>Харчування й енергія</figcaption></figure>
+        <figure class="shot"><img src="assets/img/rv01.jpg" alt="Відгук: після курсу по лімфі та печінці краще самопочуття, дихальні практики, прогулянки, піднявся феритин" loading="lazy"><figcaption>Дихальні практики й прогулянки</figcaption></figure>
+        <figure class="shot"><img src="assets/img/rv06.jpg" alt="Відгук: аналізи по жовчному і печінці в нормі, феритин піднявся майже вдвічі" loading="lazy"><figcaption>Жовчний і феритин</figcaption></figure>
+        <figure class="shot"><img src="assets/img/rv13.jpg" alt="Відгук: після курсу пройшли запалення біля кутиків рота" loading="lazy"><figcaption>Шлях крок за кроком</figcaption></figure>
+      </div>
+      <p class="prog-note">Результати індивідуальні та залежать від стану кожної людини.</p>
+    </div>
+  </section>
+
+  <section class="program" id="tariffs">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Тарифи</span>
+        <h2 class="h2">Оберіть свій термін участі</h2>
+        <p class="lead">У кожному тарифі обидва напрямки й обидва чати. Чим довший термін, тим менша ціна за місяць.</p>
+      </div>
+      <div class="offer" id="join">
+        <div class="offer-tag">−30%</div>
+        <div class="offer-text"><b>Ціна для перших 50 учасників</b><span>Закріпіть її передплатою 100 $. Після 50 бронювань діє повна ціна.</span></div>
+      </div>
+      <div class="tariffs">
+        <article class="plan">
+          <div class="plan-top"><span class="eyebrow">Знайомство</span></div>
+          <h3>3 <small>місяці</small></h3>
+          <span class="span">3 теми програми</span>
+          <div class="price">
+            <div class="price-row"><b>140 $</b><s>195 $</s></div>
+            <span class="pm"><b>47 $</b> на місяць</span>
+          </div>
+          <ul>
+            <li>Дитячий і дорослий напрямки</li>
+            <li>3 прямі ефіри в кожному напрямку</li>
+            <li>Чат для дорослих і для батьків</li>
+            <li>Трекери та матеріали місяця</li>
+            <li>Стратегічна сесія в січні: план оздоровлення на рік</li>
+          </ul>
+          <div class="plan-actions">
+            <button class="btn btn-ghost" type="button" data-join="3">Забронювати місце</button>
+          </div>
+        </article>
+        <article class="plan">
+          <div class="plan-top"><span class="eyebrow">Пів року</span></div>
+          <h3>6 <small>місяців</small></h3>
+          <span class="span">6 тем програми</span>
+          <div class="price">
+            <div class="price-row"><b>250 $</b><s>360 $</s></div>
+            <span class="pm"><b>42 $</b> на місяць</span>
+          </div>
+          <ul>
+            <li>Дитячий і дорослий напрямки</li>
+            <li>6 прямих ефірів у кожному напрямку</li>
+            <li>Чат для дорослих і для батьків</li>
+            <li>Трекери та матеріали місяця</li>
+            <li>Стратегічна сесія в січні: план оздоровлення на рік</li>
+          </ul>
+          <div class="plan-actions">
+            <button class="btn btn-ghost" type="button" data-join="6">Забронювати місце</button>
+          </div>
+        </article>
+        <article class="plan feature">
+          <div class="plan-top"><span class="eyebrow">Вся програма</span><span class="badge">Найвигідніше</span></div>
+          <h3>12 <small>місяців</small></h3>
+          <span class="span">12 тем, жовтень — вересень</span>
+          <div class="price">
+            <div class="price-row"><b>460 $</b><s>660 $</s></div>
+            <span class="pm"><b>38 $</b> на місяць</span>
+          </div>
+          <ul>
+            <li>Дитячий і дорослий напрямки</li>
+            <li>12 прямих ефірів у кожному напрямку</li>
+            <li>Чат для дорослих і для батьків</li>
+            <li>Трекери та матеріали місяця</li>
+            <li>Стратегічна сесія в січні: план оздоровлення на рік</li>
+          </ul>
+          <div class="plan-actions">
+            <button class="btn" type="button" data-join="12">Забронювати місце</button>
+          </div>
+        </article>
+      </div>
+      <div class="cmp" aria-label="Ціна за місяць">
+        <span class="eyebrow">Ціна за місяць</span>
+        <div class="cmp-row"><span class="cmp-k">3 міс</span><span class="cmp-bar"><i style="width:100%"></i></span><b>47 $</b><span class="cmp-u">/міс</span></div><div class="cmp-row"><span class="cmp-k">6 міс</span><span class="cmp-bar"><i style="width:89%"></i></span><b>42 $</b><span class="cmp-u">/міс</span></div><div class="cmp-row best"><span class="cmp-k">12 міс</span><span class="cmp-bar"><i style="width:81%"></i></span><b>38 $</b><span class="cmp-u">/міс</span></div>
+        <p class="cmp-note">Річний пакет — 38 $ на місяць замість 47 $. За рік це на 100 $ менше, ніж продовжувати по 3 місяці.</p>
+      </div>
+      <ol class="howto">
+          <li><b>Оберіть пакет</b><span>3, 6 або 12 місяців</span></li>
+          <li><b>Забронюйте місце</b><span>Залиште імʼя і телефон</span></li>
+          <li><b>Внесіть передплату 100 $</b><span>Вона закріплює за вами ціну зі знижкою і входить у вартість пакета</span></li>
+        </ol>
+      <ul class="objections">
+        <li>Доєдналися пізніше? Матеріали всіх попередніх місяців теж будуть доступні</li>
+        <li>Не треба виконувати все: обираєте те, що підходить</li>
+        <li>Купувати додаткові продукти не обовʼязково</li>
+      </ul>
+      <div class="family">
+        <div class="family-text">
+          <span class="eyebrow">Додатково</span>
+          <h3>Доступ для члена сімʼї</h3>
+          <p>Окремий доступ до клубу для ще однієї людини з вашої сімʼї на той самий термін, що й ваш пакет. Додається галочкою у формі бронювання.</p>
+        </div>
+        <ul class="fam-list">
+          <li><span>3 місяці</span><b>40 $</b><s>45 $</s></li><li><span>6 місяців</span><b>60 $</b><s>90 $</s></li><li><span>12 місяців</span><b>120 $</b><s>180 $</s></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="manager" style="padding-top: 0" class="program">
+    <div class="wrap">
+      <div class="mgr">
+        <img class="mgr-photo" src="assets/img/manager.jpg" alt="Менеджер клубу HALE" loading="lazy">
+        <div class="mgr-text">
+          <span class="eyebrow">Ще вагаєтеся?</span>
+          <h3>Напишіть менеджеру, і ми все пояснимо</h3>
+          <p>Допоможемо обрати пакет, розповімо про оплату й відповімо на будь-які питання про клуб. Без зобовʼязань.</p>
+        </div>
+        <a class="btn btn-solid mgr-btn" href="https://t.me/haleherbals" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.4 4.6 2.9 11.7c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.8-1.4-1.5zM9.6 14.4l-.4 4-1.5-4.7 10.6-6.7c.5-.3.9-.1.5.2z"/></svg>Написати в Telegram</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Часті запитання</span>
+        <h2 class="h2">Перш ніж доєднатися</h2>
+      </div>
+      <div class="faq">
+        <details name="faq"><summary>Чи можна додати ще одного члена сімʼї?<span class="plus">+</span></summary><p>Так. Доступ для члена сімʼї на той самий термін, що й ваш пакет: 40 $ за 3 місяці, 60 $ за 6 місяців або 120 $ на рік (замість 45 $, 90 $ і 180 $). Додайте його галочкою у формі бронювання або напишіть менеджеру.</p></details>
+        <details name="faq"><summary>Чи можна бути одночасно в дитячому та дорослому напрямках?<span class="plus">+</span></summary><p>Так. Саме тому це Клуб сімейного здоровʼя: простір, у якому ми протягом року працюємо зі здоровʼям усієї сімʼї. Можна обрати тільки дорослий напрямок, тільки дитячий або обидва. Одна оплата, доступ до обох одночасно.</p></details>
+        <details name="faq"><summary>Чи можна ставити особисті запитання?<span class="plus">+</span></summary><p>Так. Учасники мають доступ до закритого чату: натуропат відповідає пн⁠–⁠сб з 10:00 до 16:00, в інший час допомагають куратори. Детальніше ваші ситуації розбираємо на прямих ефірах.</p></details>
+        <details name="faq"><summary>Чи підійде клуб батькам дітей різного віку?<span class="plus">+</span></summary><p>Так. Дитячий напрямок охоплює теми від прикорму та харчування до здоровʼя підлітків.</p></details>
+        <details name="faq"><summary>Чи замінює клуб консультацію лікаря?<span class="plus">+</span></summary><p>Ні. Клуб створений для навчання, профілактики та формування здорових звичок і не замінює медичну допомогу, коли вона необхідна. Клуб має освітній характер.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="band final-band">
+    <div class="wrap final">
+      <figure class="final-photo"><img src="assets/img/tea.jpg" alt="Юлія з трав'яним чаєм" loading="lazy"></figure>
+      <div class="final-text">
+        <span class="eyebrow">Перша тема — жовтень</span>
+        <h2>Почніть турботу про здоровʼя всієї сімʼї</h2>
+        <p>Температура та застудні стани для дітей, імунітет і травлення для дорослих.</p>
+        <div class="final-cta">
+          <a class="btn btn-light" href="#join">Доєднатися <span class="arrow">→</span></a>
+        </div>
+        <p class="final-small">Новини в <a href="https://t.me/shyshkovskay" target="_blank" rel="noopener">Telegram-каналі</a> та <a href="https://www.instagram.com/dr.yulia_shy/" target="_blank" rel="noopener">Instagram</a> Юлії.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 HALE · Клуб сімейного здоровʼя</span>
+    <nav>
+      <a href="https://www.instagram.com/dr.yulia_shy/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://t.me/shyshkovskay" target="_blank" rel="noopener">Telegram-канал</a>
+      <a href="https://www.youtube.com/@hale.holistic" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://hale.academy/" target="_blank" rel="noopener">hale.academy</a>
+      <a href="https://haleherbals.com/" target="_blank" rel="noopener">haleherbals.com</a>
+    </nav>
+  </div>
+</footer>
+
+<aside class="mgr-float" id="mgr-float" hidden aria-label="Менеджер клубу">
+  <button class="mgr-float-x" type="button" id="mgr-float-x" aria-label="Закрити">×</button>
+  <img src="assets/img/manager_sm.jpg" alt="Менеджер клубу HALE">
+  <div><b>Маєте питання про клуб?</b><span>Менеджер відповість у Telegram</span></div>
+  <a class="btn btn-solid" href="https://t.me/haleherbals" target="_blank" rel="noopener">Написати</a>
+</aside>
+<div class="mbar" id="mbar"><span><b>Питання?</b>Пишіть менеджеру</span><div class="mbar-btns"><a class="tg mgr-ava" href="https://t.me/haleherbals" target="_blank" rel="noopener" aria-label="Написати менеджеру в Telegram"><img src="assets/img/manager_sm.jpg" alt=""><i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.4 4.6 2.9 11.7c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.8-1.4-1.5zM9.6 14.4l-.4 4-1.5-4.7 10.6-6.7c.5-.3.9-.1.5.2z"/></svg></i></a><a class="btn btn-solid" href="#join">Доєднатися</a></div></div>
+
+<div class="sheet-back" id="sheet" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" data-mode="join">
+    <div class="sheet-grip" aria-hidden="true"></div>
+    <button class="sheet-x" type="button" data-close aria-label="Закрити">×</button>
+    <form id="lead-form" novalidate>
+      <div class="q-progress" aria-hidden="true"><span id="q-bar"></span></div>
+      <div class="sheet-head">
+        <span class="eyebrow" id="q-count">Крок 1 / 5</span>
+        <h3 id="sheet-title">Доєднатися до клубу</h3>
+        <p id="sheet-sub">Кілька питань, щоб ми підготували для вас потрібний напрямок і чат.</p>
+      </div>
+
+      <div class="q-step" data-step="pkg" hidden>
+        <p class="q-title">На який термін бронюєте місце?</p>
+        <div class="q-opts">
+          <label class="q-opt"><input type="radio" name="pkg" id="pk-12" value="12"><span><b>12 місяців · 460 $</b><small>38 $ на місяць · уся програма</small></span><em>Найвигідніше</em></label>
+          <label class="q-opt"><input type="radio" name="pkg" id="pk-6" value="6"><span><b>6 місяців · 250 $</b><small>42 $ на місяць · 6 тем</small></span></label>
+          <label class="q-opt"><input type="radio" name="pkg" id="pk-3" value="3"><span><b>3 місяці · 140 $</b><small>47 $ на місяць · 3 теми</small></span></label>
+        </div>
+      </div>
+
+      <div class="q-step" data-step="contact" hidden>
+        <p class="q-title" id="contact-title">Куди надіслати деталі бронювання?</p>
+        <div class="q-summary" id="q-summary"></div>
+        <label class="q-family"><input type="checkbox" id="f-family" name="family" value="1"><span><b>Додати доступ для члена сімʼї</b><small id="fam-price">+120 $ на рік <s>180 $</s></small></span></label>
+        <label class="fld fld-lead" for="f-lpkg">Пакет, який вас цікавить
+          <select id="f-lpkg" name="lead_pkg">
+            <option value="12">12 місяців · 460 $</option>
+            <option value="6">6 місяців · 250 $</option>
+            <option value="3">3 місяці · 140 $</option>
+            <option value="0">Поки не знаю</option>
+          </select>
+        </label>
+        <label class="fld" for="f-name">Імʼя
+          <input id="f-name" name="name" autocomplete="given-name" placeholder="Як до вас звертатися">
+        </label>
+        <label class="fld" for="f-phone">Телефон
+          <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+380 67 123 45 67">
+        </label>
+        <label class="fld" for="f-tg">Telegram <span class="opt">або замість телефону</span>
+          <input id="f-tg" name="telegram" autocapitalize="off" autocomplete="off" placeholder="@нікнейм або посилання">
+        </label>
+        <label class="fld fld-q" for="f-q">Ваше питання <span class="opt">необовʼязково</span>
+          <textarea id="f-q" name="question" rows="2" placeholder="Наприклад: чи підійде клуб для дитини 3 років?"></textarea>
+        </label>
+      </div>
+
+      <p class="f-err" id="f-err" aria-live="polite"></p>
+      <div class="q-nav">
+        <button class="btn btn-ghost q-back" type="button" id="q-back" aria-label="Назад">←<span class="q-back-t"> Назад</span></button>
+        <button class="btn btn-solid q-next" type="button" id="q-next">Далі <span class="arrow">→</span></button>
+        <button class="btn btn-solid f-submit" type="submit" id="f-submit" hidden>Забронювати місце · 100 $</button>
+      </div>
+      <p class="f-note" id="f-note">Натискаючи кнопку, ви погоджуєтеся, що команда HALE звʼяжеться з вами щодо клубу.</p>
+      <a class="sheet-mgr" href="https://t.me/haleherbals" target="_blank" rel="noopener"><img src="assets/img/manager_sm.jpg" alt=""><span><b>Спершу хочете уточнити деталі?</b>Напишіть менеджеру в Telegram</span></a>
+      <button type="button" class="link-btn q-switch" id="q-switch" hidden>Готові доєднатися? Забронювати місце</button>
+    </form>
+    <div class="sheet-done" id="sheet-done" hidden>
+      <div class="done-mark" aria-hidden="true">✓</div>
+      <h3 id="done-title">Дякуємо!</h3>
+      <p id="done-text"></p>
+      <a class="btn btn-solid" id="done-pay" href="#" target="_blank" rel="noopener" hidden>Оплатити 100 $ <span class="arrow">→</span></a>
+      <button class="btn btn-ghost" type="button" data-close>Повернутися на сторінку</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+const LIVE = "Прямий ефір і доступ до чату зі зворотним звʼязком";
+const MONTHS = [
+  { m: "Жовтень", y: 2026,
+    kids: { t: "Температура та застудні стани", items: [
+      "Підвищена температура: як реагувати, збивати чи ні. Усі нюанси, зокрема страх судом",
+      "Натуропатична схема профілактики застуд у дітей",
+      "Схема зміцнення імунітету",
+      "Допомога при застудних станах: кашель, біль у горлі, отит",
+      "Грип, ГРВІ: правильне проживання, профілактика й підтримка організму після хвороби"] },
+    adults: { t: "Імунітет та ШКТ (травлення)",
+      daily: ["Мʼякий детокс водою: тепла вода з термоса протягом дня", "5 хвилин дихальної практики для роботи ШКТ і зняття спазмів"],
+      items: [
+      "Очищення легень і пазух носа від слизу: 10-денна програма",
+      "Остеопатична дихальна практика для звільнення легень від слизу та спайок",
+      "ТОП-5 осінніх рецептів для ШКТ",
+      "~Теорія: що таке імунна система, у чому сила імунітету і як на нього впливає стрес"] } },
+  { m: "Листопад", y: 2026,
+    kids: { t: "Харчування", items: [
+      "Прикорм: як організувати, що вводити та в якій послідовності",
+      "Види прикорму: як обрати",
+      "Організація харчування в садочку та школі",
+      "Як мінімізувати шкоду та підтримати дитину при класичному харчуванні в закладах"] },
+    adults: { t: "Вчимося здорово їсти без цукру", items: [
+      "Нова звичка, яка допоможе легко відмовитися від цукру",
+      "Теплі напої осені з кунжутним молоком",
+      "Натуропатична схема: мʼяка підтримка ШКТ від здуття, 10 днів",
+      "За бажанням: антипаразитарна програма зі знижкою для учасників",
+      "~Теорія: фізична та психологічна залежність від цукру, мʼякі дії для звільнення"] } },
+  { m: "Грудень", y: 2026,
+    kids: { t: "Діагностика та стратегія здоровʼя", items: [
+      "Базові аналізи для перевірки стану здоровʼя дітей",
+      "Як не допустити переходу вірусних станів в ускладнення та бактеріальні процеси",
+      "Імунний збір для дитини"] },
+    adults: { t: "Стратегія здоровʼя на рік", items: [
+      "Діагностика, аналізи, обстеження",
+      "Продовжуємо теплу воду для ШКТ",
+      "Імунний збір для підтримки імунітету",
+      "Екстракт заспокійливих трав на ніч",
+      "За бажанням: мʼяка 10-денна програма очищення нирок"] } },
+  { m: "Січень", y: 2027,
+    kids: { t: "Вакцинація та біоритми", items: [
+      "Вакцинація: як ухвалити свідоме рішення",
+      "Практика для живота дітей",
+      "Біоритми для дітей",
+      "Стратегічна сесія: план оздоровлення на рік"] },
+    adults: { t: "Біоритми", items: [
+      "Стратегічна сесія: план оздоровлення на рік",
+      "Мʼяке впровадження біоритмів: відмінності для чоловіка та жінки",
+      "Сон",
+      "Підтримка ШКТ після свят",
+      "Чай для налагодження роботи ШКТ"] } },
+  { m: "Лютий", y: 2027,
+    kids: { t: "Солодке у дітей", items: [
+      "Солодке в дитячому раціоні",
+      "Мʼякі дії для побудови здорового раціону дітей"] },
+    adults: { t: "Здоровий раціон без обмежень", items: [
+      "Будуємо здоровий раціон без обмежень",
+      "Здорова тарілка на кожен день при будь-якому типі харчування",
+      "Антистрес-раціон",
+      "Підтримка тіла в умовах нестабільності: кілька звичок по 5 хвилин на день"] } },
+  { m: "Березень", y: 2027,
+    kids: { t: "Вітамінізація", items: [
+      "Вітамінізація дітей",
+      "Залізодефіцит і анемія: від причин до вирішення та точкових дій"] },
+    adults: { t: "Вітамінізація", items: [
+      "Базова вітамінізація: з чого почати після стресу та зими",
+      "Першоцвіти та дикороси: сила природи для вітамінізації",
+      "Акцент місяця: відновлення сил і ресурсу"] } },
+  { m: "Квітень", y: 2027,
+    kids: { t: "Атопічний дерматит та антибіотики", items: [
+      "Атопічний дерматит: від профілактики до зцілення",
+      "Антибіотики в дітей: як відновитися, профілактика і коли їх застосування доцільне"] },
+    adults: { t: "Жовчний міхур", items: [
+      "Жовчний: диригент роботи організму?",
+      "2 щоденні дії для жовчовідтоку",
+      "Антибіотики в дорослих: як відновлюватися, чим замінити, де межа",
+      "Природні антибіотики та схема використання"] } },
+  { m: "Травень", y: 2027,
+    kids: { t: "Здоровий опорно-руховий апарат", items: [
+      "Постава, стопи, практичні рекомендації",
+      "Мʼякі дії для початку загартовування, книги та рекомендації",
+      "Запрошений спікер"] },
+    adults: { t: "Судини", items: [
+      "Здоровʼя судин і чистота крові",
+      "Варикоз, геморой: рекомендації",
+      "Фітотерапія для здоровʼя судин",
+      "Одна звичка для судин"] } },
+  { m: "Червень", y: 2027,
+    kids: { t: "Здоровий кишківник", items: [
+      "Відновлення та підтримка мікробіому кишківника дитини",
+      "Літнє харчування"] },
+    adults: { t: "Феритин і догляд", items: [
+      "Піднімаємо феритин",
+      "Антистрес-захист, природний догляд за шкірою та тілом"] } },
+  { m: "Липень", y: 2027,
+    kids: { t: "Відновлення зору", items: [
+      "Відновлення зору",
+      "Харчування липня: що додати в раціон, щоб наситити дитину на весь рік",
+      "Продовжуємо загартовування"] },
+    adults: { t: "Антиоксидантний захист", items: [
+      "Антиоксидантний захист клітин",
+      "Онкопрофілактика на клітинному рівні"] } },
+  { m: "Серпень", y: 2027,
+    kids: { t: "Підготовка до школи та садочка", items: [
+      "Підготовка дитини до школи чи садочка",
+      "Мʼяка антипаразитарна програма для дітей"] },
+    adults: { t: "Довголіття та нервова система", items: [
+      "Звички для довголіття та збереження репродуктивної системи",
+      "Відновлення нервової системи"] } },
+  { m: "Вересень", y: 2027,
+    kids: { t: "Аденоїди", items: [
+      "Аденоїди та застуди",
+      "Підтримка бронхо-легеневої системи"] },
+    adults: { t: "Турбота про легені", items: [
+      "Турбота про легені",
+      "Прибираємо спайкові та застійні процеси"] } }
+];
+
+const state = { i: 0, filter: "both" };
+const monthsEl = document.getElementById("months");
+const panel = document.getElementById("panel");
+const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+// Mark the current month if it falls inside the programme year
+const today = new Date();
+const nowIdx = MONTHS.findIndex((x, k) => x.y === today.getFullYear() && ((k + 9) % 12) === today.getMonth());
+if (nowIdx >= 0) state.i = nowIdx;
+
+monthsEl.innerHTML = MONTHS.map((x, k) =>
+  `<button type="button" class="month" role="tab" id="m-${k}" data-i="${k}" aria-selected="false">` +
+  `<small>${x.y}</small><b>${x.m}</b>` +
+  (k === nowIdx ? `<span class="now" title="Поточний місяць"></span>` : "") + `</button>`).join("");
+
+function track(kind, d) {
+  const label = kind === "kids" ? "Дитячий напрямок" : "Дорослий напрямок";
+  const daily = d.daily ? `<div class="daily"><b>Щоденні дії</b>${d.daily.map(esc).join("<br>")}</div>` : "";
+  const items = d.items.map(s => s.startsWith("~")
+    ? `<li class="theory"><span><i>Теорія.</i> ${esc(s.slice(1).replace(/^Теорія:\s*/, ""))}</span></li>`
+    : `<li><span>${esc(s)}</span></li>`).join("");
+  return `<article class="track"><span class="eyebrow"><span>${label}</span><span>${MONTHS[state.i].m}</span></span>` +
+    `<h3>${esc(d.t)}</h3>${daily}<ul>${items}</ul><div class="live">${LIVE}</div></article>`;
+}
+
+function render() {
+  const x = MONTHS[state.i];
+  monthsEl.querySelectorAll(".month").forEach(b => b.setAttribute("aria-selected", String(+b.dataset.i === state.i)));
+  document.querySelectorAll("[data-filter]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.filter === state.filter)));
+  const parts = [];
+  if (state.filter !== "adults") parts.push(track("kids", x.kids));
+  if (state.filter !== "kids") parts.push(track("adults", x.adults));
+  panel.className = "panel" + (parts.length === 1 ? " single" : "");
+  panel.setAttribute("aria-labelledby", "m-" + state.i);
+  panel.innerHTML = parts.join("");
+  document.getElementById("month-count").textContent = `Місяць ${state.i + 1} / 12`;
+}
+
+monthsEl.addEventListener("click", e => {
+  const b = e.target.closest(".month"); if (!b) return;
+  state.i = +b.dataset.i; render();
+});
+monthsEl.addEventListener("keydown", e => {
+  if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+  state.i = (state.i + (e.key === "ArrowRight" ? 1 : 11)) % 12; render();
+  document.getElementById("m-" + state.i).focus();
+});
+document.querySelectorAll("[data-filter]").forEach(b => b.addEventListener("click", () => { state.filter = b.dataset.filter; render(); }));
+
+// Selected month stays in view on narrow screens
+const sel = () => document.getElementById("m-" + state.i);
+render();
+requestAnimationFrame(() => { const s = sel(), sc = document.querySelector(".months-scroll"); if (s && sc) sc.scrollLeft = s.offsetLeft - 16; });
+
+
+
+
+// Mobile sticky bar: show after the hero, hide while tariffs are on screen
+const mbar = document.getElementById("mbar");
+const hero = document.querySelector(".hero2"), tariffs = document.getElementById("tariffs");
+if ("IntersectionObserver" in window) {
+  let pastHero = false, onTariffs = false;
+  const upd = () => mbar.classList.toggle("show", pastHero && !onTariffs && sheetBack.hidden);
+  new IntersectionObserver(([en]) => { pastHero = !en.isIntersecting && en.boundingClientRect.top < 0; upd(); }).observe(hero);
+  new IntersectionObserver(([en]) => { onTariffs = en.isIntersecting; upd(); }).observe(tariffs);
+}
+
+// ===== Заявки: квіз «Доєднатись» і проста заявка =====
+// Налаштування. SUBMIT_URL — адреса веб-застосунку Google Apps Script (…/exec) з файлу
+// telegram-bot.gs: він пересилає заявку у Telegram-бот і записує її в Google-таблицю.
+// Ключ бота зберігається тільки там, у сторінку його не вставляємо.
+// PAY_URL — посилання на оплату броні 100 $ для кожного пакета (наприклад, WayForPay).
+const CONFIG = {
+  SUBMIT_URL: "",
+  PAY_URL: { "3": "", "6": "", "12": "" },
+  TELEGRAM: "https://t.me/haleherbals"
+};
+const PKG_NAME = { "3": "3 місяці", "6": "6 місяців", "12": "12 місяців", "0": "Поки не знаю" };
+const PRICE = { "3": 140, "6": 250, "12": 460 }, FAMILY_PRICE = { "3": 40, "6": 60, "12": 120 }, FAMILY_FULL = { "3": 45, "6": 90, "12": 180 }, FAMILY_FOR = { "3": "за 3 місяці", "6": "за 6 місяців", "12": "на рік" };
+const fmt = n => n + "\u00a0$";
+const WHO_NAME = { self: "Для себе (дорослий чат)", kids: "Для дитини (батьківський чат)", family: "Для всієї сімʼї (обидва чати)" };
+const sheetBack = document.getElementById("sheet");
+const sheet = sheetBack.querySelector(".sheet");
+const form = document.getElementById("lead-form");
+const done = document.getElementById("sheet-done");
+const err = document.getElementById("f-err");
+const submitBtn = document.getElementById("f-submit");
+const nextBtn = document.getElementById("q-next");
+const backBtn = document.getElementById("q-back");
+let mode = "join", stepIdx = 0, lastFocus = null, presetPkg = "", presetFamily = false;
+
+const val = n => (form.querySelector(`input[name=${n}]:checked`) || {}).value || "";
+const vals = n => [...form.querySelectorAll(`input[name=${n}]:checked`)].map(i => i.value);
+function steps() {
+  if (mode === "lead") return ["contact"];
+  return ["contact"];
+}
+
+function show() {
+  const list = steps();
+  const cur = list[stepIdx];
+  form.querySelectorAll(".q-step").forEach(el => { el.hidden = el.dataset.step !== cur; });
+  const last = stepIdx === list.length - 1;
+  const join = mode === "join";
+  sheet.dataset.mode = mode;
+  document.getElementById("q-count").textContent = join ? `Крок ${stepIdx + 1} / ${list.length}` : "Заявка";
+  document.getElementById("q-bar").style.width = join ? ((stepIdx + 1) / list.length * 100) + "%" : "100%";
+  document.getElementById("sheet-title").textContent = join ? "Бронювання місця" : "Залишити заявку";
+  document.getElementById("sheet-sub").textContent = join
+    ? "Передплата 100 $ закріплює за вами ціну зі знижкою і входить у вартість пакета. Залиште номер телефону, і ми надішлемо деталі оплати."
+    : "Оберіть пакет і залиште телефон. Ми зателефонуємо й усе розповімо.";
+  document.getElementById("contact-title").textContent = join ? "Ваш пакет" : "";
+  backBtn.hidden = stepIdx === 0;
+  nextBtn.hidden = last;
+  submitBtn.hidden = !last;
+  submitBtn.textContent = join ? "Забронювати місце" : "Залишити заявку";
+  document.getElementById("f-note").hidden = !last;
+  document.getElementById("q-switch").hidden = join;
+  if (cur === "contact" && join) {
+    const pk = val("pkg") || "12", fam = document.getElementById("f-family").checked;
+    document.getElementById("fam-price").innerHTML = "+" + fmt(FAMILY_PRICE[pk]) + " " + FAMILY_FOR[pk] + " <s>" + fmt(FAMILY_FULL[pk]) + "</s>";
+    const parts = [WHO_NAME[val("who")], vals("age").length ? "Діти: " + vals("age").join(", ") : "", PKG_NAME[pk] + " · " + fmt(PRICE[pk]), fam ? "Разом: " + fmt(PRICE[pk] + FAMILY_PRICE[pk]) : ""].filter(Boolean);
+    document.getElementById("q-summary").innerHTML = parts.map(p => `<span>${p}</span>`).join("");
+  } else document.getElementById("q-summary").innerHTML = "";
+  err.textContent = "";
+}
+
+function openSheet(m, pkg) {
+  lastFocus = document.activeElement;
+  mode = m; stepIdx = 0; presetPkg = pkg || "";
+  document.getElementById("f-lpkg").value = ["3", "6", "12"].includes(presetPkg) ? presetPkg : "0";
+  document.getElementById("f-family").checked = presetFamily;
+  if (presetPkg && document.getElementById("pk-" + presetPkg)) document.getElementById("pk-" + presetPkg).checked = true;
+  form.hidden = false; done.hidden = true;
+  show();
+  sheetBack.hidden = false;
+  document.body.classList.add("locked");
+  setTimeout(() => { const f = form.querySelector(".q-step:not([hidden]) input, .q-step:not([hidden]) textarea"); if (f) f.focus({ preventScroll: true }); }, 60);
+}
+function closeSheet() {
+  sheetBack.hidden = true;
+  document.body.classList.remove("locked");
+  if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+}
+
+function checkStep() {
+  const cur = steps()[stepIdx];
+  if (cur === "who" && !val("who")) { err.textContent = "Оберіть, для кого ви доєднуєтеся."; return false; }
+  if (cur === "pkg" && !val("pkg")) { err.textContent = "Оберіть термін участі."; return false; }
+  return true;
+}
+function next() {
+  if (!checkStep()) return;
+  stepIdx++;
+  // a package already chosen on a tariff card skips the package question
+  if (steps()[stepIdx] === "pkg" && presetPkg && val("pkg") === presetPkg) stepIdx++;
+  show();
+  const f = form.querySelector(".q-step:not([hidden]) input");
+  if (f && steps()[stepIdx] === "contact") f.focus({ preventScroll: true });
+}
+nextBtn.addEventListener("click", next);
+backBtn.addEventListener("click", () => {
+  stepIdx = Math.max(0, stepIdx - 1);
+  if (steps()[stepIdx] === "pkg" && presetPkg && val("pkg") === presetPkg && stepIdx > 0) stepIdx--;
+  show();
+});
+// single-choice questions move on by themselves
+form.querySelectorAll("input[name=who], input[name=pkg]").forEach(i => i.addEventListener("change", () => {
+  if (i.name === "pkg") presetPkg = "";
+  setTimeout(next, 220);
+}));
+document.getElementById("q-switch").addEventListener("click", () => { mode = "join"; stepIdx = 0; show(); });
+document.getElementById("f-family").addEventListener("change", show);
+
+document.addEventListener("click", e => {
+  const j = e.target.closest("[data-join]");
+  const l = e.target.closest("[data-lead]");
+  if (j) { e.preventDefault(); presetFamily = j.dataset.family === "1"; openSheet("join", j.dataset.join); }
+  else if (l) { e.preventDefault(); presetFamily = false; openSheet("lead", l.dataset.lead); }
+});
+sheetBack.addEventListener("click", e => { if (e.target === sheetBack || e.target.closest("[data-close]")) closeSheet(); });
+document.addEventListener("keydown", e => {
+  if (sheetBack.hidden) return;
+  if (e.key === "Escape") closeSheet();
+  if (e.key === "Enter" && e.target.tagName === "INPUT" && !nextBtn.hidden) { e.preventDefault(); next(); }
+});
+
+function fieldError(id, msg) {
+  const el = document.getElementById(id);
+  el.setAttribute("aria-invalid", "true");
+  err.textContent = msg;
+  el.focus();
+  return false;
+}
+["f-name", "f-phone", "f-tg"].forEach(id => document.getElementById(id).addEventListener("input", e => { e.target.removeAttribute("aria-invalid"); err.textContent = ""; }));
+
+// Phone: start with +380 and format as +380 XX XXX XX XX while typing
+const phoneEl = document.getElementById("f-phone");
+phoneEl.addEventListener("focus", () => { if (!phoneEl.value) phoneEl.value = "+380 "; });
+phoneEl.addEventListener("blur", () => { if (phoneEl.value.trim() === "+380") phoneEl.value = ""; });
+phoneEl.addEventListener("input", () => {
+  let d = phoneEl.value.replace(/\D/g, "");
+  if (!d.startsWith("380")) { phoneEl.value = phoneEl.value.replace(/[^\d+ ()-]/g, ""); return; }
+  d = d.slice(3, 12);
+  const parts = [d.slice(0, 2), d.slice(2, 5), d.slice(5, 7), d.slice(7, 9)].filter(Boolean);
+  phoneEl.value = "+380 " + parts.join(" ");
+});
+
+async function send(payload) {
+  const url = CONFIG.SUBMIT_URL;
+  if (/script\.google\.com/.test(url)) {
+    await fetch(url, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) });
+    return;
+  }
+  const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(payload) });
+  if (!r.ok) throw new Error("HTTP " + r.status);
+}
+
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  if (submitBtn.hidden) { next(); return; }
+  err.textContent = "";
+  const name = document.getElementById("f-name").value.trim();
+  const phone = phoneEl.value.trim();
+  const tg = document.getElementById("f-tg").value.trim();
+  const q = document.getElementById("f-q").value.trim();
+  const digits = phone.replace(/\D/g, "");
+  if (digits.length < 10) return fieldError("f-phone", "Вкажіть номер телефону повністю, наприклад +380 67 123 45 67.");
+  if (digits.length > 3 && digits.length < 10) return fieldError("f-phone", "Номер неповний. Приклад: +380 67 123 45 67.");
+  if (digits.length < 10 && tg.length < 3) return fieldError("f-phone", "Залиште телефон або Telegram, щоб ми могли з вами звʼязатися.");
+  if (!CONFIG.SUBMIT_URL) {
+    err.innerHTML = 'Прийом заявок ще не підключено, тож заявка не надіслана. Поки що напишіть менеджеру в <a href="' + CONFIG.TELEGRAM + '" target="_blank" rel="noopener">Telegram</a>.';
+    return;
+  }
+  const join = mode === "join";
+  const pkg = join ? (val("pkg") || "12") : document.getElementById("f-lpkg").value;
+  let utm = {};
+  try { new URLSearchParams(location.search).forEach((v, k) => { if (/^utm_|^fbclid|^gclid/.test(k)) utm[k] = v; }); } catch (x) {}
+  const payload = {
+    _subject: "Клуб HALE: " + (join ? "Бронювання 100 $" : "Заявка") + " · " + PKG_NAME[pkg],
+    _template: "table",
+    "Тип заявки": join ? "Бронювання місця 100 $" : "Заявка на деталі",
+    "Пакет": PKG_NAME[pkg] + (PRICE[pkg] ? " · " + fmt(PRICE[pkg]) : ""),
+    "Член сімʼї": join && document.getElementById("f-family").checked ? "Так · +" + fmt(FAMILY_PRICE[pkg]) : "—",
+    "Сума": join ? fmt(PRICE[pkg] + (document.getElementById("f-family").checked ? FAMILY_PRICE[pkg] : 0)) : "—",
+    "Для кого": "—",
+    "Вік дітей": join && vals("age").length ? vals("age").join(", ") : "—",
+    "Що важливо": join && vals("topic").length ? vals("topic").join(", ") : "—",
+    "Імʼя": name || "—",
+    "Телефон": digits.length >= 10 ? phone : "—",
+    "Telegram": tg || "—",
+    "Питання": q || "—",
+    "Час": new Date().toLocaleString("uk-UA"),
+    "Джерело": Object.keys(utm).length ? JSON.stringify(utm) : "сайт клубу"
+  };
+  submitBtn.disabled = true; submitBtn.textContent = "Надсилаємо…";
+  try {
+    await send(payload);
+    try { (window.dataLayer = window.dataLayer || []).push({ event: "lead", lead_type: mode, package: pkg }); } catch (x) {}
+    try { if (window.fbq) window.fbq("track", join ? "InitiateCheckout" : "Lead", { content_name: PKG_NAME[pkg] }); } catch (x) {}
+    form.hidden = true; done.hidden = false;
+    const pay = document.getElementById("done-pay");
+    const payUrl = join ? CONFIG.PAY_URL[pkg] : "";
+    document.getElementById("done-title").textContent = join ? "Заявку на бронювання прийнято" : "Дякуємо!";
+    document.getElementById("done-text").innerHTML = join
+      ? (payUrl ? "Пакет «" + PKG_NAME[pkg] + "». Залишилося внести передплату 100 $." : "Пакет «" + PKG_NAME[pkg] + "». Ми звʼяжемося з вами найближчим часом і надішлемо реквізити для передплати 100 $.")
+      : "Ми зателефонуємо вам найближчим часом. Якщо питання термінове, напишіть менеджеру в <a href=\"" + CONFIG.TELEGRAM + "\" target=\"_blank\" rel=\"noopener\">Telegram</a>.";
+    pay.hidden = !payUrl; if (payUrl) pay.href = payUrl;
+    form.reset();
+  } catch (x) {
+    err.innerHTML = 'Не вдалося надіслати заявку. Перевірте інтернет і спробуйте ще раз або напишіть нам у <a href="' + CONFIG.TELEGRAM + '" target="_blank" rel="noopener">Telegram</a>.';
+  } finally {
+    submitBtn.disabled = false; submitBtn.textContent = join ? "Забронювати місце" : "Залишити заявку";
+  }
+});
+
+// Hero "who is it for": open the programme on the matching track
+document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => {
+  state.filter = b.dataset.go; render();
+  document.getElementById("program").scrollIntoView({ behavior: "smooth" });
+}));
+
+// ===== Side menu (phones) =====
+const burger = document.getElementById("burger"), mmenu = document.getElementById("mmenu"), mback = document.getElementById("mmenu-back");
+function menuOpen(open) {
+  mmenu.classList.toggle("open", open);
+  mmenu.setAttribute("aria-hidden", String(!open));
+  mback.hidden = !open;
+  burger.setAttribute("aria-expanded", String(open));
+  document.body.classList.toggle("locked", open);
+  if (open) document.getElementById("mmenu-x").focus({ preventScroll: true });
+}
+burger.addEventListener("click", () => menuOpen(!mmenu.classList.contains("open")));
+document.getElementById("mmenu-x").addEventListener("click", () => menuOpen(false));
+mback.addEventListener("click", () => menuOpen(false));
+mmenu.addEventListener("click", e => { if (e.target.closest("a")) menuOpen(false); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && mmenu.classList.contains("open")) { menuOpen(false); burger.focus(); } });
+
+// Manager window (desktop): after the first screen, hidden while the form is open, closable
+const mgrFloat = document.getElementById("mgr-float");
+let mgrClosed = false;
+try { mgrClosed = sessionStorage.getItem("hale-mgr-closed") === "1"; } catch (e) {}
+function mgrUpdate() {
+  const show = !mgrClosed && scrollY > innerHeight * 0.9 && sheetBack.hidden && !mmenu.classList.contains("open");
+  mgrFloat.hidden = !show;
+}
+addEventListener("scroll", mgrUpdate, { passive: true });
+document.getElementById("mgr-float-x").addEventListener("click", () => {
+  mgrClosed = true; mgrFloat.hidden = true;
+  try { sessionStorage.setItem("hale-mgr-closed", "1"); } catch (e) {}
+});
+</script>
+</body>
+</html>
