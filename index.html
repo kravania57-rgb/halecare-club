@@ -1427,7 +1427,7 @@ phoneEl.addEventListener("input", () => {
 async function send(payload) {
   const url = CONFIG.SUBMIT_URL;
   if (/script\.google\.com/.test(url)) {
-    await fetch(url, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) });
+    await fetch(url, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) });
     return;
   }
   const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(payload) });
@@ -1473,7 +1473,10 @@ form.addEventListener("submit", async e => {
   };
   submitBtn.disabled = true; submitBtn.textContent = "Надсилаємо…";
   try {
-    await send(payload);
+    // Booking: show the payment step at once, the notice goes to the bot in the background (one retry)
+    const sending = send(payload);
+    if (join) sending.catch(() => setTimeout(() => send(payload).catch(() => {}), 1500));
+    else await sending;
     try { (window.dataLayer = window.dataLayer || []).push({ event: "lead", lead_type: mode, package: pkg }); } catch (x) {}
     try { if (window.fbq) window.fbq("track", join ? "InitiateCheckout" : "Lead", { content_name: PKG_NAME[pkg] }); } catch (x) {}
     form.hidden = true; done.hidden = false;
@@ -1488,7 +1491,7 @@ form.addEventListener("submit", async e => {
     mark.textContent = join ? "2/2" : "✓"; mark.classList.toggle("step", join);   // бронювання ще не завершене — лишилась оплата
     document.getElementById("pay-full").innerHTML = "Оплатити повністю · " + fmt(lastOrder.total) + ' <span class="arrow">→</span>';
     document.getElementById("pay-err").textContent = "";
-    if (join) prefetchPay();
+    if (join) prefetchPay(lastOrder);
     form.reset();
   } catch (x) {
     if (!/(^|\.)halecare\.club$/.test(location.hostname) && !/^(localhost|127\.)/.test(location.hostname)) {
@@ -1553,8 +1556,8 @@ document.getElementById("mgr-float-x").addEventListener("click", () => {
 })();
 
 // ===== WayForPay =====
-// The signed payment forms are prepared in the background as soon as the booking is accepted,
-// so pressing a pay button submits instantly; the server is also woken up when the booking form opens.
+// Both signed payment forms are prepared in the background as soon as the booking sheet opens
+// (while the visitor is still typing the phone), so pressing a pay button submits instantly.
 let lastOrder = null;
 const payCache = {};
 let warmedAt = 0;
@@ -1563,35 +1566,52 @@ function warmPay() {
   warmedAt = Date.now();
   fetch(CONFIG.SUBMIT_URL, { mode: "no-cors" }).catch(() => {});
 }
-document.addEventListener("click", e => { if (e.target.closest("[data-join]")) warmPay(); }, true);
-function fetchPay(kind) {
-  if (!payCache[kind]) {
-    payCache[kind] = fetch(CONFIG.SUBMIT_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({ action: "pay", kind: kind, pkg: lastOrder.pkg, family: lastOrder.family, phone: lastOrder.phone }) })
+function curOrder() {
+  const r = document.querySelector('input[name="pkg"]:checked');
+  return { pkg: r ? r.value : "12", family: document.getElementById("f-family").checked };
+}
+function fetchPay(kind, o) {
+  const key = kind + o.pkg + (o.family ? "f" : "");
+  const hit = payCache[key];
+  if (!hit || Date.now() - hit.t > 1200000) {
+    const p = fetch(CONFIG.SUBMIT_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ action: "pay", kind: kind, pkg: o.pkg, family: o.family }) })
       .then(r => r.json()).then(d => { if (!d.ok) throw new Error("pay"); return d; })
-      .catch(err => { delete payCache[kind]; throw err; });
+      .catch(err => { delete payCache[key]; throw err; });
+    payCache[key] = { t: Date.now(), p: p };
   }
-  return payCache[kind];
+  return payCache[key].p;
 }
-function prefetchPay() {
-  Object.keys(payCache).forEach(k => delete payCache[k]);
-  ["deposit", "full"].forEach(k => fetchPay(k).catch(() => {}));
+function prefetchPay(o) {
+  if (!CONFIG.SUBMIT_URL) return;
+  ["full", "deposit"].forEach(k => fetchPay(k, o).catch(() => {}));
 }
+document.addEventListener("click", e => {
+  if (!e.target.closest("[data-join]")) return;
+  warmPay();
+  setTimeout(() => { if (mode === "join" && !sheetBack.hidden) prefetchPay(curOrder()); }, 0);
+}, true);
+form.addEventListener("change", e => {
+  if (mode === "join" && (e.target.name === "pkg" || e.target.id === "f-family")) prefetchPay(curOrder());
+});
 async function startPayment(kind, btn) {
   if (!lastOrder) return;
   const errEl = document.getElementById("pay-err");
   const label = btn.innerHTML;
   btn.disabled = true; btn.textContent = "Переходимо до оплати…"; errEl.textContent = "";
   try {
-    const data = await fetchPay(kind);
-    // tell the bot about the attempt without making the visitor wait
-    try { navigator.sendBeacon(CONFIG.SUBMIT_URL, new Blob([JSON.stringify({ action: "payclick", ref: data.fields.orderReference })], { type: "text/plain;charset=utf-8" })); } catch (x) {}
+    const data = await fetchPay(kind, lastOrder);
+    const fields = Object.assign({}, data.fields, { clientPhone: lastOrder.phone.replace(/\D/g, "") });
+    // tell the bot about the attempt (with the phone) without making the visitor wait
+    try { navigator.sendBeacon(CONFIG.SUBMIT_URL, new Blob([JSON.stringify({ action: "payclick", ref: fields.orderReference, phone: lastOrder.phone })], { type: "text/plain;charset=utf-8" })); } catch (x) {}
     const f = document.createElement("form");
     f.method = "POST"; f.action = data.action; f.acceptCharset = "utf-8"; f.style.display = "none";
-    Object.keys(data.fields).forEach(k => { const i = document.createElement("input"); i.type = "hidden"; i.name = k; i.value = data.fields[k]; f.appendChild(i); });
+    Object.keys(fields).forEach(k => { const i = document.createElement("input"); i.type = "hidden"; i.name = k; i.value = fields[k]; f.appendChild(i); });
     document.body.appendChild(f);
     try { if (window.fbq) window.fbq("track", "AddPaymentInfo", { value: kind === "deposit" ? 100 : lastOrder.total, currency: "USD" }); } catch (x) {}
+    delete payCache[kind + lastOrder.pkg + (lastOrder.family ? "f" : "")];   // a used orderReference is never reused
     f.submit();
+    setTimeout(() => { btn.disabled = false; btn.innerHTML = label; }, 4000);   // if the visitor comes back with the Back button
   } catch (x) {
     btn.disabled = false; btn.innerHTML = label;
     errEl.innerHTML = 'Не вдалося відкрити оплату. Спробуйте ще раз або напишіть менеджеру в <a href="' + CONFIG.TELEGRAM + '" target="_blank" rel="noopener">Telegram</a>.';
