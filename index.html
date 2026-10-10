@@ -639,6 +639,7 @@ label[for="f-name"], label[for="f-tg"], .sheet[data-mode="lead"] .fld-q { displa
 .pay-box { display: grid; gap: 10px; width: 100%; }
 .pay-box .btn { width: 100%; }
 .pay-note { font-size: 12.5px; color: var(--muted); text-align: center; max-width: 36ch; margin: 0 auto; }
+.done-mark.step { font-size: 16px; letter-spacing: .04em; font-variant-numeric: tabular-nums; }
 .pay-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 4px; }
 .pay-logos span { display: inline-flex; align-items: center; gap: 4px; height: 28px; padding: 0 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); font-size: 12.5px; line-height: 1; color: var(--ink); font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
 .pay-logos .pl-visa { font-weight: 800; font-style: italic; letter-spacing: .02em; color: #1a1f71; font-size: 13px; }
@@ -1478,11 +1479,13 @@ form.addEventListener("submit", async e => {
     form.hidden = true; done.hidden = false;
     const fam = join && document.getElementById("f-family").checked;
     lastOrder = { pkg: pkg, family: fam, phone: phone, total: PRICE[pkg] + (fam ? FAMILY_PRICE[pkg] : 0) };
-    document.getElementById("done-title").textContent = join ? "Заявку на бронювання прийнято" : "Дякуємо!";
+    document.getElementById("done-title").textContent = join ? "Залишився один крок: оплата" : "Дякуємо!";
     document.getElementById("done-text").innerHTML = join
-      ? "Пакет «" + PKG_NAME[pkg] + "». Оплатіть його повністю або закріпіть ціну передплатою 100 $."
+      ? "Пакет «" + PKG_NAME[pkg] + "». Місце закріплюється за вами після оплати: повністю або передплатою 100 $."
       : "Ми зателефонуємо вам найближчим часом. Якщо питання термінове, напишіть менеджеру в <a href=\"" + CONFIG.TELEGRAM + "\" target=\"_blank\" rel=\"noopener\">Telegram</a>.";
     document.getElementById("pay-box").hidden = !join;
+    const mark = document.querySelector(".done-mark");
+    mark.textContent = join ? "2/2" : "✓"; mark.classList.toggle("step", join);   // бронювання ще не завершене — лишилась оплата
     document.getElementById("pay-full").innerHTML = "Оплатити повністю · " + fmt(lastOrder.total) + ' <span class="arrow">→</span>';
     document.getElementById("pay-err").textContent = "";
     if (join) prefetchPay();
