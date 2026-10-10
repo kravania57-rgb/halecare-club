@@ -892,6 +892,11 @@ label[for="f-name"], label[for="f-tg"], .sheet[data-mode="lead"] .fld-q { displa
   .rail-dots i.on { width: 22px; background: var(--ink); }
 }
 
+/* Payment choice */
+.pay-box { display: grid; gap: 10px; width: 100%; }
+.pay-box .btn { width: 100%; }
+.pay-note { font-size: 12.5px; color: var(--muted); text-align: center; }
+
 @media (prefers-reduced-motion: reduce) { .float, .ticker-track { animation: none !important; } }
 @media (prefers-reduced-motion: reduce) { *, *::before { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
 </style>
@@ -1317,7 +1322,12 @@ label[for="f-name"], label[for="f-tg"], .sheet[data-mode="lead"] .fld-q { displa
       <div class="done-mark" aria-hidden="true">✓</div>
       <h3 id="done-title">Дякуємо!</h3>
       <p id="done-text"></p>
-      <a class="btn btn-solid" id="done-pay" href="#" target="_blank" rel="noopener" hidden>Оплатити 100 $ <span class="arrow">→</span></a>
+      <div class="pay-box" id="pay-box" hidden>
+        <button class="btn btn-solid" type="button" id="pay-deposit">Передплата 100 $ <span class="arrow">→</span></button>
+        <button class="btn btn-ghost" type="button" id="pay-full">Оплатити повністю</button>
+        <p class="pay-note">Оплата через WayForPay. Сума в доларах конвертується в гривні за курсом.</p>
+        <p class="f-err" id="pay-err" aria-live="polite"></p>
+      </div>
       <button class="btn btn-ghost" type="button" data-close>Повернутися на сторінку</button>
     </div>
   </div>
@@ -1704,13 +1714,15 @@ form.addEventListener("submit", async e => {
     try { (window.dataLayer = window.dataLayer || []).push({ event: "lead", lead_type: mode, package: pkg }); } catch (x) {}
     try { if (window.fbq) window.fbq("track", join ? "InitiateCheckout" : "Lead", { content_name: PKG_NAME[pkg] }); } catch (x) {}
     form.hidden = true; done.hidden = false;
-    const pay = document.getElementById("done-pay");
-    const payUrl = join ? CONFIG.PAY_URL[pkg] : "";
+    const fam = join && document.getElementById("f-family").checked;
+    lastOrder = { pkg: pkg, family: fam, phone: phone, total: PRICE[pkg] + (fam ? FAMILY_PRICE[pkg] : 0) };
     document.getElementById("done-title").textContent = join ? "Заявку на бронювання прийнято" : "Дякуємо!";
     document.getElementById("done-text").innerHTML = join
-      ? (payUrl ? "Пакет «" + PKG_NAME[pkg] + "». Залишилося внести передплату 100 $." : "Пакет «" + PKG_NAME[pkg] + "». Ми звʼяжемося з вами найближчим часом і надішлемо реквізити для передплати 100 $.")
+      ? "Пакет «" + PKG_NAME[pkg] + "». Оберіть, як оплатити: передплата 100 $ закріплює ціну зі знижкою, або оплатіть пакет одразу."
       : "Ми зателефонуємо вам найближчим часом. Якщо питання термінове, напишіть менеджеру в <a href=\"" + CONFIG.TELEGRAM + "\" target=\"_blank\" rel=\"noopener\">Telegram</a>.";
-    pay.hidden = !payUrl; if (payUrl) pay.href = payUrl;
+    document.getElementById("pay-box").hidden = !join;
+    document.getElementById("pay-full").innerHTML = "Оплатити повністю · " + fmt(lastOrder.total);
+    document.getElementById("pay-err").textContent = "";
     form.reset();
   } catch (x) {
     if (!/(^|\.)halecare\.club$/.test(location.hostname) && !/^(localhost|127\.)/.test(location.hostname)) {
@@ -1773,6 +1785,32 @@ document.getElementById("mgr-float-x").addEventListener("click", () => {
     if (hint) hint.style.visibility = idx === 0 ? "visible" : "hidden";
   }, { passive: true });
 })();
+
+// ===== WayForPay =====
+let lastOrder = null;
+async function startPayment(kind, btn) {
+  if (!lastOrder) return;
+  const errEl = document.getElementById("pay-err");
+  const label = btn.innerHTML;
+  btn.disabled = true; btn.textContent = "Переходимо до оплати…"; errEl.textContent = "";
+  try {
+    const r = await fetch(CONFIG.SUBMIT_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ action: "pay", kind: kind, pkg: lastOrder.pkg, family: lastOrder.family, phone: lastOrder.phone }) });
+    const data = await r.json();
+    if (!data.ok) throw new Error("pay");
+    const f = document.createElement("form");
+    f.method = "POST"; f.action = data.action; f.acceptCharset = "utf-8"; f.style.display = "none";
+    Object.keys(data.fields).forEach(k => { const i = document.createElement("input"); i.type = "hidden"; i.name = k; i.value = data.fields[k]; f.appendChild(i); });
+    document.body.appendChild(f);
+    try { if (window.fbq) window.fbq("track", "AddPaymentInfo", { value: kind === "deposit" ? 100 : lastOrder.total, currency: "USD" }); } catch (x) {}
+    f.submit();
+  } catch (x) {
+    btn.disabled = false; btn.innerHTML = label;
+    errEl.innerHTML = 'Не вдалося відкрити оплату. Спробуйте ще раз або напишіть менеджеру в <a href="' + CONFIG.TELEGRAM + '" target="_blank" rel="noopener">Telegram</a>.';
+  }
+}
+document.getElementById("pay-deposit").addEventListener("click", e => startPayment("deposit", e.currentTarget));
+document.getElementById("pay-full").addEventListener("click", e => startPayment("full", e.currentTarget));
 </script>
 </body>
 </html>
