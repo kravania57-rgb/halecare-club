@@ -469,6 +469,7 @@ body.locked { overflow: hidden; }
 .btn { white-space: nowrap; line-height: 1.2; min-height: 52px; padding: 0 26px; justify-content: center; text-align: center; }
 .btn .arrow { flex: none; }
 nav.main .btn { min-height: 42px; padding: 0 20px; font-size: 12.5px; }
+nav.main a:not(.btn) { display: inline-flex; align-items: center; min-height: 40px; padding: 0 2px; }
 .plan-actions .btn, .deposit-note .btn, .q-nav .btn, .sheet-done .btn { min-height: 52px; }
 .link-btn { min-height: 40px; }
 .mbar .btn { min-height: 44px; padding: 0 20px; }
@@ -637,7 +638,8 @@ label[for="f-name"], label[for="f-tg"], .sheet[data-mode="lead"] .fld-q { displa
 }
 .pay-box { display: grid; gap: 10px; width: 100%; }
 .pay-box .btn { width: 100%; }
-.pay-note { font-size: 12.5px; color: var(--muted); text-align: center; }
+.pay-note { font-size: 12.5px; color: var(--muted); text-align: center; max-width: 36ch; margin: 0 auto; }
+.pay-plus { font-size: 13px; color: var(--ink-soft); text-align: center; max-width: 36ch; margin: -2px auto 6px; }
 @media (prefers-reduced-motion: reduce) { .float, .ticker-track { animation: none !important; } }
 @media (prefers-reduced-motion: reduce) { *, *::before { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
 </style>
@@ -914,7 +916,7 @@ label[for="f-name"], label[for="f-tg"], .sheet[data-mode="lead"] .fld-q { displa
       <ol class="howto">
           <li><b>Оберіть пакет</b><span>3, 6 або 12 місяців</span></li>
           <li><b>Забронюйте місце</b><span>Залиште імʼя і телефон</span></li>
-          <li><b>Внесіть передплату 100 $</b><span>Вона закріплює за вами ціну зі знижкою і входить у вартість пакета. Або оплатіть одразу</span></li>
+          <li><b>Оплатіть пакет</b><span>Одразу повністю — або внесіть передплату 100 $, щоб закріпити ціну зі знижкою</span></li>
         </ol>
       <ul class="objections">
         <li>Доєдналися пізніше? Матеріали всіх попередніх місяців теж будуть доступні</li>
@@ -1064,8 +1066,9 @@ label[for="f-name"], label[for="f-tg"], .sheet[data-mode="lead"] .fld-q { displa
       <h3 id="done-title">Дякуємо!</h3>
       <p id="done-text"></p>
       <div class="pay-box" id="pay-box" hidden>
-        <button class="btn btn-solid" type="button" id="pay-deposit">Передплата 100 $ <span class="arrow">→</span></button>
-        <button class="btn btn-ghost" type="button" id="pay-full">Оплатити повністю</button>
+        <button class="btn btn-solid" type="button" id="pay-full">Оплатити повністю</button>
+        <p class="pay-plus">Місце й ціна зі знижкою закріплюються одразу, без доплат потім</p>
+        <button class="btn btn-ghost" type="button" id="pay-deposit">Або передплата 100 $</button>
         <p class="pay-note">Оплата через WayForPay. Сума в доларах конвертується в гривні за курсом.</p>
         <p class="f-err" id="pay-err" aria-live="polite"></p>
       </div>
@@ -1395,9 +1398,12 @@ const phoneEl = document.getElementById("f-phone");
 phoneEl.addEventListener("focus", () => { if (!phoneEl.value) phoneEl.value = "+380 "; });
 phoneEl.addEventListener("blur", () => { if (phoneEl.value.trim() === "+380") phoneEl.value = ""; });
 phoneEl.addEventListener("input", () => {
-  let d = phoneEl.value.replace(/\D/g, "");
-  if (!d.startsWith("380")) { phoneEl.value = phoneEl.value.replace(/[^\d+ ()-]/g, ""); return; }
-  d = d.slice(3, 12);
+  const raw = phoneEl.value;
+  let d = raw.replace(/\D/g, "");
+  if (d.startsWith("380")) d = d.slice(3);
+  else if (!raw.trim().startsWith("+") && d.startsWith("0")) d = d.slice(1);   // 067… → +380 67…
+  else { phoneEl.value = raw.replace(/[^\d+ ()-]/g, ""); return; }           // foreign numbers stay as typed
+  d = d.replace(/^0+/, "").slice(0, 9);                                          // +380 067… → +380 67…
   const parts = [d.slice(0, 2), d.slice(2, 5), d.slice(5, 7), d.slice(7, 9)].filter(Boolean);
   phoneEl.value = "+380 " + parts.join(" ");
 });
@@ -1459,10 +1465,10 @@ form.addEventListener("submit", async e => {
     lastOrder = { pkg: pkg, family: fam, phone: phone, total: PRICE[pkg] + (fam ? FAMILY_PRICE[pkg] : 0) };
     document.getElementById("done-title").textContent = join ? "Заявку на бронювання прийнято" : "Дякуємо!";
     document.getElementById("done-text").innerHTML = join
-      ? "Пакет «" + PKG_NAME[pkg] + "». Оберіть, як оплатити: передплата 100 $ закріплює ціну зі знижкою, або оплатіть пакет одразу."
+      ? "Пакет «" + PKG_NAME[pkg] + "». Оплатіть його повністю або закріпіть ціну передплатою 100 $."
       : "Ми зателефонуємо вам найближчим часом. Якщо питання термінове, напишіть менеджеру в <a href=\"" + CONFIG.TELEGRAM + "\" target=\"_blank\" rel=\"noopener\">Telegram</a>.";
     document.getElementById("pay-box").hidden = !join;
-    document.getElementById("pay-full").innerHTML = "Оплатити повністю · " + fmt(lastOrder.total);
+    document.getElementById("pay-full").innerHTML = "Оплатити повністю · " + fmt(lastOrder.total) + ' <span class="arrow">→</span>';
     document.getElementById("pay-err").textContent = "";
     if (join) prefetchPay();
     form.reset();
