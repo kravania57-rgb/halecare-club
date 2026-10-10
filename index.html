@@ -1464,6 +1464,7 @@ form.addEventListener("submit", async e => {
     document.getElementById("pay-box").hidden = !join;
     document.getElementById("pay-full").innerHTML = "Оплатити повністю · " + fmt(lastOrder.total);
     document.getElementById("pay-err").textContent = "";
+    if (join) prefetchPay();
     form.reset();
   } catch (x) {
     if (!/(^|\.)halecare\.club$/.test(location.hostname) && !/^(localhost|127\.)/.test(location.hostname)) {
@@ -1528,17 +1529,39 @@ document.getElementById("mgr-float-x").addEventListener("click", () => {
 })();
 
 // ===== WayForPay =====
+// The signed payment forms are prepared in the background as soon as the booking is accepted,
+// so pressing a pay button submits instantly; the server is also woken up when the booking form opens.
 let lastOrder = null;
+const payCache = {};
+let warmedAt = 0;
+function warmPay() {
+  if (!CONFIG.SUBMIT_URL || Date.now() - warmedAt < 300000) return;
+  warmedAt = Date.now();
+  fetch(CONFIG.SUBMIT_URL, { mode: "no-cors" }).catch(() => {});
+}
+document.addEventListener("click", e => { if (e.target.closest("[data-join]")) warmPay(); }, true);
+function fetchPay(kind) {
+  if (!payCache[kind]) {
+    payCache[kind] = fetch(CONFIG.SUBMIT_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ action: "pay", kind: kind, pkg: lastOrder.pkg, family: lastOrder.family, phone: lastOrder.phone }) })
+      .then(r => r.json()).then(d => { if (!d.ok) throw new Error("pay"); return d; })
+      .catch(err => { delete payCache[kind]; throw err; });
+  }
+  return payCache[kind];
+}
+function prefetchPay() {
+  Object.keys(payCache).forEach(k => delete payCache[k]);
+  ["deposit", "full"].forEach(k => fetchPay(k).catch(() => {}));
+}
 async function startPayment(kind, btn) {
   if (!lastOrder) return;
   const errEl = document.getElementById("pay-err");
   const label = btn.innerHTML;
   btn.disabled = true; btn.textContent = "Переходимо до оплати…"; errEl.textContent = "";
   try {
-    const r = await fetch(CONFIG.SUBMIT_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({ action: "pay", kind: kind, pkg: lastOrder.pkg, family: lastOrder.family, phone: lastOrder.phone }) });
-    const data = await r.json();
-    if (!data.ok) throw new Error("pay");
+    const data = await fetchPay(kind);
+    // tell the bot about the attempt without making the visitor wait
+    try { navigator.sendBeacon(CONFIG.SUBMIT_URL, new Blob([JSON.stringify({ action: "payclick", ref: data.fields.orderReference })], { type: "text/plain;charset=utf-8" })); } catch (x) {}
     const f = document.createElement("form");
     f.method = "POST"; f.action = data.action; f.acceptCharset = "utf-8"; f.style.display = "none";
     Object.keys(data.fields).forEach(k => { const i = document.createElement("input"); i.type = "hidden"; i.name = k; i.value = data.fields[k]; f.appendChild(i); });
