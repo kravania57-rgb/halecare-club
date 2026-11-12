@@ -314,6 +314,8 @@ header .btn{height:42px;padding:0 18px;font-size:13px}
 @keyframes sheen{0%{background-position:160% 0}55%,100%{background-position:-60% 0}}
 .js-motion .tcards.in .save{animation:pop .5s cubic-bezier(.2,.9,.3,1.4) .7s both}
 @keyframes pop{from{opacity:0;transform:scale(.7)}}
+.tcards.flash .tcard{animation:flash 1.4s ease}
+@keyframes flash{30%{box-shadow:0 0 0 3px var(--herb),0 30px 60px -36px rgba(27,29,16,.7)}}
 .price .save{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--herb);color:var(--ink);padding:5px 10px}
 .price .plus{flex-basis:100%;font-family:var(--display);font-size:clamp(22px,2.2vw,28px);line-height:1;margin-top:-4px}
 .price small{flex-basis:100%}
@@ -795,7 +797,7 @@ footer a:hover{color:var(--herb)}
   <div class="wrap">
     <div data-r><h2>Оздоровча програма <span>стартує 30 листопада</span></h2><p>4 тижні. Чат і підтримка учасників під час курсу, рекомендації після.</p></div>
     <div class="final-act" data-r>
-      <a class="btn btn-mustard" href="#tariffs" data-join="solo">Доєднатися <span class="ar">→</span></a>
+      <a class="btn btn-mustard" href="#tariffs">Доєднатися <span class="ar">→</span></a>
       <a class="btn btn-line light" href="https://t.me/shyshkovskay" target="_blank" rel="noopener">Поставити питання</a>
       <a class="mgr" href="https://t.me/shyshkovskay" target="_blank" rel="noopener"><img class="photo" src="img-manager.webp" width="52" height="52" loading="lazy" alt=""><span><b>Менеджер у Telegram</b>Відповімо на питання перед оплатою</span></a>
     </div>
@@ -831,7 +833,7 @@ footer a:hover{color:var(--herb)}
 </div>
 
 <div class="sticky" id="sticky">
-  <a class="btn btn-mustard" href="#tariffs" data-join="solo" id="st-btn"><span id="st-lbl">Доєднатися</span></a>
+  <a class="btn btn-mustard" href="#tariffs" id="st-btn"><span id="st-lbl">Доєднатися</span></a>
   <a class="btn tg" href="https://t.me/shyshkovskay" target="_blank" rel="noopener" aria-label="Питання менеджеру в Telegram"><svg viewBox="0 0 24 24"><path d="M21.4 3.6L2.9 10.7c-1 .4-1 1.8.1 2.1l4.6 1.4 1.8 5.6c.3.9 1.4 1.1 2 .4l2.6-2.6 4.6 3.4c.8.6 1.9.1 2.1-.9L23 4.9c.2-1-.7-1.7-1.6-1.3zM9.6 14.3l8.2-7.2-6.4 8.2-.3 3-1.5-4z"/></svg><small>питання</small></a>
 </div>
 
@@ -1037,6 +1039,17 @@ function openSheet(t) {
 form.addEventListener("change", e => { if (e.target.name === "tariff") { chosenT = e.target.value; submitBtn.innerHTML = btnLabel(); } });
 function closeSheet() { back.hidden = true; document.body.classList.remove("locked"); if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true }); }
 document.addEventListener("click", e => { const j = e.target.closest("[data-join]"); if (j) { e.preventDefault(); openSheet(j.dataset.join); } });
+// усі «Доєднатися» / «Обрати тариф» ведуть до тарифів; оплата відкривається лише кнопкою «Оплатити» в картці
+document.addEventListener("click", e => {
+  if (!e.target.closest('a[href="#tariffs"]')) return;
+  e.preventDefault();
+  if (!mnav.hidden) setMenu(false);
+  tariffsEl.scrollIntoView({ behavior: REDUCED ? "auto" : "smooth", block: "start" });
+  if (matchMedia("(max-width:860px)").matches) tcards.scrollTo({ left: 0 });
+  clearTimeout(window.__flashT);
+  tcards.classList.remove("flash");
+  window.__flashT = setTimeout(() => { tcards.classList.add("flash"); setTimeout(() => tcards.classList.remove("flash"), 1600); }, 650);
+});
 back.addEventListener("click", e => { if (e.target === back || e.target.closest("[data-close]")) closeSheet(); });
 document.addEventListener("keydown", e => {
   if (e.key === "Escape") { if (!lb.hidden) lbClose(); else if (!back.hidden) closeSheet(); else if (!mnav.hidden) setMenu(false); }
