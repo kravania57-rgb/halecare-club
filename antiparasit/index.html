@@ -225,6 +225,19 @@ header .btn{height:42px;padding:0 18px;font-size:13px}
 /* темна смуга з цитатою */
 
 /* стрічка відгуків */
+/* текстові відгуки попереднього потоку */
+.tq-h{text-transform:uppercase;font-size:20px;letter-spacing:.06em}
+.tq-rail{columns:3 300px;column-gap:16px}
+.tq{break-inside:avoid;margin:0 0 16px;position:relative;background:var(--paper);border-top:3px solid var(--herb);padding:40px 24px 20px;box-shadow:0 18px 40px -32px rgba(27,29,16,.5)}
+.tq-m{position:absolute;top:-2px;left:20px;font-family:var(--display);font-size:56px;line-height:1;color:var(--herb);opacity:.55}
+.tq p{font-size:16.5px;line-height:1.6;margin:0}
+.tq cite{display:block;margin-top:14px;font-style:normal;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--olive)}
+@media (max-width:860px){
+  .tq-rail{columns:auto;display:flex;align-items:flex-start;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:6px;margin-inline:-18px;padding-inline:18px}
+  .tq-rail::-webkit-scrollbar{display:none}
+  .tq{flex:0 0 84%;scroll-snap-align:center;margin:0;padding:36px 20px 18px}
+  .tq p{font-size:15.5px;line-height:1.55}
+}
 .rv-head{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .rv-head h3{text-transform:uppercase;font-size:20px;letter-spacing:.06em}
 .rv-nav{display:flex;gap:8px}
@@ -646,6 +659,14 @@ footer a:hover{color:var(--herb)}
     <div class="sec-no"><span class="big" aria-hidden="true">06</span><small>Відгуки</small></div>
     <div class="sec-body">
       <h2>Відгуки учасниць</h2>
+      <h3 class="tq-h">Після попереднього потоку</h3>
+      <div class="tq-rail" id="tq">
+        <blockquote class="tq"><span class="tq-m" aria-hidden="true">«</span><p>Програма дуже комфортна для проходження, але при цьому дуже дієва та ефективна. Особисто я побачила <span class="mark">покращення та зміни вже на 10-14 день</span> від початку її проходження. Раціон побудований таким чином, що солодкого зовсім не хотілося. Дякую за цей курс)</p><cite>Учасниця попереднього потоку</cite></blockquote>
+        <blockquote class="tq"><span class="tq-m" aria-hidden="true">«</span><p>Кожна програма дуже цінна для мене. Все продумано до деталей. Багато корисної інформації. Подобається ідеально підібране меню, пояснення до нього, що дозволяє глибше розуміти вживання тих чи інших продуктів і їх поєднання. Також збори трав, який були на курсі, це просто спасіння для ШКТ і всього організму, <span class="mark">що відчувається з першого тижня</span>. Я отримала легкість, енергійність, чудове самопочуття . Плюс, розуміння тих чи інших процесів, які проходять в нашому тілі. Коло однодумців, цікаві завдання, підтримка кураторів створили легку і не вимушену атмосферу усі ці три тижні, які дуже швидко пролетіли. Безмежно дякую Юлії і усій команді за такий чудовий курс.</p><cite>Учасниця попереднього потоку</cite></blockquote>
+        <blockquote class="tq"><span class="tq-m" aria-hidden="true">«</span><p>Дякую за АП, мені дуже сподобалося!<br>Я помітила легкість у тілі, стало більше енергії, <span class="mark">зникло вздутя, покращилося травлення</span>. Груди стали мʼякшими - для мене це було одним із головних пунктів проходження АП, так як була фіброаденома.<br>Також значно покращився стан шкіри: вона стала чистішою, зникли висипання. І, звісно, відчула загальну підтримку та оздоровлення організму.<br>Дуже сподобалася структура курсу, ефіри, дихальні практики та масаж обличчя.<br>Щиро дякую за можливість пройти АП у колі однодумців, це ще більше мотивує та надихає 🤍</p><cite>Учасниця попереднього потоку</cite></blockquote>
+        <blockquote class="tq"><span class="tq-m" aria-hidden="true">«</span><p>На вашому курсі я вперше🙌 Враження дуже хороші,швидко минули три тижні і легко.Інформації багато і вся вона змістовна і чітка.Дуже приємно коли лікар активно бере участь в кожній окремо ситуації🫶 <span class="mark">З вами було надійно і затишно</span>🥰Дякую щиро за чудовий курс🙌Я буду продовжувати за вашими рекомендаціями оздоровлюватися🤗Поки я на стадії загострення дерматиту та переношу це спокійно,впевнена що скоро все мине🤗😍Всім дівчаткам бажаю здоровʼя❤️. Ще раз дякую,Юлічка🫶❤️😍</p><cite>Учасниця попереднього потоку</cite></blockquote>
+        <blockquote class="tq"><span class="tq-m" aria-hidden="true">«</span><p>…активно - додаючи багато турботи про свій стан, і <span class="mark">велику роль відіграв саме цей курс</span> - було багато дихальних практик, часто лімфатична зарядка, взагалі багато спорту, йоги, пила всі збори, з задоволенням прослухала всі лекції, матеріали, які ще більше розклали по поличкам, як важливо харчуватись мудро, пити воду, профілактично проходити курси оздоровлення, рухатись, дихати правильно, дбати про…</p><cite>Учасниця попереднього потоку</cite></blockquote>
+      </div>
       <div class="rv-head"><h3>Повідомлення після курсів Юлії</h3><div class="rv-nav"><button type="button" data-rv="-1" aria-label="Попередні відгуки">←</button><button type="button" data-rv="1" aria-label="Наступні відгуки">→</button></div></div>
       <div class="rail" id="rv">
         <a href="rv-7ca4950b.webp" target="_blank" rel="noopener"><img src="rv-7ca4950b.webp" width="506" height="884" loading="lazy" alt="Відгук учасниці курсу Юлії Кравченко"></a>
