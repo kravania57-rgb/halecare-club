@@ -250,7 +250,7 @@ header .btn{height:42px;padding:0 18px;font-size:13px}
 .new .list li{font-weight:700}
 
 /* тарифи */
-.tcards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:center;padding-block:20px}
+.tcards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch;padding-block:20px}
 .tcard{padding:30px;display:flex;flex-direction:column;gap:18px;background:var(--paper);min-width:0;border-top:3px solid var(--olive);transition:transform .3s}
 .tcard:hover{transform:translateY(-4px)}
 .tcard.hot{background:var(--ink);color:var(--on-dark);border-top-color:var(--herb);padding-block:48px;box-shadow:0 30px 60px -36px rgba(27,29,16,.7)}
@@ -373,6 +373,8 @@ footer a:hover{color:var(--herb)}
 .sc-sum{border-left:4px solid var(--olive);background:var(--herb-tint);padding:12px 16px;font-size:16px}
 .sheet .btn{width:100%}
 .f-note{font-size:14px;color:var(--muted);text-align:center}
+.f-sum{margin:-6px 0 0;padding:12px 14px;background:var(--herb-tint);border-left:3px solid var(--olive);font-size:15.5px;line-height:1.45}
+.f-sum b{font-variant-numeric:tabular-nums}
 .f-note a{text-decoration:underline}
 .done .ok{width:56px;height:56px;background:var(--herb);display:grid;place-items:center;font-size:30px;font-weight:700}
 .done-head h3{font-size:23px}
@@ -398,14 +400,15 @@ footer a:hover{color:var(--herb)}
 }
 @media (max-width:860px){
   .hero{min-height:auto}
-  .hero picture{position:relative;inset:auto;height:auto;aspect-ratio:4/3;order:2}
+  .hero picture{position:relative;inset:auto;height:auto;aspect-ratio:4/3;order:3}
   .hero picture img{object-position:70% 70%}
   .hero::after{display:none}
   .hero-main{order:1;padding-block:30px 34px}
-  .hero-bar{order:3;background:var(--ink);backdrop-filter:none;-webkit-backdrop-filter:none}
+  .hero-bar{order:2;background:var(--ink);backdrop-filter:none;-webkit-backdrop-filter:none}
   .marquee{order:4}
   .hero-leaf{width:44vw;top:10px;right:10px;opacity:.3}
-  .stages,.lectures,.author,.t-under,.power,  .stage:not(:last-child)::after{content:"↓";right:auto;left:26px;top:auto;bottom:-28px}
+  .stages,.lectures,.author,.t-under,.power{grid-template-columns:minmax(0,1fr)}
+  .stage:not(:last-child)::after{content:"↓";right:auto;left:26px;top:auto;bottom:-28px}
   .stages{gap:22px}
   .author figure{aspect-ratio:4/3}
   .author figure{aspect-ratio:1/1}
@@ -413,15 +416,14 @@ footer a:hover{color:var(--herb)}
     .qa{grid-template-columns:minmax(0,1fr);gap:10px}
   .final .wrap{grid-template-columns:minmax(0,1fr)}
   .t-under{gap:0}
-  .tcards{grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:86%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;align-items:stretch;gap:12px;padding-block:8px}
+  .tcards{grid-template-columns:minmax(0,1fr);gap:14px;padding-block:8px}
   .tcards::-webkit-scrollbar{display:none}
   .tcard{scroll-snap-align:center}
   .tcard:hover{transform:none}
   .tcard.hot{padding-block:30px}
-  .dots-nav{display:flex;justify-content:center;gap:6px}
+  .dots-nav,.swipe{display:none!important}
   .dots-nav button{width:10px;height:10px;border:1.5px solid var(--ink);background:transparent;padding:0;cursor:pointer}
   .dots-nav button[aria-current="true"]{background:var(--ink);width:28px}
-  .swipe{display:block;text-align:center;font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:-18px}
   .sticky{display:flex}
   footer{padding-bottom:104px}
   .back{align-items:flex-end;padding:0}
@@ -430,7 +432,8 @@ footer a:hover{color:var(--herb)}
 @media (max-width:600px){
   body{font-size:17px}
   .wrap{padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
-  .list,  .list li{font-size:17px}
+  .list{grid-template-columns:1fr}
+  .list li{font-size:17px}
   .res{grid-template-columns:1fr 1fr}
   .res div:last-child{grid-column:1/-1}
   .hero-bar .wrap{grid-template-columns:1fr}
@@ -439,7 +442,8 @@ footer a:hover{color:var(--herb)}
   .cta-row .btn{flex:1 1 100%}
   .brand b{font-size:15px;letter-spacing:.06em}
   header .h-act .btn{display:none}
-  }
+  footer nav a,.legal-foot a{display:inline-block;padding-block:8px}
+}
 @media (max-width:370px){.brand b{font-size:12px;letter-spacing:.02em}.brand .sq{display:none}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
@@ -729,7 +733,7 @@ footer a:hover{color:var(--herb)}
   <div class="wrap">
     <div data-r><h2>Оздоровча програма <span>стартує 30 листопада</span></h2><p>4 тижні. Чат і підтримка учасників під час курсу, рекомендації після.</p></div>
     <div class="final-act" data-r>
-      <a class="btn btn-mustard" href="#tariffs">Доєднатися <span class="ar">→</span></a>
+      <a class="btn btn-mustard" href="#tariffs" data-join="solo">Доєднатися <span class="ar">→</span></a>
       <a class="btn btn-line light" href="https://t.me/shyshkovskay" target="_blank" rel="noopener">Поставити питання</a>
       <a class="mgr" href="https://t.me/shyshkovskay" target="_blank" rel="noopener"><img class="photo" src="img-manager.webp" width="52" height="52" loading="lazy" alt=""><span><b>Менеджер у Telegram</b>Відповімо на питання перед оплатою</span></a>
     </div>
@@ -765,7 +769,7 @@ footer a:hover{color:var(--herb)}
 </div>
 
 <div class="sticky" id="sticky">
-  <a class="btn btn-mustard" href="#tariffs">Доєднатися</a>
+  <a class="btn btn-mustard" href="#tariffs" data-join="solo">Доєднатися · від 3 500 грн</a>
   <a class="btn tg" href="https://t.me/shyshkovskay" target="_blank" rel="noopener" aria-label="Написати менеджеру в Telegram"><svg viewBox="0 0 24 24"><path d="M21.4 3.6L2.9 10.7c-1 .4-1 1.8.1 2.1l4.6 1.4 1.8 5.6c.3.9 1.4 1.1 2 .4l2.6-2.6 4.6 3.4c.8.6 1.9.1 2.1-.9L23 4.9c.2-1-.7-1.7-1.6-1.3zM9.6 14.3l8.2-7.2-6.4 8.2-.3 3-1.5-4z"/></svg></a>
 </div>
 
@@ -782,6 +786,7 @@ footer a:hover{color:var(--herb)}
         </div>
         <div class="field"><label for="f-phone">Ваш телефон</label><input id="f-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+380 67 123 45 67" enterkeyhint="go"></div>
         <p class="f-err" id="f-err" aria-live="polite"></p>
+        <p class="f-sum" id="f-sum" hidden></p>
         <button class="btn btn-mustard" type="submit" id="f-submit">Перейти до оплати <span class="ar">→</span></button>
         <p class="f-note">Далі відкриється безпечна сторінка оплати WayForPay: Visa, Mastercard, Apple Pay, Google Pay. Повернення коштів — протягом 3 днів після старту. <a href="umovy.html" target="_blank">Умови участі</a></p>
       </div>
@@ -800,7 +805,8 @@ const CONFIG = {
   PROGRAM: "Оздоровча програма 30.11"
 };
 const TARIFF_NAME = {"solo": "Курс", "club3": "Курс + клуб 3 місяці", "club6": "Курс + клуб 6 місяців"};
-const TARIFF_LABEL = {"solo": "3 500 грн", "club3": "140 $ + 2 000 грн", "club6": "350 $ + 1 500 грн"};   // сума рахується на сервері, тут лише підпис
+const TARIFF_UAH = {"solo": 3500, "club3": 8384, "club6": 17460};   // лише для показу; суму до сплати рахує сервер (курс AP_USD_RATE)
+const TARIFF_NOTE = {"solo": "", "club3": "140 $ за курсом 45,6 + 2 000 грн", "club6": "350 $ за курсом 45,6 + 1 500 грн"};
 const grn = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0") + "\u00a0грн";
 const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -816,10 +822,11 @@ if (!REDUCED && "IntersectionObserver" in window) {
 }
 
 // липка кнопка, смуга прогресу
-const sticky = document.getElementById("sticky"), tariffsEl = document.getElementById("tariffs"), prog = document.getElementById("progress");
+const finalEl = document.getElementById("final"), sticky = document.getElementById("sticky"), tariffsEl = document.getElementById("tariffs"), prog = document.getElementById("progress");
 function onScroll() {
   const r = tariffsEl.getBoundingClientRect();
-  sticky.classList.toggle("on", scrollY > 600 && !(r.top < innerHeight && r.bottom > 0));
+  const fr = finalEl.getBoundingClientRect();
+  sticky.classList.toggle("on", scrollY > 600 && !(r.top < innerHeight && r.bottom > 0) && !(fr.top < innerHeight - 80));
   const h = document.documentElement.scrollHeight - innerHeight;
   prog.style.transform = "scaleX(" + (h > 0 ? Math.min(1, scrollY / h) : 0) + ")";
 }
@@ -909,7 +916,12 @@ const back = document.getElementById("sheet"), form = document.getElementById("l
 const err = document.getElementById("f-err"), submitBtn = document.getElementById("f-submit"), phoneEl = document.getElementById("f-phone");
 let lastFocus = null, chosenT = "solo";
 const pickedList = () => [...document.querySelectorAll('.selfcheck li[aria-checked="true"]')].map(li => li.textContent.trim());
-const btnLabel = () => "Перейти до оплати · " + TARIFF_LABEL[chosenT] + ' <span class="ar">→</span>';
+const btnLabel = () => {
+  const u = TARIFF_UAH[chosenT], fs = document.getElementById("f-sum");
+  fs.hidden = !TARIFF_NOTE[chosenT];
+  if (TARIFF_NOTE[chosenT]) fs.innerHTML = "До сплати <b>" + grn(u) + "</b> — " + TARIFF_NOTE[chosenT];
+  return "Перейти до оплати · " + grn(u) + ' <span class="ar">→</span>';
+};
 function openSheet(t) {
   lastFocus = document.activeElement;
   chosenT = TARIFF_NAME[t] ? t : "solo";
