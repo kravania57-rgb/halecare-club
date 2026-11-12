@@ -772,7 +772,7 @@ footer a:hover{color:var(--herb)}
         <li><span>При прийомі сильних препаратів: цитостатики, антидепресанти, імуносупресори.<em>(Якщо ви сумніваєтесь чи можна Вам — напишіть в особисті повідомлення)</em></span></li>
         <li><span>Вагітність<em>(при бажанні пройти курс вагітним, потрібно індивідуально підібрати рекомендації, звʼяжіться з нами для уточнення)</em></span></li>
       </ul>
-      <div class="cta-row"><a class="btn btn-line" href="https://t.me/shyshkovskay" target="_blank" rel="noopener">Написати й уточнити</a></div>
+      <div class="cta-row"><a class="btn btn-line" href="https://t.me/shyshkovskay" data-tg="contra" target="_blank" rel="noopener">Написати й уточнити</a></div>
     </div>
   </div>
 </section>
@@ -856,7 +856,7 @@ footer a:hover{color:var(--herb)}
     </form>
     <div class="done" id="sheet-done" hidden>
       <div class="done-head"><div class="ok">✓</div><div><h3 style="padding:0">Заявку прийнято</h3><p id="done-text">Менеджер звʼяжеться з вами і надішле посилання на оплату.</p></div></div>
-      <a class="btn btn-line" href="https://t.me/shyshkovskay" target="_blank" rel="noopener">Написати менеджеру в Telegram</a>
+      <a class="btn btn-line" href="https://t.me/shyshkovskay" data-tg="pay" target="_blank" rel="noopener">Написати менеджеру в Telegram</a>
     </div>
   </div>
 </div>
@@ -993,6 +993,23 @@ tcards.addEventListener("scroll", markDot, { passive: true });
 if (matchMedia("(max-width:860px)").matches) { const hot = tcards.querySelector(".hot"); if (hot) tcards.scrollLeft = hot.offsetLeft - (tcards.clientWidth - hot.offsetWidth) / 2; }
 markDot();
 
+
+// Telegram менеджеру — з готовим повідомленням (параметр ?text= підставляє текст у поле вводу)
+const TG_TEXT = {
+  ask: "Вітаю! Маю питання щодо Оздоровчої програми (старт 30 листопада).",
+  contra: "Вітаю! Хочу уточнити, чи можна мені проходити Оздоровчу програму. Мій стан / препарати: ",
+  pay: "Вітаю! Не вдалося оплатити Оздоровчу програму, допоможіть, будь ласка."
+};
+document.addEventListener("click", e => {
+  const a = e.target.closest('a[href^="https://t.me/shyshkovskay"]');
+  if (!a) return;
+  const kind = a.dataset.tg || (a.closest("#sheet") ? "pay" : "ask");
+  let t = TG_TEXT[kind] || TG_TEXT.ask;
+  if (kind === "pay" && typeof chosenT !== "undefined") t += "\nТариф: " + TARIFF_NAME[chosenT];
+  const pk = pickedList();
+  if (pk.length && kind !== "contra") t += "\nВідмічено: " + pk.map(x => x.split(":")[0].trim()).join(", ");
+  a.href = CONFIG.MANAGER + "?text=" + encodeURIComponent(t);
+}, true);
 
 // шторка: тариф + телефон → одразу сторінка оплати WayForPay
 const back = document.getElementById("sheet"), form = document.getElementById("lead-form"), done = document.getElementById("sheet-done");
