@@ -704,19 +704,19 @@ footer a:hover{color:var(--herb)}
         <ul><li>Уся оздоровча програма</li><li>Клуб сімейного здоровʼя на 3 місяці</li><li>Курси й матеріали клубу для всієї сімʼї</li></ul>
         <button class="btn btn-ink" type="button" data-join="club3">Оплатити <span class="ar">→</span></button>
       </div>
-      <div class="tcard"><span class="badge">Максимум вигоди</span>
-        <div><h3>Курс + клуб 6 місяців</h3><p class="who">Програма і пів року в Клубі сімейного здоровʼя</p></div>
-        <div class="price"><b>12 900 грн</b><s>20 916 грн</s><span class="save">Економія 8 016 грн</span><small>окремо за повною ціною: клуб 16 416 грн + курс 4 500 грн</small></div>
-        <p class="bonus"><i>Бонус</i><span>Курси «Лімфа» і «Печінка» у клубі. Окремо ці курси не продаються.</span></p>
-        <ul><li>Уся оздоровча програма</li><li>Клуб сімейного здоровʼя на 6 місяців</li><li>Курси й матеріали клубу для всієї сімʼї</li></ul>
-        <button class="btn btn-ink" type="button" data-join="club6">Оплатити <span class="ar">→</span></button>
-      </div>
       <div class="tcard"><span class="badge">Ціна вебінару</span>
         <div><h3>Курс</h3><p class="who">Оздоровча програма на 4 тижні</p></div>
         <div class="price"><b>3 500 грн</b><s>4 500 грн</s><span class="save">Економія 1 000 грн</span><small>ціна для учасників вебінару</small></div>
         
         
         <button class="btn btn-ink" type="button" data-join="solo">Оплатити <span class="ar">→</span></button>
+      </div>
+      <div class="tcard"><span class="badge">Максимум вигоди</span>
+        <div><h3>Курс + клуб 6 місяців</h3><p class="who">Програма і пів року в Клубі сімейного здоровʼя</p></div>
+        <div class="price"><b>12 900 грн</b><s>20 916 грн</s><span class="save">Економія 8 016 грн</span><small>окремо за повною ціною: клуб 16 416 грн + курс 4 500 грн</small></div>
+        <p class="bonus"><i>Бонус</i><span>Курси «Лімфа» і «Печінка» у клубі. Окремо ці курси не продаються.</span></p>
+        <ul><li>Уся оздоровча програма</li><li>Клуб сімейного здоровʼя на 6 місяців</li><li>Курси й матеріали клубу для всієї сімʼї</li></ul>
+        <button class="btn btn-ink" type="button" data-join="club6">Оплатити <span class="ar">→</span></button>
       </div>
       </div>
       <div class="dots-nav" id="tdots" aria-hidden="true"></div>
@@ -835,8 +835,8 @@ footer a:hover{color:var(--herb)}
         <h3 id="sheet-title">Оплата участі</h3>
         <div class="opts" role="radiogroup" aria-label="Тариф">
         <label class="opt"><input type="radio" name="tariff" id="t-club3" value="club3"><span class="rad"></span><span>Курс + клуб 3 місяці<small>+ «Лімфа» у подарунок</small></span><span class="pr">8 384 грн</span></label>
-          <label class="opt"><input type="radio" name="tariff" id="t-club6" value="club6"><span class="rad"></span><span>Курс + клуб 6 місяців<small>+ «Лімфа» і «Печінка» у подарунок</small></span><span class="pr">12 900 грн</span></label>
           <label class="opt"><input type="radio" name="tariff" id="t-solo" value="solo"><span class="rad"></span><span>Курс</span><span class="pr">3 500 грн</span></label>
+          <label class="opt"><input type="radio" name="tariff" id="t-club6" value="club6"><span class="rad"></span><span>Курс + клуб 6 місяців<small>+ «Лімфа» і «Печінка» у подарунок</small></span><span class="pr">12 900 грн</span></label>
         </div>
         <div class="field"><label for="f-phone">Ваш телефон</label><input id="f-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+380 67 123 45 67" enterkeyhint="go"></div>
         <p class="f-err" id="f-err" aria-live="polite"></p>
@@ -858,9 +858,9 @@ const CONFIG = {
   MANAGER: "https://t.me/shyshkovskay",
   PROGRAM: "Оздоровча програма 30.11"
 };
-const TARIFF_NAME = {"club3": "Курс + клуб 3 місяці", "club6": "Курс + клуб 6 місяців", "solo": "Курс"};
-const TARIFF_UAH = {"club3": 8384, "club6": 12900, "solo": 3500};   // лише для показу; суму до сплати рахує сервер (курс AP_USD_RATE)
-const TARIFF_NOTE = {"club3": "клуб на 3 місяці 6 384 грн + курс 2 000 грн", "club6": "клуб на 6 місяців 11 400 грн + курс 1 500 грн", "solo": ""};
+const TARIFF_NAME = {"club3": "Курс + клуб 3 місяці", "solo": "Курс", "club6": "Курс + клуб 6 місяців"};
+const TARIFF_UAH = {"club3": 8384, "solo": 3500, "club6": 12900};   // лише для показу; суму до сплати рахує сервер (курс AP_USD_RATE)
+const TARIFF_NOTE = {"club3": "клуб на 3 місяці 6 384 грн + курс 2 000 грн", "solo": "", "club6": "клуб на 6 місяців 11 400 грн + курс 1 500 грн"};
 const grn = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0") + "\u00a0грн";
 const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
