@@ -386,7 +386,9 @@ footer a:hover{color:var(--herb)}
 .opt:has(input:checked){border-color:var(--ink);background:var(--herb-tint)}
 .opt:has(input:checked) .rad::after{transform:scale(1)}
 .opt small{display:block;color:var(--ink-soft);font-size:15px;font-weight:400}
-.opt .pr{margin-left:auto;white-space:nowrap;font-variant-numeric:tabular-nums}
+.opt .pr{margin-left:auto;white-space:nowrap;font-variant-numeric:tabular-nums;display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.opt .pr s{font-size:13px;font-weight:400;color:var(--muted)}
+.opt .pr em{font-style:normal;font-size:12px;font-weight:700;letter-spacing:.04em;background:var(--herb);color:var(--ink);padding:2px 6px}
 .check{display:flex;gap:12px;align-items:flex-start;font-size:17px;cursor:pointer}
 .check input{width:22px;height:22px;accent-color:var(--ink);margin:2px 0 0;flex:none}
 .check small{display:block;color:var(--ink-soft);font-size:15px}
@@ -840,9 +842,9 @@ footer a:hover{color:var(--herb)}
       <div style="display:flex;flex-direction:column;gap:18px">
         <h3 id="sheet-title">Оплата участі</h3>
         <div class="opts" role="radiogroup" aria-label="Тариф">
-        <label class="opt"><input type="radio" name="tariff" id="t-club3" value="club3"><span class="rad"></span><span>Курс + клуб 3 місяці<small>+ «Лімфа» у подарунок</small></span><span class="pr">8 384 грн</span></label>
-          <label class="opt"><input type="radio" name="tariff" id="t-solo" value="solo"><span class="rad"></span><span>Курс</span><span class="pr">3 500 грн</span></label>
-          <label class="opt"><input type="radio" name="tariff" id="t-club6" value="club6"><span class="rad"></span><span>Курс + клуб 6 місяців<small>+ «Лімфа» і «Печінка» у подарунок</small></span><span class="pr">12 900 грн</span></label>
+        <label class="opt"><input type="radio" name="tariff" id="t-club3" value="club3"><span class="rad"></span><span>Курс + клуб 3 місяці<small>+ «Лімфа» у подарунок</small></span><span class="pr">8 384 грн<s>13 392 грн</s><em>−5 008 грн</em></span></label>
+          <label class="opt"><input type="radio" name="tariff" id="t-solo" value="solo"><span class="rad"></span><span>Курс</span><span class="pr">3 500 грн<s>4 500 грн</s><em>−1 000 грн</em></span></label>
+          <label class="opt"><input type="radio" name="tariff" id="t-club6" value="club6"><span class="rad"></span><span>Курс + клуб 6 місяців<small>+ «Лімфа» і «Печінка» у подарунок</small></span><span class="pr">12 900 грн<s>20 916 грн</s><em>−8 016 грн</em></span></label>
         </div>
         <p class="f-picked" id="f-picked" hidden></p>
         <div class="field"><label for="f-phone">Ваш телефон</label><input id="f-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+380 67 123 45 67" enterkeyhint="go"></div>
@@ -867,7 +869,7 @@ const CONFIG = {
 };
 const TARIFF_NAME = {"club3": "Курс + клуб 3 місяці", "solo": "Курс", "club6": "Курс + клуб 6 місяців"};
 const TARIFF_UAH = {"club3": 8384, "solo": 3500, "club6": 12900};   // лише для показу; суму до сплати рахує сервер (курс AP_USD_RATE)
-const TARIFF_NOTE = {"club3": "клуб на 3 місяці 6 384 грн + курс 2 000 грн", "solo": "", "club6": "клуб на 6 місяців 11 400 грн + курс 1 500 грн"};
+const TARIFF_NOTE = {"club3": "економія <b>5 008 грн</b> · клуб на 3 місяці 6 384 грн + курс 2 000 грн", "solo": "економія <b>1 000 грн</b> від повної ціни 4 500 грн", "club6": "економія <b>8 016 грн</b> · клуб на 6 місяців 11 400 грн + курс 1 500 грн"};
 const grn = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0") + "\u00a0грн";
 const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
