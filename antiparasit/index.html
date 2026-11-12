@@ -430,6 +430,7 @@ footer a:hover{color:var(--herb)}
 .sc-sum{border-left:4px solid var(--olive);background:var(--herb-tint);padding:12px 16px;font-size:16px}
 .sheet .btn{width:100%}
 .f-note{font-size:14px;color:var(--muted);text-align:center}
+#sheet-sub{margin-top:-6px}
 .f-picked{margin:0;padding:10px 14px;border:1.5px dashed var(--hair);font-size:14.5px;line-height:1.45;color:var(--ink-soft)}
 .f-picked b{color:var(--ink)}
 .f-sum{margin:-6px 0 0;padding:12px 14px;background:var(--herb-tint);border-left:3px solid var(--olive);font-size:15.5px;line-height:1.45}
@@ -613,7 +614,7 @@ footer a:hover{color:var(--herb)}
         <li>Чат і підтримка учасників</li>
         <li><span class="mark">Рекомендації оздоровлення після курсу</span></li>
       </ul>
-      <div class="cta-row"><a class="btn btn-ink" href="#tariffs">Доєднатися до потоку <span class="ar">→</span></a></div>
+      <div class="cta-row"><a class="btn btn-mustard" href="#tariffs">Доєднатися <span class="ar">→</span></a></div>
     </div>
   </div>
 </section>
@@ -843,7 +844,8 @@ footer a:hover{color:var(--herb)}
     <form id="lead-form" novalidate>
       <div style="display:flex;flex-direction:column;gap:18px">
         <h3 id="sheet-title">Оплата участі</h3>
-        <div class="opts" role="radiogroup" aria-label="Тариф">
+        <p class="sub" id="sheet-sub" hidden>Залиште номер — менеджер звʼяжеться з вами і допоможе обрати формат участі.</p>
+        <div class="opts" id="f-opts" role="radiogroup" aria-label="Тариф">
         <label class="opt"><input type="radio" name="tariff" id="t-club3" value="club3"><span class="rad"></span><span>Курс + клуб 3 місяці<small>+ «Лімфа» у подарунок</small></span><span class="pr">8 384 грн<s>13 392 грн</s><em>−5 008 грн</em></span></label>
           <label class="opt"><input type="radio" name="tariff" id="t-solo" value="solo"><span class="rad"></span><span>Курс</span><span class="pr">3 500 грн<s>4 500 грн</s><em>−1 000 грн</em></span></label>
           <label class="opt"><input type="radio" name="tariff" id="t-club6" value="club6"><span class="rad"></span><span>Курс + клуб 6 місяців<small>+ «Лімфа» і «Печінка» у подарунок</small></span><span class="pr">12 900 грн<s>20 916 грн</s><em>−8 016 грн</em></span></label>
@@ -853,12 +855,14 @@ footer a:hover{color:var(--herb)}
         <p class="f-err" id="f-err" aria-live="polite"></p>
         <p class="f-sum" id="f-sum" hidden></p>
         <button class="btn btn-mustard" type="submit" id="f-submit">Перейти до оплати <span class="ar">→</span></button>
-        <p class="f-note">Далі відкриється безпечна сторінка оплати WayForPay: Visa, Mastercard, Apple Pay, Google Pay. Повернення коштів — протягом 3 днів після старту. <a href="umovy.html" target="_blank">Умови участі</a></p>
+        <p class="f-note" id="f-note-lead" hidden>Надсилаючи номер, ви погоджуєтеся з <a href="umovy.html" target="_blank">умовами участі</a>.</p>
+        <p class="f-note" id="f-note-pay">Далі відкриється безпечна сторінка оплати WayForPay: Visa, Mastercard, Apple Pay, Google Pay. Повернення коштів — протягом 3 днів після старту. <a href="umovy.html" target="_blank">Умови участі</a></p>
       </div>
     </form>
     <div class="done" id="sheet-done" hidden>
       <div class="done-head"><div class="ok">✓</div><div><h3 style="padding:0">Заявку прийнято</h3><p id="done-text">Менеджер звʼяжеться з вами і надішле посилання на оплату.</p></div></div>
       <a class="btn btn-line" href="https://t.me/shyshkovskay" data-tg="pay" target="_blank" rel="noopener">Написати менеджеру в Telegram</a>
+      <a class="linkbtn" href="#tariffs" id="done-tariffs" hidden>Переглянути пакети участі ↓</a>
     </div>
   </div>
 </div>
@@ -888,12 +892,14 @@ if (!REDUCED && "IntersectionObserver" in window) {
 
 // липка кнопка, смуга прогресу
 const finalEl = document.getElementById("final"), sticky = document.getElementById("sticky"), tariffsEl = document.getElementById("tariffs"), prog = document.getElementById("progress");
+const joinCtas = [...document.querySelectorAll('main a.btn[href="#tariffs"]')];
 function onScroll() {
   const r = tariffsEl.getBoundingClientRect();
   const fr = finalEl.getBoundingClientRect();
   const wr = document.getElementById("who").getBoundingClientRect();
   const inQuiz = wr.top < innerHeight * .7 && wr.bottom > innerHeight * .45;
-  sticky.classList.toggle("on", scrollY > 600 && !inQuiz && !(r.top < innerHeight && r.bottom > 0) && !(fr.top < innerHeight - 80));
+  const ctaOnScreen = joinCtas.some(b => { const q = b.getBoundingClientRect(); return q.height && q.top < innerHeight - 90 && q.bottom > 70; });
+  sticky.classList.toggle("on", scrollY > 600 && !inQuiz && !ctaOnScreen && !(r.top < innerHeight && r.bottom > 0) && !(fr.top < innerHeight - 80));
   const h = document.documentElement.scrollHeight - innerHeight;
   prog.style.transform = "scaleX(" + (h > 0 ? Math.min(1, scrollY / h) : 0) + ")";
 }
@@ -925,7 +931,7 @@ function scSync() {
   const w = (n % 10 === 1 && n % 100 !== 11) ? "пункт" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? "пункти" : "пунктів";
   document.getElementById("sc-n").textContent = n; document.getElementById("sc-w").textContent = w;
   scNext.hidden = n === 0;
-  const lbl = document.getElementById("st-lbl"), nl = n ? n + " " + w + " · Обрати тариф" : "Доєднатися";
+  const lbl = document.getElementById("st-lbl"), nl = n ? "Доєднатися · " + n + " " + w : "Доєднатися";
   if (lbl.textContent !== nl) { lbl.textContent = nl; const b = document.getElementById("st-btn"); b.classList.remove("bump"); void b.offsetWidth; if (n) b.classList.add("bump"); }
   try { localStorage.setItem("ap-sc", JSON.stringify(scItems.map(li => li.getAttribute("aria-checked") === "true" ? 1 : 0))); } catch (x) {}
 }
@@ -1024,7 +1030,31 @@ const btnLabel = () => {
   if (TARIFF_NOTE[chosenT]) fs.innerHTML = "До сплати <b>" + grn(u) + "</b> — " + TARIFF_NOTE[chosenT];
   return "Перейти до оплати · " + grn(u) + ' <span class="ar">→</span>';
 };
+let sheetMode = "pay";
+function setMode(m) {
+  sheetMode = m;
+  const lead = m === "lead";
+  document.getElementById("sheet-title").textContent = lead ? "Залишити заявку" : "Оплата участі";
+  document.getElementById("sheet-sub").hidden = !lead;
+  document.getElementById("f-opts").hidden = lead;
+  document.getElementById("f-note-lead").hidden = !lead;
+  document.getElementById("f-note-pay").hidden = lead;
+  document.getElementById("done-tariffs").hidden = !lead;
+}
+function openLead() {   // липка кнопка: лише телефон, без цін
+  lastFocus = document.activeElement;
+  setMode("lead");
+  form.hidden = false; done.hidden = true; err.textContent = "";
+  document.getElementById("f-sum").hidden = true;
+  submitBtn.innerHTML = 'Надіслати <span class="ar">→</span>';
+  const pk = pickedList().map(t => t.split(":")[0].trim()), fp = document.getElementById("f-picked");
+  fp.hidden = !pk.length;
+  if (pk.length) fp.innerHTML = "<b>Ви відмітили:</b> " + (pk.length > 4 ? pk.slice(0, 4).join(", ") + " та ще " + (pk.length - 4) : pk.join(", ")) + ". Менеджер отримає це разом із номером.";
+  back.hidden = false; document.body.classList.add("locked");
+  setTimeout(() => phoneEl.focus({ preventScroll: true }), 80);
+}
 function openSheet(t) {
+  setMode("pay");
   lastFocus = document.activeElement;
   chosenT = TARIFF_NAME[t] ? t : "solo";
   document.getElementById("t-" + chosenT).checked = true;
@@ -1036,13 +1066,15 @@ function openSheet(t) {
   back.hidden = false; document.body.classList.add("locked");
   setTimeout(() => phoneEl.focus({ preventScroll: true }), 80);
 }
-form.addEventListener("change", e => { if (e.target.name === "tariff") { chosenT = e.target.value; submitBtn.innerHTML = btnLabel(); } });
+form.addEventListener("change", e => { if (e.target.name === "tariff" && sheetMode === "pay") { chosenT = e.target.value; submitBtn.innerHTML = btnLabel(); } });
 function closeSheet() { back.hidden = true; document.body.classList.remove("locked"); if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true }); }
 document.addEventListener("click", e => { const j = e.target.closest("[data-join]"); if (j) { e.preventDefault(); openSheet(j.dataset.join); } });
-// усі «Доєднатися» / «Обрати тариф» ведуть до тарифів; оплата відкривається лише кнопкою «Оплатити» в картці
+// липка кнопка — коротка заявка (лише телефон); решта «Доєднатися» ведуть до пакетів участі; оплата — лише «Оплатити» в картці
+document.getElementById("st-btn").addEventListener("click", e => { e.preventDefault(); e.stopPropagation(); openLead(); });
 document.addEventListener("click", e => {
   if (!e.target.closest('a[href="#tariffs"]')) return;
   e.preventDefault();
+  if (e.target.closest("#done-tariffs")) closeSheet();
   if (!mnav.hidden) setMenu(false);
   tariffsEl.scrollIntoView({ behavior: REDUCED ? "auto" : "smooth", block: "start" });
   if (matchMedia("(max-width:860px)").matches) tcards.scrollTo({ left: 0 });
@@ -1089,8 +1121,20 @@ form.addEventListener("submit", async e => {
   e.preventDefault();
   const phone = phoneEl.value.trim(), digits = phone.replace(/\D/g, "");
   if (digits.length < 10) { phoneEl.setAttribute("aria-invalid", "true"); err.textContent = "Вкажіть повний номер. Приклад: +380 67 123 45 67."; phoneEl.focus(); return; }
-  submitBtn.disabled = true; submitBtn.textContent = "Відкриваємо оплату…";
   const src = source(), picked = pickedList().join("; ");
+  if (sheetMode === "lead") {   // заявка без тарифу — менеджер допоможе обрати
+    submitBtn.disabled = true; submitBtn.textContent = "Надсилаємо…";
+    try {
+      await post({ action: "ap_lead", tariff: "", phone: phone, picked: picked, source: src });
+      try { (window.dataLayer = window.dataLayer || []).push({ event: "lead", program: "ozdorovcha-30-11", tariff: "none" }); } catch (x) {}
+      try { if (window.fbq) window.fbq("track", "Lead", { content_name: CONFIG.PROGRAM }); } catch (x) {}
+      showDone("Менеджер звʼяжеться з вами найближчим часом і допоможе обрати формат участі.");
+    } catch (x) {
+      err.innerHTML = 'Не вдалося надіслати. Перевірте інтернет і спробуйте ще раз або напишіть <a href="' + CONFIG.MANAGER + '" target="_blank" rel="noopener">менеджеру в Telegram</a>.';
+    } finally { submitBtn.disabled = false; submitBtn.innerHTML = 'Надіслати <span class="ar">→</span>'; }
+    return;
+  }
+  submitBtn.disabled = true; submitBtn.textContent = "Відкриваємо оплату…";
   let leadSent = false;
   try {
     await post({ action: "ap_lead", tariff: chosenT, phone: phone, picked: picked, source: src });
