@@ -181,6 +181,7 @@ header .btn{height:42px;padding:0 18px;font-size:13px}
 .sc-t p b{color:var(--on-dark);font-size:17px}
 .sc-t p+p{margin-top:4px}
 @keyframes scin{from{opacity:0;transform:translateY(10px)}}
+@media (max-width:860px){.sc-next{display:none!important}}
 @media (max-width:600px){.sc-next{grid-template-columns:auto minmax(0,1fr);gap:14px 16px;padding:18px}.sc-next .btn{grid-column:1/-1}}
 .sc-more{display:none;margin-top:-16px;align-self:flex-start;background:none;border:1.5px solid var(--ink);padding:9px 14px;font:inherit;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;color:var(--ink)}
 @media (max-width:600px){
@@ -359,8 +360,11 @@ footer a:hover{color:var(--herb)}
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px max(14px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px));background:var(--ink);display:none;gap:10px;transform:translateY(110%);transition:transform .25s}
 .sticky.on{transform:none}
 .sticky .btn{flex:1;height:52px;min-width:0;padding:0 14px;letter-spacing:.06em}
-.sticky .tg{flex:none;width:52px;padding:0;border-color:var(--on-dark);color:var(--on-dark);background:transparent}
-.sticky .tg svg{width:22px;height:22px;fill:currentColor}
+.sticky .tg{flex:none;width:62px;padding:0;border-color:var(--on-dark);color:var(--on-dark);background:transparent;flex-direction:column;gap:2px}
+.sticky .tg small{font-size:10px;letter-spacing:.06em;text-transform:lowercase;font-weight:600;line-height:1}
+.sticky .btn-mustard.bump{animation:bump .4s ease}
+@keyframes bump{40%{transform:scale(1.04)}}
+.sticky .tg svg{width:20px;height:20px;fill:currentColor}
 
 /* перегляд відгуку */
 .lb{position:fixed;inset:0;z-index:90;background:rgba(27,29,16,.92);display:flex;align-items:center;justify-content:center;padding:64px 16px 16px}
@@ -422,6 +426,8 @@ footer a:hover{color:var(--herb)}
 .sc-sum{border-left:4px solid var(--olive);background:var(--herb-tint);padding:12px 16px;font-size:16px}
 .sheet .btn{width:100%}
 .f-note{font-size:14px;color:var(--muted);text-align:center}
+.f-picked{margin:0;padding:10px 14px;border:1.5px dashed var(--hair);font-size:14.5px;line-height:1.45;color:var(--ink-soft)}
+.f-picked b{color:var(--ink)}
 .f-sum{margin:-6px 0 0;padding:12px 14px;background:var(--herb-tint);border-left:3px solid var(--olive);font-size:15.5px;line-height:1.45}
 .f-sum b{font-variant-numeric:tabular-nums}
 .f-note a{text-decoration:underline}
@@ -823,8 +829,8 @@ footer a:hover{color:var(--herb)}
 </div>
 
 <div class="sticky" id="sticky">
-  <a class="btn btn-mustard" href="#tariffs" data-join="solo">Доєднатися</a>
-  <a class="btn tg" href="https://t.me/shyshkovskay" target="_blank" rel="noopener" aria-label="Написати менеджеру в Telegram"><svg viewBox="0 0 24 24"><path d="M21.4 3.6L2.9 10.7c-1 .4-1 1.8.1 2.1l4.6 1.4 1.8 5.6c.3.9 1.4 1.1 2 .4l2.6-2.6 4.6 3.4c.8.6 1.9.1 2.1-.9L23 4.9c.2-1-.7-1.7-1.6-1.3zM9.6 14.3l8.2-7.2-6.4 8.2-.3 3-1.5-4z"/></svg></a>
+  <a class="btn btn-mustard" href="#tariffs" data-join="solo" id="st-btn"><span id="st-lbl">Доєднатися</span></a>
+  <a class="btn tg" href="https://t.me/shyshkovskay" target="_blank" rel="noopener" aria-label="Питання менеджеру в Telegram"><svg viewBox="0 0 24 24"><path d="M21.4 3.6L2.9 10.7c-1 .4-1 1.8.1 2.1l4.6 1.4 1.8 5.6c.3.9 1.4 1.1 2 .4l2.6-2.6 4.6 3.4c.8.6 1.9.1 2.1-.9L23 4.9c.2-1-.7-1.7-1.6-1.3zM9.6 14.3l8.2-7.2-6.4 8.2-.3 3-1.5-4z"/></svg><small>питання</small></a>
 </div>
 
 <div class="back" id="sheet" hidden>
@@ -838,6 +844,7 @@ footer a:hover{color:var(--herb)}
           <label class="opt"><input type="radio" name="tariff" id="t-solo" value="solo"><span class="rad"></span><span>Курс</span><span class="pr">3 500 грн</span></label>
           <label class="opt"><input type="radio" name="tariff" id="t-club6" value="club6"><span class="rad"></span><span>Курс + клуб 6 місяців<small>+ «Лімфа» і «Печінка» у подарунок</small></span><span class="pr">12 900 грн</span></label>
         </div>
+        <p class="f-picked" id="f-picked" hidden></p>
         <div class="field"><label for="f-phone">Ваш телефон</label><input id="f-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+380 67 123 45 67" enterkeyhint="go"></div>
         <p class="f-err" id="f-err" aria-live="polite"></p>
         <p class="f-sum" id="f-sum" hidden></p>
@@ -880,7 +887,9 @@ const finalEl = document.getElementById("final"), sticky = document.getElementBy
 function onScroll() {
   const r = tariffsEl.getBoundingClientRect();
   const fr = finalEl.getBoundingClientRect();
-  sticky.classList.toggle("on", scrollY > 600 && !(r.top < innerHeight && r.bottom > 0) && !(fr.top < innerHeight - 80));
+  const wr = document.getElementById("who").getBoundingClientRect();
+  const inQuiz = wr.top < innerHeight * .7 && wr.bottom > innerHeight * .45;
+  sticky.classList.toggle("on", scrollY > 600 && !inQuiz && !(r.top < innerHeight && r.bottom > 0) && !(fr.top < innerHeight - 80));
   const h = document.documentElement.scrollHeight - innerHeight;
   prog.style.transform = "scaleX(" + (h > 0 ? Math.min(1, scrollY / h) : 0) + ")";
 }
@@ -912,6 +921,8 @@ function scSync() {
   const w = (n % 10 === 1 && n % 100 !== 11) ? "пункт" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? "пункти" : "пунктів";
   document.getElementById("sc-n").textContent = n; document.getElementById("sc-w").textContent = w;
   scNext.hidden = n === 0;
+  const lbl = document.getElementById("st-lbl"), nl = n ? n + " " + w + " · Обрати тариф" : "Доєднатися";
+  if (lbl.textContent !== nl) { lbl.textContent = nl; const b = document.getElementById("st-btn"); b.classList.remove("bump"); void b.offsetWidth; if (n) b.classList.add("bump"); }
   try { localStorage.setItem("ap-sc", JSON.stringify(scItems.map(li => li.getAttribute("aria-checked") === "true" ? 1 : 0))); } catch (x) {}
 }
 let saved = [];
@@ -998,6 +1009,9 @@ function openSheet(t) {
   document.getElementById("t-" + chosenT).checked = true;
   form.hidden = false; done.hidden = true; err.textContent = "";
   submitBtn.innerHTML = btnLabel();
+  const pk = pickedList().map(t => t.split(":")[0].trim()), fp = document.getElementById("f-picked");
+  fp.hidden = !pk.length;
+  if (pk.length) fp.innerHTML = "<b>Ви відмітили:</b> " + (pk.length > 4 ? pk.slice(0, 4).join(", ") + " та ще " + (pk.length - 4) : pk.join(", ")) + ". Менеджер отримає це разом із номером.";
   back.hidden = false; document.body.classList.add("locked");
   setTimeout(() => phoneEl.focus({ preventScroll: true }), 80);
 }
