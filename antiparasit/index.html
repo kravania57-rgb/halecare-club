@@ -164,6 +164,20 @@ header .btn{height:42px;padding:0 18px;font-size:13px}
 .selfcheck li[aria-checked="true"]{background:var(--herb-bg)}
 .selfcheck li[aria-checked="true"]::before{background:var(--olive) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M4 9.3l3 3 7-7' fill='none' stroke='%23f8f6ee' stroke-width='2.4'/%3E%3C/svg%3E") center/16px no-repeat!important}
 .selfcheck li:focus-visible{outline:3px solid var(--mustard);outline-offset:-3px}
+/* компактна самоперевірка: фішки замість високих рядків */
+.list.selfcheck{display:flex;flex-wrap:wrap;gap:6px}
+.list.selfcheck li{display:inline-flex;align-items:center;gap:8px;margin:0;padding:7px 11px 7px 9px;border:1.5px solid var(--hair);background:var(--paper);font-size:15px;line-height:1.25}
+.list.selfcheck li::before{flex:none;width:14px!important;height:14px!important;margin:0!important}
+.list.selfcheck li[aria-checked="true"]{border-color:var(--olive);background:var(--herb-bg)}
+.list.selfcheck li[aria-checked="true"]::before{background-size:12px!important}
+.list.selfcheck li .mark{background:none;padding:0;font-weight:700}
+.kids .list.selfcheck{padding:12px}
+.sc-more{display:none;margin-top:-16px;align-self:flex-start;background:none;border:1.5px solid var(--ink);padding:9px 14px;font:inherit;font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;color:var(--ink)}
+@media (max-width:600px){
+  .sc-folded > li:nth-child(n+8){display:none}
+  .sc-more{display:inline-flex}
+}
+@media (max-width:600px){.list.selfcheck li{font-size:14.5px}}
 .sc-hint{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--olive);margin-top:-12px}
 .sc-hint::before{content:"";width:16px;height:16px;border:1.5px solid var(--olive)}
 .kids{background:var(--paper-2)}
@@ -852,6 +866,18 @@ burger.addEventListener("click", () => setMenu(mnav.hidden));
 mnav.addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
 
 // самоперевірка
+// на телефоні — перші 7 пунктів, решта за кнопкою
+(function () {
+  const ul = document.querySelector("#who .sec-body > .list.selfcheck");
+  if (!ul) return;
+  const extra = ul.children.length - 7;
+  if (extra <= 0) return;
+  ul.classList.add("sc-folded");
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "sc-more"; b.textContent = "Показати ще " + extra + " ↓";
+  b.addEventListener("click", () => { ul.classList.remove("sc-folded"); b.remove(); });
+  ul.after(b);
+})();
 const scItems = [...document.querySelectorAll(".selfcheck li")];
 function scSync() {
   const n = scItems.filter(li => li.getAttribute("aria-checked") === "true").length;
