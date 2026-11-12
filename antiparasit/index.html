@@ -1053,7 +1053,15 @@ function openLead() {   // липка кнопка: лише телефон, б�
   back.hidden = false; document.body.classList.add("locked");
   setTimeout(() => phoneEl.focus({ preventScroll: true }), 80);
 }
+let warmed = 0;
+function warm() {   // «будимо» скрипт заздалегідь, щоб оплата відкривалась швидше
+  if (Date.now() - warmed < 120000) return;
+  warmed = Date.now();
+  try { fetch(CONFIG.SUBMIT_URL, { method: "GET", mode: "no-cors" }).catch(() => {}); } catch (x) {}
+}
+document.addEventListener("pointerdown", e => { if (e.target.closest("[data-join], #st-btn")) warm(); }, { passive: true });
 function openSheet(t) {
+  warm();
   setMode("pay");
   lastFocus = document.activeElement;
   chosenT = TARIFF_NAME[t] ? t : "solo";
@@ -1137,12 +1145,16 @@ form.addEventListener("submit", async e => {
   submitBtn.disabled = true; submitBtn.textContent = "Відкриваємо оплату…";
   let leadSent = false;
   try {
-    await post({ action: "ap_lead", tariff: chosenT, phone: phone, picked: picked, source: src });
-    leadSent = true;
+    // окрема заявка не потрібна: ap_pay сам надсилає в бот «перехід до оплати» з телефоном і пакетом (одне повідомлення замість двох)
     try { (window.dataLayer = window.dataLayer || []).push({ event: "lead", program: "ozdorovcha-30-11", tariff: chosenT }); } catch (x) {}
     try { if (window.fbq) window.fbq("track", "Lead", { content_name: CONFIG.PROGRAM }); } catch (x) {}
-    const d = await api({ action: "ap_pay", tariff: chosenT, phone: phone, picked: picked, source: src });
-    if (!d.ok) throw new Error(d.reason || "pay");
+    let d = null;
+    try { d = await api({ action: "ap_pay", tariff: chosenT, phone: phone, picked: picked, source: src }); } catch (x) { d = null; }
+    if (!d || !d.ok || !d.action || !d.fields) {   // оплата не відкрилась — номер усе одно зберігаємо як заявку
+      leadSent = await post({ action: "ap_lead", tariff: chosenT, phone: phone, picked: picked, source: src }).then(() => true, () => false);
+      throw new Error((d && d.reason) || "pay");
+    }
+    leadSent = true;
     try { (window.dataLayer = window.dataLayer || []).push({ event: "begin_checkout", program: "ozdorovcha-30-11", value: d.amount, currency: "UAH" }); } catch (x) {}
     try { if (window.fbq) window.fbq("track", "InitiateCheckout", { value: d.amount, currency: "UAH", content_name: CONFIG.PROGRAM }); } catch (x) {}
     const f = document.createElement("form");
