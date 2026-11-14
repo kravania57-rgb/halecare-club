@@ -329,6 +329,10 @@ header .btn{height:42px;padding:0 18px;font-size:13px}
 .tcard li{display:grid;grid-template-columns:22px 1fr;gap:10px}
 .tcard li::before{content:"";width:12px;height:12px;margin-top:7px;background:var(--olive)}
 .tcard.hot li::before{background:var(--herb)}
+.tcard .more{align-self:flex-start;font-size:15.5px;color:var(--ink-soft);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px;margin-top:-6px}
+.tcard .more:hover{color:var(--ink)}
+.tcard.hot .more{color:var(--on-dark-soft)}
+.tcard.hot .more:hover{color:var(--on-dark)}
 .tcard .btn{margin-top:auto;width:100%}
 .tcard.hot .btn{background:var(--mustard);border-color:var(--mustard);color:var(--ink)}
 .tcard.hot .btn:hover{background:var(--mustard-dark)}
@@ -706,11 +710,13 @@ footer a:hover{color:var(--herb)}
         <div class="price"><b>8 384 грн</b><s>13 392 грн</s><span class="save">Економія 5 008 грн</span><small>окремо за повною ціною: клуб 8 892 грн + курс 4 500 грн</small></div>
         <p class="bonus"><i>Бонус</i><span>Курс «Лімфа» у клубі. Окремо цей курс не продається.</span></p>
         <ul><li>Уся оздоровча програма</li><li>Клуб сімейного здоровʼя на 3 місяці</li><li>Курси й матеріали клубу для всієї сімʼї</li></ul>
+        <a class="more" href="https://halecare.club/" target="_blank" rel="noopener">Детальніше про клуб</a>
         <button class="btn btn-ink" type="button" data-join="club3">Оплатити <span class="ar">→</span></button>
       </div>
       <div class="tcard"><span class="badge">Ціна вебінару</span>
         <div><h3>Курс</h3><p class="who">Оздоровча програма на 4 тижні</p></div>
         <div class="price"><b>3 500 грн</b><s>4 500 грн</s><span class="save">Економія 1 000 грн</span><small>ціна для учасників вебінару</small></div>
+        
         
         
         <button class="btn btn-ink" type="button" data-join="solo">Оплатити <span class="ar">→</span></button>
@@ -720,6 +726,7 @@ footer a:hover{color:var(--herb)}
         <div class="price"><b>12 900 грн</b><s>20 916 грн</s><span class="save">Економія 8 016 грн</span><small>окремо за повною ціною: клуб 16 416 грн + курс 4 500 грн</small></div>
         <p class="bonus"><i>Бонус</i><span>Курси «Лімфа» і «Печінка» у клубі. Окремо ці курси не продаються.</span></p>
         <ul><li>Уся оздоровча програма</li><li>Клуб сімейного здоровʼя на 6 місяців</li><li>Курси й матеріали клубу для всієї сімʼї</li></ul>
+        <a class="more" href="https://halecare.club/" target="_blank" rel="noopener">Детальніше про клуб</a>
         <button class="btn btn-ink" type="button" data-join="club6">Оплатити <span class="ar">→</span></button>
       </div>
       </div>
