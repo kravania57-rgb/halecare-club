@@ -1021,8 +1021,10 @@ function setMode(m) {
   sheetMode = m;
   const lead = m === "lead";
   document.getElementById("sheet-title").textContent = lead ? "Залишити заявку" : "Оплата участі";
-  document.getElementById("sheet-sub").hidden = !lead;
-  document.getElementById("f-opts").hidden = lead;
+  const sub = document.getElementById("sheet-sub");
+  sub.hidden = false;
+  sub.innerHTML = lead ? "Залиште номер — менеджер звʼяжеться з вами і допоможе обрати формат участі." : "";
+  document.getElementById("f-opts").hidden = true;   // тариф уже обрано карткою — повторно не питаємо
   document.getElementById("f-note-lead").hidden = !lead;
   document.getElementById("f-note-pay").hidden = lead;
   document.getElementById("done-tariffs").hidden = !lead;
@@ -1052,6 +1054,7 @@ function openSheet(t) {
   lastFocus = document.activeElement;
   chosenT = TARIFF_NAME[t] ? t : "solo";
   document.getElementById("t-" + chosenT).checked = true;
+  document.getElementById("sheet-sub").innerHTML = "Ви обрали: <b>" + TARIFF_NAME[chosenT] + "</b>";
   form.hidden = false; done.hidden = true; err.textContent = "";
   submitBtn.innerHTML = btnLabel();
   const pk = pickedList().map(t => t.split(":")[0].trim()), fp = document.getElementById("f-picked");
