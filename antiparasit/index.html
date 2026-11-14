@@ -20,6 +20,9 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://secure.wayforpay.com">
+<link rel="preconnect" href="https://script.google.com">
+<link rel="preconnect" href="https://script.googleusercontent.com">
 <link rel="preload" href="font-calvino.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="font-eastman.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="img-wide.webp" media="(min-width:861px)">
@@ -1048,6 +1051,21 @@ function warm() {   // «будимо» скрипт заздалегідь, щ�
   try { fetch(CONFIG.SUBMIT_URL, { method: "GET", mode: "no-cors" }).catch(() => {}); } catch (x) {}
 }
 document.addEventListener("pointerdown", e => { if (e.target.closest("[data-join], #st-btn")) warm(); }, { passive: true });
+// Форму оплати беремо заздалегідь, щойно відкрилось вікно: поки людина вводить телефон, вона вже готова — WayForPay відкривається одразу.
+const preForm = {};
+function prefetch(t) {
+  const c = preForm[t];
+  if (c && Date.now() - c.at < 15 * 60000) return c.p;
+  const p = api({ action: "ap_form", tariff: t }).then(d => (d && d.ok && d.action && d.fields && d.ref) ? d : null, () => null);
+  preForm[t] = { p: p, at: Date.now() };
+  p.then(d => { if (!d && preForm[t] && preForm[t].p === p) delete preForm[t]; });
+  return p;
+}
+function notifyClick(body) {   // у фоні: повідомлення менеджеру й угода в CRM; оплату не затримує
+  const s = JSON.stringify(body);
+  try { if (navigator.sendBeacon && navigator.sendBeacon(CONFIG.SUBMIT_URL, new Blob([s], { type: "text/plain;charset=utf-8" }))) return; } catch (x) {}
+  post(body).catch(() => {});
+}
 function openSheet(t) {
   warm();
   setMode("pay");
@@ -1055,6 +1073,7 @@ function openSheet(t) {
   chosenT = TARIFF_NAME[t] ? t : "solo";
   document.getElementById("t-" + chosenT).checked = true;
   document.getElementById("sheet-sub").innerHTML = "Ви обрали: <b>" + TARIFF_NAME[chosenT] + "</b>";
+  prefetch(chosenT);
   form.hidden = false; done.hidden = true; err.textContent = "";
   submitBtn.innerHTML = btnLabel();
   const pk = pickedList().map(t => t.split(":")[0].trim()), fp = document.getElementById("f-picked");
@@ -1138,7 +1157,14 @@ form.addEventListener("submit", async e => {
     try { (window.dataLayer = window.dataLayer || []).push({ event: "lead", program: "ozdorovcha-30-11", tariff: chosenT }); } catch (x) {}
     try { if (window.fbq) window.fbq("track", "Lead", { content_name: CONFIG.PROGRAM }); } catch (x) {}
     let d = null;
-    try { d = await api({ action: "ap_pay", tariff: chosenT, phone: phone, picked: picked, source: src }); } catch (x) { d = null; }
+    try { d = await prefetch(chosenT); } catch (x) { d = null; }
+    if (d) {   // швидкий шлях: форма вже готова — телефон і повідомлення йдуть у фоні
+      delete preForm[chosenT];
+      d.fields.clientPhone = digits;
+      notifyClick({ action: "ap_click", ref: d.ref, tariff: chosenT, phone: phone, picked: picked, source: src });
+    } else {   // запасний шлях (старий): скрипт сам готує форму й надсилає повідомлення
+      try { d = await api({ action: "ap_pay", tariff: chosenT, phone: phone, picked: picked, source: src }); } catch (x) { d = null; }
+    }
     if (!d || !d.ok || !d.action || !d.fields) {   // оплата не відкрилась — номер усе одно зберігаємо як заявку
       leadSent = await post({ action: "ap_lead", tariff: chosenT, phone: phone, picked: picked, source: src }).then(() => true, () => false);
       throw new Error((d && d.reason) || "pay");

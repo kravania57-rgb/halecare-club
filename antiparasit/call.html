@@ -1,0 +1,7 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Подзвонити клієнту</title><meta name="robots" content="noindex,nofollow">
+<style>body{margin:0;font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:#f8f6ee;color:#1b1d10;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px;box-sizing:border-box;text-align:center}
+a{display:block;background:#e2b93b;color:#1b1d10;text-decoration:none;font-weight:700;font-size:22px;padding:22px 28px;margin-top:16px}p{font-size:17px;color:#3f4330;margin:0}</style></head>
+<body><div><p>Дзвінок клієнту</p><a id="c" href="#">Подзвонити</a></div>
+<script>var n=(location.hash||"").replace(/[^0-9]/g,"");var a=document.getElementById("c");
+if(n.length>=10){a.href="tel:+"+n;a.textContent="Подзвонити +"+n;location.href="tel:+"+n;}else{a.textContent="Номер не вказано";}</script></body></html>
