@@ -867,8 +867,25 @@ footer a:hover{color:var(--herb)}
 const CONFIG = {
   SUBMIT_URL: "https://script.google.com/macros/s/AKfycbxoul-uHRVpysSDvjKeKyNdQm3PRzfpdL9T5FiK84cW_2k9_W7jDoiFWZdag2H041tkHg/exec",
   MANAGER: "https://t.me/shyshkovskay",
-  PROGRAM: "Оздоровча програма 30.11"
+  PROGRAM: "Оздоровча програма 30.11",
+  PIXEL: ""   // Meta Pixel: ID задається в build.py (PIXEL_ID); порожньо — піксель не вантажиться
 };
+// аналітика лише на справжньому сайті (не в превʼю): перегляд сторінки раз на сесію, без персональних даних
+if (location.hostname === "halecare.club") {
+  try {
+    if (!sessionStorage.getItem("ap_view")) {
+      sessionStorage.setItem("ap_view", "1");
+      const v = JSON.stringify({ action: "ap_view", source: source() });
+      if (!(navigator.sendBeacon && navigator.sendBeacon(CONFIG.SUBMIT_URL, new Blob([v], { type: "text/plain;charset=utf-8" }))))
+        fetch(CONFIG.SUBMIT_URL, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain;charset=utf-8" }, body: v });
+    }
+  } catch (x) {}
+  if (/^\d{8,}$/.test(CONFIG.PIXEL)) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");
+    fbq("init", CONFIG.PIXEL);
+    fbq("track", "PageView");
+  }
+}
 const TARIFF_NAME = {"club3": "Курс + клуб 3 місяці", "solo": "Курс", "club6": "Курс + клуб 6 місяців"};
 const TARIFF_UAH = {"club3": 8384, "solo": 3800, "club6": 12900};   // лише для показу; суму до сплати рахує сервер (курс AP_USD_RATE)
 const TARIFF_NOTE = {"club3": "економія <b>5 008 грн</b> · клуб на 3 місяці 6 384 грн + курс 2 000 грн", "solo": "економія <b>700 грн</b> від повної ціни 4 500 грн", "club6": "економія <b>8 016 грн</b> · клуб на 6 місяців 11 400 грн + курс 1 500 грн"};
